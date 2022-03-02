@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-03-02T00:53:02.272Z</updated>
+  <updated>2022-03-02T01:33:01.586Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>无聊</title>
+    <link href="http://example.com/2022/03/02/%E6%97%A0%E8%81%8A/"/>
+    <id>http://example.com/2022/03/02/%E6%97%A0%E8%81%8A/</id>
+    <published>2022-03-02T01:18:22.000Z</published>
+    <updated>2022-03-02T01:33:01.586Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="就是测试一下"><a href="#就是测试一下" class="headerlink" title="就是测试一下"></a>就是测试一下</h2><p>看一看是不是成功了</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;就是测试一下&quot;&gt;&lt;a href=&quot;#就是测试一下&quot; class=&quot;headerlink&quot; title=&quot;就是测试一下&quot;&gt;&lt;/a&gt;就是测试一下&lt;/h2&gt;&lt;p&gt;看一看是不是成功了&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+    <category term="酷酷酷" scheme="http://example.com/tags/%E9%85%B7%E9%85%B7%E9%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title></title>
