@@ -4,8 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="contact, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="本站记录自己的学习和生活的过程">
+    <meta name="keywords" content="力扣刷题1, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、前言sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！
+sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>contact | sheepice的博客</title>
+    <title>力扣刷题1 | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -311,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">contact</h1>
+                    <h1 class="description center-align post-title">力扣刷题1</h1>
                 </div>
             </div>
         </div>
@@ -430,12 +431,29 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%88%B7%E9%A2%98/">
+                                <span class="chip bg-color">刷题</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8A%9B%E6%89%A3/">
+                                <span class="chip bg-color">力扣</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
+                                力扣刷题篇
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -444,28 +462,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-27
+                    2022-03-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-27
+                    2022-03-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    672
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -485,7 +503,71 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p>
+<hr>
+<h3 id="二、leecode每日一题"><a href="#二、leecode每日一题" class="headerlink" title="二、leecode每日一题"></a>二、leecode每日一题</h3><h5 id="①首先是今天的每日一题，题目如下："><a href="#①首先是今天的每日一题，题目如下：" class="headerlink" title="①首先是今天的每日一题，题目如下："></a>①首先是今天的每日一题，题目如下：</h5><p><img src="https://img-blog.csdnimg.cn/69c46960dcf04186a11aab308856d966.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="交替二进制"></p>
+<h5 id="②题目解答（1）"><a href="#②题目解答（1）" class="headerlink" title="②题目解答（1）"></a>②题目解答（1）</h5><pre class="line-numbers language-c++"><code class="language-c++">//版本1，逐步的进行判断
+class Solution &#123;
+public:
+    bool hasAlternatingBits(int n) &#123;
+        int prev = 100;  //因为二进制每一位不可能超过2，所以prev比2大就好
+        while (n != 0) &#123;
+            int cur = n & 1;    //当前判断的位数
+            if (cur == prev) &#123;  //如果与上一位相等就不满足
+                return false;
+            &#125;
+            prev = cur;         //前缀等于当前，进行下一次的判断
+            n >>= 1;
+        &#125;
+        return true;
+    &#125;
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="③题目解答（2）"><a href="#③题目解答（2）" class="headerlink" title="③题目解答（2）"></a>③题目解答（2）</h5><p>因为位运算的性质，所以这题其实可以几行代码就解决的。例如一个二进制数为101，如何判断他是交替的呢。首先令u&#x3D;101，然后u &gt;&gt; 1是等于010的，这一步可以看成让一个本来是101交替的，变成010交替，那么u^(u&gt;&gt;1)等于111，也就是说对于交替进行的数字，必然有其本身抑或本身右移一位后得到的结果位数全部为1!!</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//版本二：利用位运算的相关性质
+class Solution &#123;
+public:
+    bool hasAlternatingBits(int n) &#123;
+        long a = n ^ (n >> 1);
+        //a加1后如果为真，111变成1000与原数按位与必然为0
+        return (a & (a+1)) == 0;
+    &#125;
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h3 id="三、三叶姐的拓展"><a href="#三、三叶姐的拓展" class="headerlink" title="三、三叶姐的拓展"></a>三、三叶姐的拓展</h3><p>这一题之后三叶姐给了一个位运算的入门专题，也是状态压缩的一个入门题目：</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247490530&idx=1&sn=f53d29ff37a37b41408a83e10bff0ee6&chksm=fd9cb0fdcaeb39eb014629bce596c667600ad22791f5c4e50307da0090c8777caaefadf85948&mpshare=1&scene=23&srcid=0328BdmtGDal2kCsgWYe74cB&sharer_sharetime=1648433142477&sharer_shareid=700066f28b945e5d1cd5d3f0173f1539#rd">【位运算专题】经典「状态压缩 + 位运算」入门题</a></p>
+<h5 id="①题目如下："><a href="#①题目如下：" class="headerlink" title="①题目如下："></a>①题目如下：</h5><p><img src="https://img-blog.csdnimg.cn/45a0dd6be54f4da8946facbd537559b3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="状态压缩入门"></p>
+<h5 id="②解答如下"><a href="#②解答如下" class="headerlink" title="②解答如下"></a>②解答如下</h5><p>因为数据给的比较小，然后要判断的只是小写字母，因此只需要把每一个单词小写字母出现的情况放在一个二进制数下进行表示就好了的！</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//c++版本的解答
+class Solution &#123;
+public:
+    int maxProduct(vector<string>& words) &#123;
+        int n = words.size();
+        vector<int> dp(n,0);
+        for(int i = 0; i < n; i++) &#123;
+            for(int j = 0; j < words[i].size(); j++) &#123;
+                char u = words[i][j];
+                //进行每一位1的存储
+                dp[i] |= (1 << (u - 'a'));  
+            &#125;
+        &#125;
+        int ans = 0;
+        //从头比较到尾，满足无重复数字就进行相关的答案记录
+        for(int i = 0; i < n - 1; i++) &#123;
+            for(int j = i+1; j < n; j++) &#123;
+                if((dp[i] & dp[j]) == 0) &#123;
+                    if(words[i].size() * words[j].size() > ans)
+                    ans = words[i].size() * words[j].size();
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
@@ -511,7 +593,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/contact/index.html">https://sample.com/contact/index.html</a>
+                    <a href="https://sample.com/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/">https://sample.com/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -548,7 +630,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E5%88%B7%E9%A2%98/">
+                                    <span class="chip bg-color">刷题</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8A%9B%E6%89%A3/">
+                                    <span class="chip bg-color">力扣</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -725,13 +815,13 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/contact/index.html">
+                <a href="/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpeg" class="responsive-img" alt="contact">
+                        <img src="/medias/featureimages/8.jpeg" class="responsive-img" alt="力扣刷题1">
                         
-                        <span class="card-title">contact</span>
+                        <span class="card-title">力扣刷题1</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -742,17 +832,33 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            sheepice
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
+                                    力扣刷题篇
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%B7%E9%A2%98/">
+                        <span class="chip bg-color">刷题</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
+                        <span class="chip bg-color">力扣</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -760,16 +866,16 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/contact/index.html">
+                <a href="/2022/03/27/%E5%91%A8%E6%80%BB%E7%BB%93%EF%BC%881%EF%BC%89/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpeg" class="responsive-img" alt="contact">
+                        <img src="/medias/featureimages/4.jpeg" class="responsive-img" alt="周总结（1）">
                         
-                        <span class="card-title">contact</span>
+                        <span class="card-title">周总结（1）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -784,13 +890,24 @@
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            sheepice
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
+                                    周总结
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">周总结</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
