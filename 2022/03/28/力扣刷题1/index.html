@@ -31,9 +31,9 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.1.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml">
-</head>
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
 
@@ -476,7 +476,7 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    672
+                    723
                 </div>
                 
 
@@ -558,6 +558,9 @@ public:
         for(int i = 0; i < n - 1; i++) &#123;
             for(int j = i+1; j < n; j++) &#123;
                 if((dp[i] & dp[j]) == 0) &#123;
+//这里取最大值的地方可以注意一下
+//可以用ans = max(ans, (int)(words[i].size() * words[j].size()));
+//因为.size()结构是返回无符号类型的int所以力扣上会报错！！！
                     if(words[i].size() * words[j].size() > ans)
                     ans = words[i].size() * words[j].size();
                 &#125;
@@ -566,7 +569,7 @@ public:
         return ans;
     &#125;
 &#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1132,7 +1135,7 @@ public:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">1.8k</span>
+                        class="white-color">1.9k</span>
             
             
             
