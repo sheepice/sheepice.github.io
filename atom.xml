@@ -6,7 +6,7 @@
   <link href="https://sample.com/atom.xml" rel="self"/>
   
   <link href="https://sample.com/"/>
-  <updated>2022-03-28T09:19:54.126Z</updated>
+  <updated>2022-03-29T05:58:31.123Z</updated>
   <id>https://sample.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>力扣刷题2</title>
+    <link href="https://sample.com/2022/03/29/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%982/"/>
+    <id>https://sample.com/2022/03/29/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%982/</id>
+    <published>2022-03-29T05:47:02.000Z</published>
+    <updated>2022-03-29T05:58:31.123Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p><p><a href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p><hr><h3 id="二、leetcode每日一题"><a href="#二、leetcode每日一题" class="headerlink" title="二、leetcode每日一题"></a>二、leetcode每日一题</h3><p><img src="https://img-blog.csdnimg.cn/39df104b32574cbbac56a8e175e46cc2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="滑动窗口题目"></p><p>说实话，这一题在刚开始用双指针的时候，是有些地方没有想明白的，比如当最后的右指针移动到某个位置把k次数用完后，左指针应该移动到哪个位置，所以开始死磕了好久，最后也是积累了这样一种滑动窗口的办法吧。其实就是不要等右指针移到位才开始计算结果，边移动的时候就可以开始计算了，利用维护一个sum值，当sum依然小于k的时候，右指针就可以一直往后面移动，sum也一直++，知道他大于k的那一刻，我们的left就需要移动到他等于k的地方。那么这一题和后面要-+(三叶姐的简单题加餐)的题目是几乎一样的，只不过这题是需要计算最多有多少个“F”和“T”最后取两者的最大值就是答案啦！</p><pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;public:    string s;    int jl;    int maxConsecutiveAnswers(string answerKey, int k) &#123;        s = answerKey;        jl = k;        int ans = 0;        ans = max(getmax('T'), getmax('F'));        return ans;    &#125;    int getmax(char ss) &#123;        int n = s.size();        int sum = 0;        int as = 0;        for(int i = 0, j = 0; j < n; j++) &#123;            //不等于ss时，翻牌操作++；            sum += (s[j] != ss);            //翻牌的操作已经用空了            while(sum > jl) &#123;                sum -= (s[i] != ss);                i++;            &#125;            //边走边记录下来答案            as = max(as, j - i + 1);        &#125;        return as;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="三、-套餐（简单题加餐）"><a href="#三、-套餐（简单题加餐）" class="headerlink" title="三、-+套餐（简单题加餐）"></a>三、-+套餐（简单题加餐）</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247486241&idx=1&sn=609ca05e6e21a72023172b52d0af0a75&chksm=fd9ca03ecaeb2928018ef5b2faf20b170ae123813eec30962d2ea2d3c93e78e54ddde0d51c87&cur_album_id=1805384400772087811&scene=189#wechat_redirect">最大连续1的个数</a></p><p>上方来自三叶姐的题解，里面涉及到dp做法；二分加前缀和；还有今天的滑动窗口，非常的厉害！！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三</summary>
+      
+    
+    
+    
+    <category term="力扣刷题篇" scheme="https://sample.com/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/"/>
+    
+    
+    <category term="刷题" scheme="https://sample.com/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="力扣" scheme="https://sample.com/tags/%E5%8A%9B%E6%89%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣刷题1</title>
