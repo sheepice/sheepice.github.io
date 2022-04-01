@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>力扣刷题3</title>
+      <link href="/2022/04/01/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%983/"/>
+      <url>/2022/04/01/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%983/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p><p><a href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p><h3 id="二、leetcode每日一题"><a href="#二、leetcode每日一题" class="headerlink" title="二、leetcode每日一题"></a>二、leetcode每日一题</h3><p>今天的每日一题难度不大，主要想记录一下关系哈希表的容器相关写法吧！</p><p><img src="https://img-blog.csdnimg.cn/3f3ea20f3f3246cb883ad941a49020dd.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16"></p><hr><h5 id="①思路："><a href="#①思路：" class="headerlink" title="①思路："></a>①思路：</h5><p>采用哈希表记录下来所有出现过的数和对应的次数，然后利用<strong>绝对值大小进行排序</strong>（这个排序可以方便我们对表进行一次遍历，只需要看arr[i]对应的arr[i] * 2的次数是不是比前者大，即满足前者能够充分的匹配后者，然后一旦不满足就return false就好了的。</p><hr><h5 id="②解答："><a href="#②解答：" class="headerlink" title="②解答："></a>②解答：</h5><pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;public:    bool canReorderDoubled(vector<int>& arr) &#123;         unordered_map<int, int> cnt;        for (int x : arr) &#123;            ++cnt[x];        &#125;        if (cnt[0] % 2) &#123;            return false;        &#125;        vector<int> vals;        vals.reserve(cnt.size());        for (auto &[x, y] : cnt) &#123;            vals.push_back(x);        &#125;        sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) < abs(b); &#125;);        for (int x : vals) &#123;            if (cnt[2 * x] < cnt[x]) &#123; // 无法找到足够的 2x 与 x 配对                return false;            &#125;            cnt[2 * x] -= cnt[x];        &#125;        return true;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h5 id="③学到的东西"><a href="#③学到的东西" class="headerlink" title="③学到的东西"></a>③学到的东西</h5><pre class="line-numbers language-c++"><code class="language-c++">//应该都是容器的相关知识，但是我还没看到，就先记录一下1.    //将哈希表里面的第一个元素放到数组里面，    for (auto &[x, y] : cnt) &#123;            vals.push_back(x);        &#125;2.    //直接在sort里面进行比较函数的书写    sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) < abs(b); &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="三、三叶姐的题解"><a href="#三、三叶姐的题解" class="headerlink" title="三、三叶姐的题解"></a>三、三叶姐的题解</h3><p>因为自己还没有仔细学到拓扑排序还有优先队列，所以这个地方留着以后回来看：</p><p><a href="https://leetcode-cn.com/problems/array-of-doubled-pairs/solution/by-ac_oier-d1z7/">三叶姐的题解</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 力扣刷题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 刷题 </tag>
+            
+            <tag> 力扣 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>生活分享1</title>
       <link href="/2022/03/30/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB1/"/>
       <url>/2022/03/30/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB1/</url>
