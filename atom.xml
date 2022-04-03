@@ -6,7 +6,7 @@
   <link href="https://sample.com/atom.xml" rel="self"/>
   
   <link href="https://sample.com/"/>
-  <updated>2022-04-01T04:09:56.897Z</updated>
+  <updated>2022-04-03T13:59:23.189Z</updated>
   <id>https://sample.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周总结(2)</title>
+    <link href="https://sample.com/2022/04/03/%E5%91%A8%E6%80%BB%E7%BB%93-2/"/>
+    <id>https://sample.com/2022/04/03/%E5%91%A8%E6%80%BB%E7%BB%93-2/</id>
+    <published>2022-04-03T12:28:55.000Z</published>
+    <updated>2022-04-03T13:59:23.189Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice的CSDN博客地址：<a href="https://blog.csdn.net/qq_60556896/">CSDN地址</a></p><p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！</p><hr><h3 id="二、leetbook的完结"><a href="#二、leetbook的完结" class="headerlink" title="二、leetbook的完结"></a>二、leetbook的完结</h3><p>算是看完了的第一本leetbook吧，还是很支持三叶姐的。看完这本书的最大感受就是对动态规划有了更加深刻的一个理解吧，准备下周开始看三叶姐的背包问题的总结了。希望能够变得越来越强吧！</p><p>极力推荐**<a href="https://leetcode-cn.com/leetbook/read/path-problems-in-dynamic-programming/rt49s5/">三叶姐的第一本leetbook</a>**！！</p><p><img src="https://img-blog.csdnimg.cn/a2ca59a49a0c4c39a46d978111403d41.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16"></p><hr><h3 id="三、知识星球的打卡"><a href="#三、知识星球的打卡" class="headerlink" title="三、知识星球的打卡"></a>三、知识星球的打卡</h3><h5 id="①Day-5，周一"><a href="#①Day-5，周一" class="headerlink" title="①Day 5，周一"></a>①Day 5，周一</h5><p>平平无奇的一天，但又是重新启航的一天。早上的时候终于把博客初步搭建好了，然后啥事也没干。<br>中午的时候忘记调闹钟了，一觉睡到了3点多，然后起来开始刷力扣，这是第39天了，加油啊骚年。写完力扣的题目，做了三叶姐的拓展，写了篇博客<a href="https://sheepice.github.io/">https://sheepice.github.io/</a><br>大家可以看看<br>晚上就继续看c++prime，看了两个多小时，好像对c++的容器还有一些变量的设置有了一点眉目，希望这一周可以好好总结一下，发一篇新的博客<br>呆会手机锁机<br>我要开始复习六级啦！</p><h5 id="②Day6，周二"><a href="#②Day6，周二" class="headerlink" title="②Day6，周二"></a>②Day6，周二</h5><p>今天的力扣每日一题很可惜没能第一时间想出来，当知道是滑动窗口的一个模板题的时候，狠狠的觉得自己题目刷少了哈哈哈。当然还是写了一篇博客的：<a href="https://sheepice.github.io/%E2%80%8B%E2%80%8B">https://sheepice.github.io/​​</a></p><p>早上起来听了六级听力，我从来没有发现英语那么难学啊呜呜。</p><p>下午的时候把c++prime的第四章看完了。</p><p>哦对了，早上的时候，我看了操作系统看了差不多1个多小时的视频，刚开始还觉得这样的课程比较无聊，但是王道那个老师举的例子真的好好玩啊哈哈哈！</p><p>晚上的话就是自己的姨妈生日，翘了一节计算机思维课去帮她过生日，不过好像那一节课讲完了好多c++的东西[流泪]。不过我也是好好的展现了一波社交能力[呲牙]</p><p>回来的时候觉得今天好像一天都没干什么，就花了点时间看了一下数据结构和算法分析，对时间复杂度有了更深刻的理解。然后看到了那个最大子序列和用递归的写法，不得不说，递归这个东西神秘而又奇妙啊[呲牙]</p><p>待会再背背单词还有写写英语翻译，几天都没睡好了，争取今天能睡一个好好的觉[呲牙]</p><h5 id="③Day7-周三"><a href="#③Day7-周三" class="headerlink" title="③Day7 周三"></a>③Day7 周三</h5><p>今天发了一篇生活的博客，有兴趣的uu们可以去看看sheepice的博客​​</p><p>c++prime看了第六章还差一点</p><p>每日一题摆烂，有思路但是对数据结构不太熟悉啊，不太知道怎么用优先队列</p><p>英语听力40min 待会还会背单词</p><p>操作系统看完第一章</p><p>今天好摆啊<img src="file:///C:\Users\0604520\AppData\Roaming\Tencent\QQTempSys\CE_6{RQP]3{T@BAJGTH{IW4.png" alt="img"></p><h5 id="④Day8-周四"><a href="#④Day8-周四" class="headerlink" title="④Day8 周四"></a>④Day8 周四</h5><p>英语听力40min，总共25错7，继续努力<br>lc三月打卡目标完成<br>三叶姐的最短路径和2（困难），记录最小和第二小元素<br>c++prime第六章扫完<br>数据结构看了点列表，那本书有点难，打算开leetbook结合一下<br>操作系统看了进程：了解了一些进程组织，进程状态和进程转换的知识，包括对操作系统内核的原语有了初步印象<br>大物第五章习题刷完，大物慕课刷完</p><h5 id="⑤Day9-周五"><a href="#⑤Day9-周五" class="headerlink" title="⑤Day9 周五"></a>⑤Day9 周五</h5><p>每日一题，写了篇博客<a href="https://sheepice.github.io/%E2%80%8B%E2%80%8B">https://sheepice.github.io/​​</a></p><p>最短路径二hard题目，记忆化搜索</p><p>栈和队列的实现，链表的索引实现<br>今天想休息会，待会和朋友打游戏去了</p><h5 id="⑥Day10-周六"><a href="#⑥Day10-周六" class="headerlink" title="⑥Day10 周六"></a>⑥Day10 周六</h5><p>被电工技术折磨住了<br>刷了一个记忆化搜索题<br>三叶姐的路径leetbook明天可以刷完<br>英语单词<br>摆烂休息</p><hr><h3 id="四、运动任务"><a href="#四、运动任务" class="headerlink" title="四、运动任务"></a>四、运动任务</h3><p>中规中矩吧，每天跑跑步，跳跳绳什么的，每天坚持一点运动还是很不错滴！</p><hr><h3 id="五、一点小倾诉"><a href="#五、一点小倾诉" class="headerlink" title="五、一点小倾诉"></a>五、一点小倾诉</h3><p>就今天不是一周的最后一天了嘛，其实从前天开始，就感觉到自己明显的有点不在状态了。就感觉有好多我自己说不清楚的压力在我的身上，无论是学业的还是生活上的，也不知道是不是因为太久没有和身边的人进行沟通了，太久没有和朋友们进行相聚了，内心老是感觉憋着无数的话说不出来，突然就觉得好像有些累了。不知道大家有没有这样一种情况，就是会突然那一下没有了动力，然后就感觉莫名其妙的空虚感，有的uu们可以来一起聊聊天哈！就其实一直想做一个很乐观很乐观的人，但是可能自己性格的缘故，越想着去说，想把一些开心或者自己想说的话说出去，但是就会有点想展示自己，就是我无比感受到这样的展现挺空虚的，我估计还是心灵在作祟吧！可恶的疫情啊，你什么时候能够对我们善良一点，我真的很想回到自己的学校，见到熟悉的朋友。到那时，也许望着天边的一片片云，都觉得很有味道吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;sheepice的CSDN博客地址：&lt;a href=&quot;https://blog.csdn.net/qq_60556896/&quot;</summary>
+      
+    
+    
+    
+    <category term="周总结" scheme="https://sample.com/categories/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="周总结" scheme="https://sample.com/tags/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>力扣刷题3</title>
