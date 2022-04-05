@@ -4,9 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="力扣刷题2, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、前言sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！
-sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
+    <meta name="keywords" content="树状数组初探, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、树状数组的初学之前学习过前缀和和差分的一些知识就觉得挺神奇的，然后昨天刷到力扣的每日一题之后发现，好像&amp;#x3D;&amp;#x3D;树状数组&amp;#x3D;&amp;#x3D;在多区间的修改和查询方面很神奇，包括之后要学习的&amp;#x3D;&amp;#x3D;线段树">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>力扣刷题2 | sheepice的博客</title>
+    <title>树状数组初探 | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +311,12 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">力扣刷题2</h1>
+                    <h1 class="description center-align post-title">树状数组初探</h1>
                 </div>
             </div>
         </div>
@@ -462,28 +461,28 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-29
+                    2022-04-05
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-03-29
+                    2022-04-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    514
+                    951
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -503,44 +502,95 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p>
+                <h1 id="一、树状数组的初学"><a href="#一、树状数组的初学" class="headerlink" title="一、树状数组的初学"></a>一、树状数组的初学</h1><p>之前学习过前缀和和差分的一些知识就觉得挺神奇的，然后昨天刷到力扣的每日一题之后发现，好像&#x3D;&#x3D;树状数组&#x3D;&#x3D;在多区间的修改和查询方面很神奇，包括之后要学习的&#x3D;&#x3D;线段树&#x3D;&#x3D;（能解决所有树状数组的问题）可能会更加有收获吧。</p>
 <hr>
-<h3 id="二、leetcode每日一题"><a href="#二、leetcode每日一题" class="headerlink" title="二、leetcode每日一题"></a>二、leetcode每日一题</h3><p><img src="https://img-blog.csdnimg.cn/39df104b32574cbbac56a8e175e46cc2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="滑动窗口题目"></p>
-<p>说实话，这一题在刚开始用双指针的时候，是有些地方没有想明白的，比如当最后的右指针移动到某个位置把k次数用完后，左指针应该移动到哪个位置，所以开始死磕了好久，最后也是积累了这样一种滑动窗口的办法吧。其实就是不要等右指针移到位才开始计算结果，边移动的时候就可以开始计算了，利用维护一个sum值，当sum依然小于k的时候，右指针就可以一直往后面移动，sum也一直++，知道他大于k的那一刻，我们的left就需要移动到他等于k的地方。那么这一题和后面要-+(三叶姐的简单题加餐)的题目是几乎一样的，只不过这题是需要计算最多有多少个“F”和“T”最后取两者的最大值就是答案啦！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;
-public:
-    string s;
-    int jl;
-    int maxConsecutiveAnswers(string answerKey, int k) &#123;
-        s = answerKey;
-        jl = k;
-        int ans = 0;
-        ans = max(getmax('T'), getmax('F'));
-        return ans;
+<h1 id="二、一些小小的理解"><a href="#二、一些小小的理解" class="headerlink" title="二、一些小小的理解"></a>二、一些小小的理解</h1><h3 id="①lowbit的理解"><a href="#①lowbit的理解" class="headerlink" title="①lowbit的理解"></a>①lowbit的理解</h3><p>在线段数组里面有这么一个重要的函数，也是能够构造整个树状数组的核心吧！代码只有一行，但是对于我这种萌新来说，刚开始还是很难理解的。代码如下：</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//寻找一个数最低位的1
+int lowbit(int x) &#123;
+        return x & -x;
     &#125;
-    int getmax(char ss) &#123;
-        int n = s.size();
-        int sum = 0;
-        int as = 0;
-        for(int i = 0, j = 0; j < n; j++) &#123;
-            //不等于ss时，翻牌操作++；
-            sum += (s[j] != ss);
-            //翻牌的操作已经用空了
-            while(sum > jl) &#123;
-                sum -= (s[i] != ss);
-                i++;
-            &#125;
-            //边走边记录下来答案
-            as = max(as, j - i + 1);
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>举个比较简单的例子，一个数为3，他的二进制表示为11，那么根据负数二进制的要求，-3的二进制，我们先求他的反码为00，最后+1得到补码为01，最后让11 &amp; 01 便取得 01，也就是最低位的第一个1，<strong>大家可以试一下，利用这个函数，最后得到的结果一定只会含有一个1在整个数里面</strong>;</p>
+<hr>
+<h1 id="三、树状数组的构建"><a href="#三、树状数组的构建" class="headerlink" title="三、树状数组的构建"></a>三、树状数组的构建</h1><p><img src="https://img-blog.csdnimg.cn/00946e0b43e9458e843fd7c0b90696d5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="树状数组"><br>大家可以看到，树状数组首先对应一个s数组（假设有8个元素），也就是一个求总和的数组，这个数组里面对应装下一些前缀和，而每一个s对应数都是连续的，这也就为我们后面提供区间和利用<strong>前缀和</strong>的思想提供了很好的办法！<br>&#x3D;&#x3D;当然这里有要注意的点：&#x3D;&#x3D; 就是我们的s数组必须从1作为下标开始，也就是8个元素我们要开s[9]的空间，因为lowbit(0)是不存在最低位1的会造成<strong>无限循环</strong>的风险。大家可能不太理解，这个数组里面为什么能够按照这样的数字进行相加，我们看下面的图：<br><img src="https://img-blog.csdnimg.cn/5c68b3ed52e0422f9a8dde06069d7c9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="二进制表示"><br>从上面的图，我们可以知道，每个s对应的下标，都是从某个下标i，通过加上lowbit(i),并且在每次演变的时候，让Si加上对应的num[i - 1] 的数(因为num数中的下标是从0开始的)，最后就变成了第一张图的样子，也就是接下来要讲的区间的更新。</p>
+<hr>
+<h1 id="四、区间的查询以及更新"><a href="#四、区间的查询以及更新" class="headerlink" title="四、区间的查询以及更新"></a>四、区间的查询以及更新</h1><h3 id="①区间的更新："><a href="#①区间的更新：" class="headerlink" title="①区间的更新："></a>①区间的更新：</h3><p>因为有了上面的铺垫，我们直接放上，s数组更新的一个代码，也就是如何让s数组存上对应相关的值。</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//添加和到对应的树状数组
+    void add(int x, int val) &#123;
+        for(int i = x; i <= n; i += lowbit(i)) &#123;
+            sum[i] +=  val;   //这里的val其实就是num[i - 1];
         &#125;
-        return as;
+    &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>经过上面的操作之后，我们就完成了s数组的构建，那么如果题目要求，改掉num数组里面的某个数的话，我们只需要让那个数所在的s也同时的更新就好，像下面一样:</p>
+<pre class="line-numbers language-c++"><code class="language-c++">void update(int index, int val) &#123;
+        //这里的index要+1，因为num数组的下标从0开始
+        add(index + 1, val - nums[index]);
+        nums[index] = val;
+    &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>区间的查询，其实有点像更新的逆过程，比如我们要知道(num[0] - num[6])的总和也就是说如何要求出S7 + S6 + S4的值（这里大家可以对照一下上面的图）。<strong>7 - 6 - 4 不就是 111 - 110 - 100</strong>的过程吗？那其实就是每次让下标为i的数减去lowbit(i)，然后在此过程中去加上S[i]的值，最后就可以得到原始下标为index的前缀和了，根据区间前缀和计算的方式，最终就可以知道一段区间的和了。</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//计算从下标0- x-1的前缀和
+int query(int x) &#123;
+        int s = 0;
+        for(int i = x; i > 0; i -= lowbit(i)) &#123;
+            s += sum[i];
+        &#125;
+        return s;
+    &#125;
+//计算区间的和(不了解前缀和的同学可以先了解一下前缀和)
+int sumRange(int left, int right) &#123;
+        //因为原始的下标从0开始，那么对应区间和的下标要加1
+        return query(right + 1) - query(left);
+    &#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h1 id="五、力扣的原题"><a href="#五、力扣的原题" class="headerlink" title="五、力扣的原题"></a>五、力扣的原题</h1><h3 id="①原题贴图"><a href="#①原题贴图" class="headerlink" title="①原题贴图"></a>①原题贴图</h3><p><img src="https://img-blog.csdnimg.cn/48adae96d9104c9c9c868b5332bb8eb0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="树状数组模板题"></p>
+<h3 id="②AC的代码全贴"><a href="#②AC的代码全贴" class="headerlink" title="②AC的代码全贴"></a>②AC的代码全贴</h3><pre class="line-numbers language-c++"><code class="language-c++">class NumArray &#123;
+public:
+    vector<int> sum;
+    //记录最低位的1
+    int lowbit(int x) &#123;
+        return x & -x;
+    &#125;
+    //添加和到对应的树状数组
+    void add(int x, int val) &#123;
+        for(int i = x; i <= n; i += lowbit(i)) &#123;
+            sum[i] +=  val;
+        &#125;
+    &#125;
+    int query(int x) &#123;
+        int s = 0;
+        for(int i = x; i > 0; i -= lowbit(i)) &#123;
+            s += sum[i];
+        &#125;
+        return s;
+    &#125;
+    vector<int> nums;
+    int n;
+    NumArray(vector<int>& nums) &#123;
+        this->nums = nums;
+        n = nums.size();
+        sum.resize(n + 1, 0);
+        for(int i = 0; i < n; i++) &#123;
+            add(i + 1, nums[i]);
+        &#125;
+    &#125;
+    
+    void update(int index, int val) &#123;
+        add(index + 1, val - nums[index]);
+        nums[index] = val;
+    &#125;
+    
+    int sumRange(int left, int right) &#123;
+        return query(right + 1) - query(left);
     &#125;
 &#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
-<h3 id="三、-套餐（简单题加餐）"><a href="#三、-套餐（简单题加餐）" class="headerlink" title="三、-+套餐（简单题加餐）"></a>三、-+套餐（简单题加餐）</h3><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247486241&idx=1&sn=609ca05e6e21a72023172b52d0af0a75&chksm=fd9ca03ecaeb2928018ef5b2faf20b170ae123813eec30962d2ea2d3c93e78e54ddde0d51c87&cur_album_id=1805384400772087811&scene=189#wechat_redirect">最大连续1的个数</a></p>
-<p>上方来自三叶姐的题解，里面涉及到dp做法；二分加前缀和；还有今天的滑动窗口，非常的厉害！！</p>
+<h1 id="六、-参考文档"><a href="#六、-参考文档" class="headerlink" title="六、 参考文档"></a>六、 参考文档</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bestsort/article/details/80796531">参考1 树状数组的详细教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-mutable/solution/-by-hu-ge-8-t4rn/">参考2 力扣胡歌的题解</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-mutable/solution/guan-yu-ge-lei-qu-jian-he-wen-ti-ru-he-x-41hv/">参考3 力扣三叶姐的题解</a></p>
 
                 
             </div>
@@ -567,7 +617,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/03/29/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%982/">https://sample.com/2022/03/29/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%982/</a>
+                    <a href="https://sample.com/2022/04/05/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%88%9D%E6%8E%A2/">https://sample.com/2022/04/05/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%88%9D%E6%8E%A2/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -784,66 +834,18 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/30/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB1/">
+                <a href="/2022/04/05/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E5%88%9D%E6%8E%A2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="生活分享1">
+                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="树状数组初探">
                         
-                        <span class="card-title">生活分享1</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%94%9F%E6%B4%BB%E7%AF%87/" class="post-category">
-                                    生活篇
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%94%9F%E6%B4%BB/">
-                        <span class="chip bg-color">生活</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="力扣刷题1">
-                        
-                        <span class="card-title">力扣刷题1</span>
+                        <span class="card-title">树状数组初探</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -854,7 +856,7 @@ public:
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-05
                             </span>
                         <span class="publish-author">
                             
@@ -868,6 +870,7 @@ public:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -877,6 +880,55 @@ public:
                     
                     <a href="/tags/%E5%8A%9B%E6%89%A3/">
                         <span class="chip bg-color">力扣</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/03/%E5%91%A8%E6%80%BB%E7%BB%93-2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpeg" class="responsive-img" alt="周总结(2)">
+                        
+                        <span class="card-title">周总结(2)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
+                                    周总结
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
+                        <span class="chip bg-color">周总结</span>
                     </a>
                     
                 </div>
