@@ -3,7 +3,7 @@
 
 
 <head>
-    <meta charset="utf-8">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="树状数组初探, 博客的制作，学习分享，c++，音乐，艺术">
     <meta name="description" content="一、树状数组的初学之前学习过前缀和和差分的一些知识就觉得挺神奇的，然后昨天刷到力扣的每日一题之后发现，好像&amp;#x3D;&amp;#x3D;树状数组&amp;#x3D;&amp;#x3D;在多区间的修改和查询方面很神奇，包括之后要学习的&amp;#x3D;&amp;#x3D;线段树">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +30,7 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml">
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
@@ -38,7 +38,7 @@
 
 
 <body>
-    <header class="navbar-fixed">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
     <nav id="headNav" class="bg-color nav-transparent">
         <div id="navContainer" class="nav-wrapper container">
             <div class="brand-logo">
@@ -529,7 +529,7 @@ int lowbit(int x) &#123;
         nums[index] = val;
     &#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>区间的查询，其实有点像更新的逆过程，比如我们要知道(num[0] - num[6])的总和也就是说如何要求出$ S_7 +  S_6  + S_4 $的值（这里大家可以对照一下上面的图）。<strong>7 - 6 - 4 不就是 111 - 110 - 100</strong>的过程吗？那其实就是每次让下标为i的数减去lowbit(i)，<font color="red">然后在此过程中去加上S[i]的值，最后就可以得到原始下标为index的前缀和了，根据区间前缀和计算的方式，最终就可以知道一段区间的和了。</font></p>
+<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>区间的查询，其实有点像更新的逆过程，比如我们要知道$\sum_{i&#x3D;0}^{6}num[i]$的总和也就是说如何要求出$ S_7 +  S_6  + S_4 $的值（这里大家可以对照一下上面的图）。<strong>7 - 6 - 4 不就是 111 - 110 - 100</strong>的过程吗？那其实就是每次让下标为i的数减去lowbit(i)，<font color="red">然后在此过程中去加上S[i]的值，最后就可以得到原始下标为index的前缀和了，根据区间前缀和计算的方式，最终就可以知道一段区间的和了。</font></p>
 <pre class="line-numbers language-c++"><code class="language-c++">//计算从下标0- x-1的前缀和
 int query(int x) &#123;
         int s = 0;
@@ -1401,7 +1401,7 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
 </body>
