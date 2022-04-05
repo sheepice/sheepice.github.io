@@ -475,7 +475,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    951
+                    952
                 </div>
                 
 
@@ -502,9 +502,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、树状数组的初学"><a href="#一、树状数组的初学" class="headerlink" title="一、树状数组的初学"></a>一、树状数组的初学</h1><p>之前学习过前缀和和差分的一些知识就觉得挺神奇的，然后昨天刷到力扣的每日一题之后发现，好像&#x3D;&#x3D;树状数组&#x3D;&#x3D;在多区间的修改和查询方面很神奇，包括之后要学习的&#x3D;&#x3D;线段树&#x3D;&#x3D;（能解决所有树状数组的问题）可能会更加有收获吧。</p>
+                <h1 id="一、树状数组的初学"><a href="#一、树状数组的初学" class="headerlink" title="一、树状数组的初学"></a>一、树状数组的初学</h1><p>之前学习过前缀和和差分的一些知识就觉得挺神奇的，然后昨天刷到力扣的每日一题之后发现，好像&#x3D;&#x3D;树状数组&#x3D;&#x3D;在多区间的修改和查询方面很神奇，包括之后要学习的&#x3D;&#x3D;线段树&#x3D;&#x3D;（能解决所有树状数组的问题）可能会更加有收获吧。😁😁</p>
 <hr>
-<h1 id="二、一些小小的理解"><a href="#二、一些小小的理解" class="headerlink" title="二、一些小小的理解"></a>二、一些小小的理解</h1><h3 id="①lowbit的理解"><a href="#①lowbit的理解" class="headerlink" title="①lowbit的理解"></a>①lowbit的理解</h3><p>在线段数组里面有这么一个重要的函数，也是能够构造整个树状数组的核心吧！代码只有一行，但是对于我这种萌新来说，刚开始还是很难理解的。代码如下：</p>
+<h1 id="二、一些小小的理解"><a href="#二、一些小小的理解" class="headerlink" title="二、一些小小的理解"></a>二、一些小小的理解</h1><h3 id="①lowbit的理解"><a href="#①lowbit的理解" class="headerlink" title="①lowbit的理解"></a>①lowbit的理解</h3><p>在线段数组里面有这么一个重要的函数，也是能够构造整个树状数组的<font color="red">核心</font>吧！代码只有一行，但是对于我这种萌新来说，刚开始还是很难理解的。代码如下：</p>
 <pre class="line-numbers language-c++"><code class="language-c++">//寻找一个数最低位的1
 int lowbit(int x) &#123;
         return x & -x;
@@ -512,7 +512,7 @@ int lowbit(int x) &#123;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>举个比较简单的例子，一个数为3，他的二进制表示为11，那么根据负数二进制的要求，-3的二进制，我们先求他的反码为00，最后+1得到补码为01，最后让11 &amp; 01 便取得 01，也就是最低位的第一个1，<strong>大家可以试一下，利用这个函数，最后得到的结果一定只会含有一个1在整个数里面</strong>;</p>
 <hr>
-<h1 id="三、树状数组的构建"><a href="#三、树状数组的构建" class="headerlink" title="三、树状数组的构建"></a>三、树状数组的构建</h1><p><img src="https://img-blog.csdnimg.cn/00946e0b43e9458e843fd7c0b90696d5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="树状数组"><br>大家可以看到，树状数组首先对应一个s数组（假设有8个元素），也就是一个求总和的数组，这个数组里面对应装下一些前缀和，而每一个s对应数都是连续的，这也就为我们后面提供区间和利用<strong>前缀和</strong>的思想提供了很好的办法！<br>&#x3D;&#x3D;当然这里有要注意的点：&#x3D;&#x3D; 就是我们的s数组必须从1作为下标开始，也就是8个元素我们要开s[9]的空间，因为lowbit(0)是不存在最低位1的会造成<strong>无限循环</strong>的风险。大家可能不太理解，这个数组里面为什么能够按照这样的数字进行相加，我们看下面的图：<br><img src="https://img-blog.csdnimg.cn/5c68b3ed52e0422f9a8dde06069d7c9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="二进制表示"><br>从上面的图，我们可以知道，每个s对应的下标，都是从某个下标i，通过加上lowbit(i),并且在每次演变的时候，让Si加上对应的num[i - 1] 的数(因为num数中的下标是从0开始的)，最后就变成了第一张图的样子，也就是接下来要讲的区间的更新。</p>
+<h1 id="三、树状数组的构建"><a href="#三、树状数组的构建" class="headerlink" title="三、树状数组的构建"></a>三、树状数组的构建</h1><p><img src="https://img-blog.csdnimg.cn/00946e0b43e9458e843fd7c0b90696d5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="树状数组"><br>大家可以看到，树状数组首先对应一个s数组（假设有8个元素），也就是一个求总和的数组，这个数组里面对应装下一些前缀和，而每一个s对应数都是连续的，这也就为我们后面提供区间和利用<strong>前缀和</strong>的思想提供了很好的办法！<br>&#x3D;&#x3D;当然这里有要注意的点：&#x3D;&#x3D; 就是我们的s数组必须从1作为下标开始，也就是8个元素我们要开s[9]的空间，因为lowbit(0)是不存在最低位1的会造成<strong>无限循环</strong>的风险。大家可能不太理解，这个数组里面为什么能够按照这样的数字进行相加，我们看下面的图：<br><img src="https://img-blog.csdnimg.cn/5c68b3ed52e0422f9a8dde06069d7c9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="二进制表示"><br>从上面的图，我们可以知道，每个s对应的下标，都是从某个下标i，通过加上lowbit(i),并且在每次演变的时候，让$S_i$加上对应的num[i - 1] 的数(因为num数中的下标是从0开始的)，最后就变成了第一张图的样子，也就是接下来要讲的区间的更新。</p>
 <hr>
 <h1 id="四、区间的查询以及更新"><a href="#四、区间的查询以及更新" class="headerlink" title="四、区间的查询以及更新"></a>四、区间的查询以及更新</h1><h3 id="①区间的更新："><a href="#①区间的更新：" class="headerlink" title="①区间的更新："></a>①区间的更新：</h3><p>因为有了上面的铺垫，我们直接放上，s数组更新的一个代码，也就是如何让s数组存上对应相关的值。</p>
 <pre class="line-numbers language-c++"><code class="language-c++">//添加和到对应的树状数组
@@ -522,14 +522,14 @@ int lowbit(int x) &#123;
         &#125;
     &#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>经过上面的操作之后，我们就完成了s数组的构建，那么如果题目要求，改掉num数组里面的某个数的话，我们只需要让那个数所在的s也同时的更新就好，像下面一样:</p>
+<p>经过上面的操作之后，我们就<font color="green">完成了s数组的构建</font>，那么如果题目要求，改掉num数组里面的某个数的话，我们只需要让那个数所在的s也同时的更新就好，像下面一样:</p>
 <pre class="line-numbers language-c++"><code class="language-c++">void update(int index, int val) &#123;
         //这里的index要+1，因为num数组的下标从0开始
         add(index + 1, val - nums[index]);
         nums[index] = val;
     &#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>区间的查询，其实有点像更新的逆过程，比如我们要知道(num[0] - num[6])的总和也就是说如何要求出S7 + S6 + S4的值（这里大家可以对照一下上面的图）。<strong>7 - 6 - 4 不就是 111 - 110 - 100</strong>的过程吗？那其实就是每次让下标为i的数减去lowbit(i)，然后在此过程中去加上S[i]的值，最后就可以得到原始下标为index的前缀和了，根据区间前缀和计算的方式，最终就可以知道一段区间的和了。</p>
+<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>区间的查询，其实有点像更新的逆过程，比如我们要知道(num[0] - num[6])的总和也就是说如何要求出$ S_7 +  S_6  + S_4 $的值（这里大家可以对照一下上面的图）。<strong>7 - 6 - 4 不就是 111 - 110 - 100</strong>的过程吗？那其实就是每次让下标为i的数减去lowbit(i)，<font color="red">然后在此过程中去加上S[i]的值，最后就可以得到原始下标为index的前缀和了，根据区间前缀和计算的方式，最终就可以知道一段区间的和了。</font></p>
 <pre class="line-numbers language-c++"><code class="language-c++">//计算从下标0- x-1的前缀和
 int query(int x) &#123;
         int s = 0;
