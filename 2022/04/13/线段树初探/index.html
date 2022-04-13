@@ -1,0 +1,1833 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="线段树初探, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、线段树的相关概念①定义什么是线段树呢？首先默认很多同学已经知道树这个结构了。也就是说，我们要用树的每一个节点去存下每一段数，我觉得线段树的名字由来大概如此吧！我们可以看下的图
+
+上面的图就是线段树上的每一个节点所存的数代表的含义，比如一">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>线段树初探 | sheepice的博客</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">sheepice的博客</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>访客登记处</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>学习情报处</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">sheepice的博客</div>
+        <div class="logo-desc">
+            
+            本站记录自己的学习和生活的过程
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			访客登记处
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			学习情报处
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/sheepice/sheepice.github.io" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/sheepice/sheepice.github.io" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpeg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">线段树初探</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%88%B7%E9%A2%98/">
+                                <span class="chip bg-color">刷题</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                <span class="chip bg-color">模板</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                模板
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-04-13
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-04-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    837
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    2 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="一、线段树的相关概念"><a href="#一、线段树的相关概念" class="headerlink" title="一、线段树的相关概念"></a>一、线段树的相关概念</h1><h3 id="①定义"><a href="#①定义" class="headerlink" title="①定义"></a>①定义</h3><p>什么是线段树呢？首先默认很多同学已经知道树这个结构了。也就是说，我们要用树的每一个节点去存下每一段数，我觉得线段树的名字由来大概如此吧！我们可以看下的图</p>
+<p><img src="https://img-blog.csdnimg.cn/f96a5cc24c4c4d86989ef7b0f60c4aea.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="线段树图解"></p>
+<p><strong>上面的图就是线段树上的每一个节点所存的数代表的含义，比如一个线段的左编号为l，右编号为r，那么这个线段所代表的就是$\sum_ {i&#x3D;l}^{r}nums[i]$,最终呈现的一颗树如下图。</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/4437b4713e424355a0743e5902fa3564.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="整个线段树的图形"></p>
+<blockquote>
+<p>而蓝色标记的数字代表树上节点的编号，这个是在二叉树里面的编号，所以可以知道每一个节点左儿子和右儿子的编号，假设当前的编号k, 那么他的<font color="red">左儿子为：2k(k &lt;&lt; 1),右儿子为：2k+1(k&lt;&lt;1|1)</font>,这里加红的地方大家可以注意一下，因为一般来说，位运算能比较快的去遍历一整颗树，所以在后面的代码全部由位运算代替左右儿子的遍历。</p>
+</blockquote>
+<h3 id="②好处"><a href="#②好处" class="headerlink" title="②好处"></a>②好处</h3><p>首先呢，由于线段树是一个二叉树，因此它可以让时间复杂度为$O(N)$的代码降低为$log_2(N)$的时间复杂度，在数据大的时候，很有可能就是这样的时间差距，带来更多的收益。那么线段树到底会解决什么样的问题，那么复杂的一棵树，为什么我一定要拿来用呢？有几个点：<font color="red">如果我们多次修改某个区间，求区间和又或者是多次让某个区间变成一个数</font>,类似这样的问题是可以用线段树的。当然这些问题是可以用线段数组来写的，但是有的时候我们会不得不用线段树，比如多次将一个区间变成同一个数。当然线段树的很多功能可以通过树状数组来代替，如果能够使用树状数组写的题目，最好能够优先选择树状数组。所以为什么还要去学习线段树呢？我觉得在刚开始我一直很畏惧去学，但是经过一天的学习之后我发现，学习完线段树，不仅是多了一个解决问题的手段，多学了一个数据结构，更多的是对递归，分治的思想又加深了。所以建议uu们都可以去学习这样的一颗复杂但是优美的树！</p>
+<h1 id="二、线段树的基本操作（1）"><a href="#二、线段树的基本操作（1）" class="headerlink" title="二、线段树的基本操作（1）"></a>二、线段树的基本操作（1）</h1><h3 id="①建树"><a href="#①建树" class="headerlink" title="①建树"></a>①建树</h3><p>毫无疑问对于这样的一个数据结构来说，我们肯定是得先要把它建出来。这样建树的过程其实在树的学习中，大家肯定都是会的，而因为线段树的定义不同，因此我们要在每次递归回溯的过程，让节点所代表的值加上他左子树和右子树的值，才最终代表某个节点是由下面子树的和而构建来的，具体代码如下：</p>
+<pre class="line-numbers language-c++"><code class="language-c++">void build_tree(int k, int l, int r) &#123;
+    if(l == r) &#123;
+        sum[k] = nums[l];
+        return; 
+    &#125;
+    int m = (l + r) >> 1; //取l，r的中点
+    //递归左子树，然后k<<1相当于2*k 
+    build_tree(k << 1, l, m);
+    //递归右子树，然后k << 1 | 1相当于2*k+1 
+    build_tree(k << 1 | 1, m + 1, r); 
+    //进行区间的求和累积(左子树和右子树的和)
+    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②修改单个点的值"><a href="#②修改单个点的值" class="headerlink" title="②修改单个点的值"></a>②修改单个点的值</h3><p>如果题目要求让某个点加上一个val值的话，很显然，在更新一整颗树的时候，每一个线段带有该点都必须一起的进行更新，然后在更新的过程的时候，会有一个必要条件，也就是更新点的下标一定是会被包含在每次递归的左右区间之内的，所以有如下的代码。</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//进行单个数的加值
+void add(int k, int l, int r, int x, int val) &#123;
+    //改变的数根据递归肯定会在[l, r]的区间之内 
+    sum[k] += val;
+    if(l == r) return;
+    int m = (l + r) >> 1;
+    //要改变的数在左子树 
+    if(x <= m) &#123;
+        add(k << 1, l, m, x, val);
+    &#125;
+    //要改变的数在右子树 
+    else &#123;
+        add(k << 1 | 1, m + 1, r, x, val); 
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>完成上面的操作之后，就可以让每一颗树进行对应的更新了，因此如果在次基础上，如果我们要查询一段区间和的时候，我们其实只需要递归的去计算每个区间的和就好了</strong></p>
+<h3 id="③针对只修改了单个点值的区间查询"><a href="#③针对只修改了单个点值的区间查询" class="headerlink" title="③针对只修改了单个点值的区间查询"></a>③针对只修改了单个点值的区间查询</h3><p><font color="red">这里可以注意一下标题，只针对修改了单个点值的区间查询，因为在这个前提下的计算和之后的计算有着不同的地方，所以先看一个点，再慢慢推进到后面的点。</font>这里的操作还是以下图为例子：</p>
+<p><img src="https://img-blog.csdnimg.cn/f96a5cc24c4c4d86989ef7b0f60c4aea.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="线段树图解"></p>
+<blockquote>
+<p>因为对于这里的递归会有很多的不理解的地方，在这稍作提示。如果我们在做一个区间计算的时候，如果计算的区间刚好在左子树，那么我们最后只需要递归左子树的和就好了，比如在编号为①的时候，我们要查找$[1,2]$区间的和，那么其实只需要到编号为②的地方去计算，右子树同理。那么如果我们跨了区间怎么半呢？比如在上图我要查找$[2,4]$区间的和呢，也很简单，只不过就是左子树的区间$[2,3]$和右子树的区间$[3,4]$两个计算的结果加在一起，具体很多的注释加在代码内，建议读者可以用一些例子理解这个递归式子。而下面第一行注释的lazy标记是后面要介绍的内容！</p>
+</blockquote>
+<pre class="line-numbers language-c++"><code class="language-c++">//计算某个区间的和，不含有lazy标记 
+int cal(int k, int l, int r, int x, int y) &#123;
+    if(l == x && r == y) &#123;
+        return sum[k]; 
+    &#125;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        return cal(k << 1, l, m, x, y);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         return cal(k << 1 | 1, m + 1, r, x, y);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        return cal(k << 1, l, m, x, m) + 
+        cal(k << 1 | 1, m + 1, r, m + 1, y);
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="④例题模板1"><a href="#④例题模板1" class="headerlink" title="④例题模板1"></a>④例题模板1</h3><p><img src="https://img-blog.csdnimg.cn/745ab82a49654f21a1ccc5b8c33fe9fb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="例题1"></p>
+<p>​                                                                                             <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">例题1入口</a></p>
+<p><strong>这个例题将我们所说的结合起来就可以写了的，当然他是树状数组的一个板子，之所以用线段树去写，只是为了加深对线段树的熟悉度罢了。</strong></p>
+<h3 id="⑤AC全部代码"><a href="#⑤AC全部代码" class="headerlink" title="⑤AC全部代码"></a>⑤AC全部代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+using namespace std;
+//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+int nums[500005];  //数据的存储 
+int sum[2000010];   //区间和的存储 
+int lz[2000010];     //lazy标记的存储
+int n, m;
+
+//进行线段树的构建 
+void build_tree(int k, int l, int r) &#123;
+    if(l == r) &#123;
+        sum[k] = nums[l];
+        return; 
+    &#125;
+    int m = (l + r) >> 1; //取l，r的中点
+    //递归左子树，然后k<<1相当于2*k 
+    build_tree(k << 1, l, m);
+    //递归右子树，然后k << 1 | 1相当于2*k+1 
+    build_tree(k << 1 | 1, m + 1, r); 
+    //进行区间的求和累积(左子树和右子树的和)
+    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+&#125;
+
+//进行单个数的加值
+void add(int k, int l, int r, int x, int val) &#123;
+    //改变的数根据递归肯定会在[l, r]的区间之内 
+    sum[k] += val;
+    if(l == r) return;
+    int m = (l + r) >> 1;
+    //要改变的数在左子树 
+    if(x <= m) &#123;
+        add(k << 1, l, m, x, val);
+    &#125;
+    //要改变的数在右子树 
+    else &#123;
+        add(k << 1 | 1, m + 1, r, x, val); 
+    &#125;
+&#125;
+
+//计算某个区间的和，不含有laze标记 
+int cal(int k, int l, int r, int x, int y) &#123;
+    if(l == x && r == y) &#123;
+        return sum[k]; 
+    &#125;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        return cal(k << 1, l, m, x, y);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         return cal(k << 1 | 1, m + 1, r, x, y);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        return cal(k << 1, l, m, x, m) + 
+        cal(k << 1 | 1, m + 1, r, m + 1, y);
+    &#125;
+&#125;
+
+int main() &#123;
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++) &#123;
+        cin >> nums[i];
+    &#125;
+    build_tree(1, 1, n);
+    for(int i = 1; i <=m; i++) &#123;
+        int cz, x, y;
+        cin >> cz >> x >> y;
+        if(cz == 1) &#123;
+            add(1, 1, n, x, y);
+        &#125;
+        else &#123;
+            cout << cal(1, 1, n, x, y) << endl;
+        &#125;
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="三、线段树的基本操作（2）不下传懒惰标记版本"><a href="#三、线段树的基本操作（2）不下传懒惰标记版本" class="headerlink" title="三、线段树的基本操作（2）不下传懒惰标记版本"></a>三、线段树的基本操作（2）不下传懒惰标记版本</h1><p>在上面的操作，我们只是进行了对线段树中的某一个值进行一个加减的过程，那么很显然不能体现线段树的好处。那么如果我们对一整个区间去进行操作呢？我们先看一下下面的引入：</p>
+<h3 id="①引入懒惰标记"><a href="#①引入懒惰标记" class="headerlink" title="①引入懒惰标记"></a>①引入懒惰标记</h3><p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记"></p>
+<p><strong>如图所示，左边是我们最开始要构建的一颗树，右边是加入了懒惰标记的时候构建的一颗树，在这个地方我们看到了在两个地方我们由红色标记了一个东西，这就是我们的懒惰标记。由它的名字我们可以知道，就是我们可以偷懒，让程序不用去把所有的值进行修改，就可以得到我们最终的答案。也就是图中的下标为3，4的地方的并没有进行加1操作，但是他们的和是加上了2的，这是怎么偷懒的呢？</strong><font color="red">通俗来说，就是假设我们计算一个区间，如果线段树的那一段已经恰好完全包含了这个区间，正如[3,4]的区间被恰好包含在编号为3的子树上，那么我们就直接给他打上一个+1的标记，代表其实它的儿子是都需要加1的，但是由于我已经包含了他们，因此我们不再需要继续往下递归，因为它们的老爸已经把他们相加的结果记录好了，这个操作实现的代码如下：</font></p>
+<pre class="line-numbers language-c++"><code class="language-c++">void insert(int k, int l, int r, int x, int y, long long val) &#123;
+    //如果刚好区域被包含在[l,r]的区间内
+     if(l == x && r == y) &#123;
+         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+         lz[k] += val;  
+         return;
+    &#125;
+    //先让能够满足所求区间为总区间的子区间的加上对应的区间和 
+    sum[k] += (y - x + 1) * val;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        insert(k << 1, l, m, x, y, val);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         insert(k << 1 | 1, m + 1, r, x, y, val);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        insert(k << 1, l, m, x, m, val);
+        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
+    &#125; 
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>好了那么我们要查询一个区间怎么办呢？首先这里由于我们是这里先介绍不把懒惰标记下传的写法，因此，下面的方法与后面把懒惰标记下传的方法会有些不同的地方，大家注意看一下区别。</p>
+<p>回归正题，如果我们要查找一段区间，但是由于懒惰坐标并没有下传，这就会导致一个什么事情呢，就是在我们查询的时候，有一些孩子的值是并没有得到更新的，这就会导致，他们所存的sum值是没有得到更新的，还需要去加上之前积累的懒惰标记的值才行，这里还是以上图为例子。</p>
+<p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记计算1"></p>
+<p>假设我们要查找的就是$[4,4]$这个区间呢？我们可以看到本身4下标的这个数字是要加1的，但是很遗憾的是，我们的第一步操作并没有达到我们想要满足的效果。那么我们可以关注一下，从下标为4的那个地方往上看，是不是可以看到一个懒惰标记，这个代表了什么呢？不就是代表了它上方如果存在懒惰标记的话，那么就代表因为太懒，本来它本身是需要加上懒惰标记的值但是没有加上，那么我们只需要把他上方所有积累的懒惰标记加起来，然后最后在计算本身的时候加上$(\sum{lz}*length(区间的长度))$就好了。这个地方会有点难理解为什么要加上上方所有的和，不急，可以在用一个图为例子：</p>
+<p><img src="https://img-blog.csdnimg.cn/a867ad730ac34f0d9e84e2f799221706.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记计算2"></p>
+<p><strong>假设在前面图的基础上让区间[1,4]都加上了一个1，很显然，因为恰好包含，除了根节点挂上一个+1的懒惰标记，其他地方都不会变化，那如果此时我们还要计算[4,4]的值呢？很显然我们要加上两个懒惰标记的值，因为4被连续加上了两次1。也就是说当我们不把懒惰标记下传的时候，我们是需要计算两部分的值才能最终确定一个区间的和。一个就是懒惰标记的积累和，另外就是本身的子树累计的和，代码如下，大家可以结合代码去走一遍图：</strong></p>
+<pre class="line-numbers language-c++"><code class="language-c++">//进行区间的查询
+//函数的意思：在[l,r]上的[x,y]区间所有数的和
+//p代表当前下标的lazy值 
+int query(int k, int l, int r, int x, int y, int p) &#123;
+    //先进行lazy值的累加
+    p += lz[k]; 
+    //如果恰好包含
+    if(l == x && r == y) &#123;
+        return p * (y - x + 1) + sum[k];
+    &#125;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        return query(k << 1, l, m, x, y, p);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         return query(k << 1 | 1, m + 1, r, x, y, p);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        return query(k << 1, l, m, x, m, p) + 
+        query(k << 1 | 1, m + 1, r, m + 1, y, p);
+    &#125; 
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="③例题模板2"><a href="#③例题模板2" class="headerlink" title="③例题模板2"></a>③例题模板2</h3><p><img src="https://img-blog.csdnimg.cn/0209f12304fe4725896c1b92231635aa.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="线段树模板"></p>
+<p>​                                                                                                    <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">题目2入口</a></p>
+<h3 id="④AC完整代码"><a href="#④AC完整代码" class="headerlink" title="④AC完整代码"></a>④AC完整代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+using namespace std;
+//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+int nums[100001];  //数据的存储 
+long long sum[400010];   //区间和的存储 
+long long lz[400010];     //lazy标记的存储
+int n, m;
+
+//进行线段树的构建 
+void build_tree(int k, int l, int r) &#123;
+    if(l == r) &#123;
+        sum[k] = nums[l];
+        return; 
+    &#125;
+    int m = (l + r) >> 1; //取l，r的中点
+    //递归左子树，然后k<<1相当于2*k 
+    build_tree(k << 1, l, m);
+    //递归右子树，然后k << 1 | 1相当于2*k+1 
+    build_tree(k << 1 | 1, m + 1, r); 
+    //进行区间的求和累积(左子树和右子树的和)
+    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+&#125;
+
+//进行区间的加值
+//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+void insert(int k, int l, int r, int x, int y, long long val) &#123;
+    //如果刚好区域被包含在[l,r]的区间内
+     if(l == x && r == y) &#123;
+         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+         lz[k] += val;  
+         return;
+    &#125;
+    //先让能够满足所求区间为总区间的子区间的加上对应的区间和 
+    sum[k] += (y - x + 1) * val;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        insert(k << 1, l, m, x, y, val);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         insert(k << 1 | 1, m + 1, r, x, y, val);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        insert(k << 1, l, m, x, m, val);
+        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
+    &#125; 
+&#125;
+
+//进行区间的查询
+//函数的意思：在[l,r]上的[x,y]区间所有数的和
+//p代表当前下标的lazy值 
+long long query(int k, int l, int r, int x, int y, long long p) &#123;
+    //先进行lazy值的累加
+    p += lz[k]; 
+    //如果恰好包含
+    if(l == x && r == y) &#123;
+        return p * (y - x + 1) + sum[k];
+    &#125;
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        return query(k << 1, l, m, x, y, p);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         return query(k << 1 | 1, m + 1, r, x, y, p);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        return query(k << 1, l, m, x, m, p) + 
+        query(k << 1 | 1, m + 1, r, m + 1, y, p);
+    &#125; 
+&#125;
+int main() &#123;
+    scanf("%d%d", &n, &m);
+    for(int i = 1; i <= n; i++) &#123;
+        scanf("%d", &nums[i]);
+    &#125;
+    build_tree(1, 1, n);
+    for(int i = 1; i <=m; i++) &#123;
+        int cz;
+        scanf("%d", &cz);
+        if(cz == 1) &#123;
+            int x,y;
+            long long k;
+            scanf("%d%d%lld", &x, &y, &k);
+            insert(1, 1, n, x, y, k);
+        &#125;
+        else &#123;
+            int x,y;
+            scanf("%d%d", &x, &y);
+            printf("%lld\n", query(1, 1, n, x, y, 0));
+        &#125;
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="四、线段树的基本操作（2）下传懒惰标记版本"><a href="#四、线段树的基本操作（2）下传懒惰标记版本" class="headerlink" title="四、线段树的基本操作（2）下传懒惰标记版本"></a>四、线段树的基本操作（2）下传懒惰标记版本</h1><h3 id="①引言"><a href="#①引言" class="headerlink" title="①引言"></a>①引言</h3><p>这里其实就是说会根据很多人的不同习惯有很多不同的写法，所以仅供大家参考目前我在慢慢习惯的一个写法。</p>
+<p>下传懒惰标记其实就是说，我们不要去管计算的时候，一个区间上面的懒惰标记，假设还是如图</p>
+<p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记下传"></p>
+<p>如果我们还是要去计算[4,4]的值，我们不妨在访问和为9的那个线段的时候，直接把它的懒惰标记传给它的左右孩子，然后它本身的懒惰标记变成0。这样的话，我们计算值的时候就不用管上面懒惰标记的和了，因为都是0。那么我们其实就是在计算本层的一个值加上本身就应该加上的懒惰标记的值，其实和之前的方法就是一个过程了相当于，就是思维上稍微有点不同。<font color="red">比如在这个地方，因为计算的时候有可能会把懒惰标记下传，这样的过程会导致什么呢？会导致上方的值因为懒惰标记的下传，上面的值得不到一个更新，因此很简单的思路就是。在递归回溯的过程中，让上方的值不断的进行一个更新，也就是和我们文章最初开头的一种方式是一样的了！</font></p>
+<h3 id="②插入的操作-懒惰标记下传"><a href="#②插入的操作-懒惰标记下传" class="headerlink" title="②插入的操作(懒惰标记下传)"></a>②插入的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++"><code class="language-c++">//进行区间的加值
+//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+void insert(int k, int l, int r, int x, int y, long long val) &#123;
+    //如果刚好区域被包含在[l,r]的区间内
+     if(l == x && r == y) &#123;
+         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+         lz[k] += val;  
+         return;
+    &#125;
+    //如果此处有标记，向下传
+    if(lz[k]) &#123;
+        lz[k << 1] += lz[k];
+        lz[k << 1 | 1] += lz[k];
+        lz[k] = 0; //记得懒惰标记的清0 
+    &#125; 
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        insert(k << 1, l, m, x, y, val);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         insert(k << 1 | 1, m + 1, r, x, y, val);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        insert(k << 1, l, m, x, m, val);
+        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
+    &#125;
+    //最后递归回溯的时候不断更新上面的值
+    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
+                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1];
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②查询的操作-懒惰标记下传"><a href="#②查询的操作-懒惰标记下传" class="headerlink" title="②查询的操作(懒惰标记下传)"></a>②查询的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++"><code class="language-c++">//进行区间的查询
+//函数的意思：在[l,r]上的[x,y]区间所有数的和
+long long query(int k, int l, int r, int x, int y) &#123;
+    //如果恰好包含
+    if(l == x && r == y) &#123;
+        return sum[k] + lz[k] * (r - l + 1);
+    &#125;
+    //如果此处有标记，向下传
+    if(lz[k]) &#123;
+        lz[k << 1] += lz[k];
+        lz[k << 1 | 1] += lz[k];
+        lz[k] = 0; //记得懒惰标记的清0 
+    &#125;
+    int m = (l + r) >> 1;
+    long long ret = 0;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        ret = query(k << 1, l, m, x, y);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         ret = query(k << 1 | 1, m + 1, r, x, y);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        ret = query(k << 1, l, m, x, m) + 
+        query(k << 1 | 1, m + 1, r, m + 1, y);
+    &#125;
+    //最后递归回溯的时候不断更新上面的值
+    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
+                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1]; 
+    return ret;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color="red">这里为什么要另外设计一个ret变量对结果进行保存呢？对比不下传的方法，我们可以看到，本次的方法会边回溯边更新答案，因此在我们回溯的过程中，我们才会得到正确的答案，因此回溯的过程要把区间的左右记录下来，最后完成区间和的更新才是我们最终的答案。而方法二为什么不用这个呢？就是因为方法二是不断的往下去更新，然后遇到可以不用更新的地方就直接回溯了，但是我们发现在向下递归的时候，就已经对答案进行了更新，也就是方法三的一个逆过程！</font></p>
+<h3 id="③AC代码"><a href="#③AC代码" class="headerlink" title="③AC代码"></a>③AC代码</h3><p>因为题目还是方法二的，因此这里直接贴上不同版本的代码：</p>
+<pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+using namespace std;
+//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+long long nums[100001];  //数据的存储 
+long long sum[400010];   //区间和的存储 
+long long lz[400010];     //lazy标记的存储
+int n, m;
+
+//进行线段树的构建 
+void build_tree(int k, int l, int r) &#123;
+    if(l == r) &#123;
+        sum[k] = nums[l];
+        return; 
+    &#125;
+    int m = (l + r) >> 1; //取l，r的中点
+    //递归左子树，然后k<<1相当于2*k 
+    build_tree(k << 1, l, m);
+    //递归右子树，然后k << 1 | 1相当于2*k+1 
+    build_tree(k << 1 | 1, m + 1, r); 
+    //进行区间的求和累积(左子树和右子树的和)
+    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+&#125;
+
+//进行区间的加值
+//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+void insert(int k, int l, int r, int x, int y, long long val) &#123;
+    //如果刚好区域被包含在[l,r]的区间内
+     if(l == x && r == y) &#123;
+         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+         lz[k] += val;  
+         return;
+    &#125;
+    //如果此处有标记，向下传
+    if(lz[k]) &#123;
+        lz[k << 1] += lz[k];
+        lz[k << 1 | 1] += lz[k];
+        lz[k] = 0; //记得懒惰标记的清0 
+    &#125; 
+    int m = (l + r) >> 1;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        insert(k << 1, l, m, x, y, val);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         insert(k << 1 | 1, m + 1, r, x, y, val);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        insert(k << 1, l, m, x, m, val);
+        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
+    &#125;
+    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
+                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1];
+&#125;
+
+//进行区间的查询
+//函数的意思：在[l,r]上的[x,y]区间所有数的和
+long long query(int k, int l, int r, int x, int y) &#123;
+    //如果恰好包含
+    if(l == x && r == y) &#123;
+        return sum[k] + lz[k] * (r - l + 1);
+    &#125;
+    //如果此处有标记，向下传
+    if(lz[k]) &#123;
+        lz[k << 1] += lz[k];
+        lz[k << 1 | 1] += lz[k];
+        lz[k] = 0; //记得懒惰标记的清0 
+    &#125;
+    int m = (l + r) >> 1;
+    long long ret = 0;
+    //区间完全在左子树 
+    if(y <= m) &#123;
+        ret = query(k << 1, l, m, x, y);
+    &#125;
+    //区间完全在右子树 
+    else if(x > m) &#123;
+         ret = query(k << 1 | 1, m + 1, r, x, y);
+    &#125;
+    //区间跨越了左右子树
+    else &#123;
+        //合并左右子树的结果 
+        ret = query(k << 1, l, m, x, m) + 
+        query(k << 1 | 1, m + 1, r, m + 1, y);
+    &#125;
+    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
+                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1]; 
+    return ret;
+&#125;
+
+int main() &#123;
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++) &#123;
+        cin >> nums[i];
+    &#125;
+    build_tree(1, 1, n);
+    for(int i = 1; i <=m; i++) &#123;
+        int cz, x, y;
+        long long k;
+        cin >> cz;
+        if(cz == 1) &#123;
+            cin >> x >> y >> k;
+            insert(1, 1, n, x, y, k);
+        &#125;
+        else &#123;
+            cin >> x >> y;
+            cout << query(1, 1, n, x, y) << endl;
+        &#125;
+    &#125;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>总而言之，线段树会有很多不同的写法，本文仅提供目前学到的这种，uu们可以找到自己习惯的写法，然后经常复习一下，我觉得对线段树就会慢慢不陌生了！！！</p>
+<h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/huangzihaoal/article/details/81813454">线段树详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uS4y1m7zY?spm_id_from=333.788.header_right.history_list.click">wls的b站视频</a></p>
+<p>感谢各大佬写的博客，发的视频的帮助！</p>
+<p>本文章的问题也希望读者们指出！</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">sheepice</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://sample.com/2022/04/13/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%9D%E6%8E%A2/">https://sample.com/2022/04/13/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%9D%E6%8E%A2/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">sheepice</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%88%B7%E9%A2%98/">
+                                    <span class="chip bg-color">刷题</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                    <span class="chip bg-color">模板</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/fk2.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/fk1.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/04/13/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%9D%E6%8E%A2/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="线段树初探">
+                        
+                        <span class="card-title">线段树初探</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                    模板
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%B7%E9%A2%98/">
+                        <span class="chip bg-color">刷题</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/12/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%984/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpeg" class="responsive-img" alt="力扣刷题4">
+                        
+                        <span class="card-title">力扣刷题4</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
+                                    力扣刷题篇
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%88%B7%E9%A2%98/">
+                        <span class="chip bg-color">刷题</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
+                        <span class="chip bg-color">力扣</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE' || selection.getRangeAt(0).commonAncestorContainer.nodeName === 'CODE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: sheepice的博客<br />'
+            + '文章作者: sheepice<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '专注于打卡学习分享，还有分享生活趣事。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="6847070389"
+                   fixed='true'
+                   autoplay='true'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <a href="/about" target="_blank">sheepice</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">9.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/sheepice/sheepice.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1403860093@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1403860093" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1403860093" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+        
+        <script type="text/javascript">
+            // 只在桌面版网页启用特效
+            var windowWidth = $(window).width();
+            if (windowWidth > 768) {
+                document.write('<script type="text/javascript" src="/libs/others/sakura.js"><\/script>');
+            }
+        </script>
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+    
+    <script type="text/javascript" size="150" alpha='0.6'
+        zIndex="-1" src="/libs/background/ribbon.min.js" async="async"></script>
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
