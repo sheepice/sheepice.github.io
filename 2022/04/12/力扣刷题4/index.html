@@ -441,6 +441,14 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                                 <span class="chip bg-color">力扣</span>
                             </a>
                         
+                            <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+                                <span class="chip bg-color">树状数组</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                                <span class="chip bg-color">线段树</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -469,7 +477,7 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-12
+                    2022-04-14
                 </div>
                 
 
@@ -578,7 +586,7 @@ public:
     &#125;
 &#125;;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>时间复杂度为$O(N)$，空间复杂度变成$O(C)$。</p>
+<p>xxxxxxxxxx &#x2F;&#x2F;c++版本的解答class Solution {public:    int maxProduct(vector<string>&amp; words) {        int n &#x3D; words.size();        vector<int> dp(n,0);        for(int i &#x3D; 0; i &lt; n; i++) {            for(int j &#x3D; 0; j &lt; words[i].size(); j++) {                char u &#x3D; words[i][j];                &#x2F;&#x2F;进行每一位1的存储                dp[i] |&#x3D; (1 &lt;&lt; (u - ‘a’));              }        }        int ans &#x3D; 0;        &#x2F;&#x2F;从头比较到尾，满足无重复数字就进行相关的答案记录        for(int i &#x3D; 0; i &lt; n - 1; i++) {            for(int j &#x3D; i+1; j &lt; n; j++) {                if((dp[i] &amp; dp[j]) &#x3D;&#x3D; 0) {&#x2F;&#x2F;这里取最大值的地方可以注意一下&#x2F;&#x2F;可以用ans &#x3D; max(ans, (int)(words[i].size() * words[j].size()));&#x2F;&#x2F;因为.size()结构是返回无符号类型的int所以力扣上会报错！！！                    if(words[i].size() * words[j].size() &gt; ans)                    ans &#x3D; words[i].size() * words[j].size();                }            }        }        return ans;    }};c++</int></string></p>
 <h2 id="④线段树"><a href="#④线段树" class="headerlink" title="④线段树"></a>④线段树</h2><p>线段树应该是解决所有树状数组能够解决的一些相关问题，同时也是解决绝大部分的区间求和和查询的一个最有利的手段，有关线段树的学习，大家可以参考此篇：<a target="_blank" rel="noopener" href="https://blog.csdn.net/huangzihaoal/article/details/81813454?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522164973450016780366523945%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=164973450016780366523945&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-2-81813454.142%5Ev7%5Epc_search_result_cache,157%5Ev4%5Econtrol&utm_term=%E7%BA%BF%E6%AE%B5%E6%A0%91&spm=1018.2226.3001.4187">线段树和树状数组</a>。本篇下面的代码仅供参考，因为sheepicce今天才稍微懂一点线段树，<font color="red"><strong>预计这周会总结一下线段树的一些东西哦！</strong></font></p>
 <blockquote>
 <p>const int N &#x3D; 55;<br>class Solution {<br>public:<br>struct Node {<br>       int l, r, cnt;<br>   };<br>   Node tr [N * 4];<br>   void pushup(int u) {<br>       tr[u].cnt &#x3D; tr[u &lt;&lt; 1].cnt + tr[u &lt;&lt; 1 | 1].cnt;<br>   }<br>   void build(int u, int l, int r) {<br>       tr[u].l &#x3D; l, tr[u].r &#x3D; r, tr[u].cnt &#x3D; 0;<br>       if(l !&#x3D; r)<br>       {<br>           int mid &#x3D; (l + r) &gt;&gt; 1;<br>           build(u &lt;&lt; 1, l, mid);<br>           build(u &lt;&lt; 1 | 1, mid + 1, r);<br>           pushup(u);<br>       }<br>   }<br>   &#x2F;&#x2F; 从 tr 数组的下标 u 开始，在数值 x 的位置进行标记<br>   void update(int u, int x) {<br>       if (tr[u].l &#x3D;&#x3D; x &amp;&amp; tr[u].r &#x3D;&#x3D; x) {<br>           tr[u].cnt &#x3D; 1;<br>       } else {<br>           int mid &#x3D; (tr[u].l + tr[u].r) &gt;&gt; 1;<br>           if (x &lt;&#x3D; mid) update(u &lt;&lt; 1, x);<br>           else update(u &lt;&lt; 1 | 1, x);<br>           pushup(u);<br>       }<br>   }<br>   &#x2F;&#x2F; 从 tr 数组的下标 u 开始，查询 [l,r] 范围内有多少个数值被标记<br>   int query(int u, int l, int r) {<br>       if (l &lt;&#x3D; tr[u].l &amp;&amp; tr[u].r &lt;&#x3D; r) return tr[u].cnt;<br>       int mid &#x3D; (tr[u].l + tr[u].r) &gt;&gt; 1;<br>       int ans &#x3D; 0;<br>       if (l &lt;&#x3D; mid) ans +&#x3D; query(u &lt;&lt; 1, l, r);<br>       if (r &gt; mid) ans +&#x3D; query(u &lt;&lt; 1 | 1, l, r);<br>       return ans;<br>   }<br>   bool isCovered(vector &lt;vector <int>&gt; &amp; rs, int l, int r) {<br>       build(1, 1, N);<br>       for (auto &amp;  cur : rs) {<br>           int a &#x3D; cur[0], b &#x3D; cur[1];<br>           for (int i &#x3D; a; i &lt;&#x3D; b; i++) {<br>               update(1, i);<br>           }<br>       }<br>       int tot &#x3D; r - l + 1 , cnt &#x3D; query(1, l, r);<br>       return tot &#x3D;&#x3D; cnt;<br>   }<br>};</int></p>
@@ -654,6 +662,14 @@ public:
                             
                                 <a href="/tags/%E5%8A%9B%E6%89%A3/">
                                     <span class="chip bg-color">力扣</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+                                    <span class="chip bg-color">树状数组</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                                    <span class="chip bg-color">线段树</span>
                                 </a>
                             
                         </div>
@@ -867,6 +883,10 @@ public:
                     
                     <a href="/tags/%E5%88%B7%E9%A2%98/">
                         <span class="chip bg-color">刷题</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                        <span class="chip bg-color">线段树</span>
                     </a>
                     
                     <a href="/tags/%E6%A8%A1%E6%9D%BF/">
@@ -1147,7 +1167,7 @@ public:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">9.1k</span>
+                        class="white-color">9.8k</span>
             
             
             
