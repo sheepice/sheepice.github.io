@@ -564,93 +564,14 @@ int main() &#123;
 &#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="三、实现方法2-deque"><a href="#三、实现方法2-deque" class="headerlink" title="三、实现方法2(deque)"></a>三、实现方法2(deque)</h1><p>我们可以直接用STL自带的deque底层队列进行模拟，这个地方，可以重新设置一下类，然后让队列的入队出队方式有一些细微的变化。这里的代码仅供参考，也是能过的，当然会稍微有点难理解吧,因为用到类和函数重置的相关知识了！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-
-int nums[10000005];
-//实现最大值的获取
-class myqueuemax 
-&#123;
-    public:
-        deque<int> que1;
-        void pop(int value)
-        &#123;
-            //如果队首元素已经不在滑动窗口才弹出
-            if(!que1.empty()&&value==que1.front())
-            que1.pop_front();
-        &#125;
-        void push(int value)
-        &#123;
-            //加入的元素是否比队尾大就弹出队尾，保证单调递减
-            while(!que1.empty()&&value>que1.back())
-            que1.pop_back();
-            que1.push_back(value);
-        &#125;
-        int front()
-        &#123;
-            return que1.front();
-        &#125;
-&#125;;
-//实现最小值的获取
-class myqueuemin 
-&#123;
-    public:
-        deque<int> que2;
-        void pop(int value)
-        &#123;
-            //如果队首元素已经不在滑动窗口才弹出
-            if(!que2.empty()&&value==que2.front())
-            que2.pop_front();
-        &#125;
-        void push(int value)
-        &#123;
-            //加入的元素是否比队尾大就弹出队尾，保证单调递增
-            while(!que2.empty()&&value<que2.back())
-            que2.pop_back();
-            que2.push_back(value);
-        &#125;
-        int front()
-        &#123;
-            return que2.front();
-        &#125;
-&#125;;
-int main()
-&#123;
-     myqueuemax que1;
-     myqueuemin que2;
-     int k,n;
-     cin>>n>>k;
-    //最小值的输出
-     for(int i=0;i<n;i++)
-     &#123;
-         cin>>nums[i];
-     &#125;
-      for(int i=0;i<k;i++)
-     &#123;
-      que2.push(nums[i]);
-     &#125;        
-     cout<<que2.front()<<" ";
-     for(int i=k;i<n;i++)
-     &#123;
-         que2.pop(nums[i-k]);  //直接利用下标对应的元素判断队首是否还在队列中
-         que2.push(nums[i]);
-         cout<<que2.front()<<" ";
-     &#125;
-     cout<<endl;
-    //最大值的输出
-     for(int i=0;i<k;i++)
-     &#123;
-      que1.push(nums[i]);
-     &#125;        
-     cout<<que1.front()<<" ";
-     for(int i=k;i<n;i++)
-     &#123;
-         que1.pop(nums[i-k]);  //直接利用下标对应的元素判断队首是否还在队列中
-         que1.push(nums[i]);
-         cout<<que1.front()<<" ";
-     &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>下面代码依次拼在一起就是最终的AC代码啦！</p>
+<p>不知道为什么这里的代码不给我放到代码块里面，所以为了有更好的观感，可以去我的CSDN里面看这篇文章！</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124255565?spm=1001.2014.3001.5502">CSDN单调队列初探</a></p>
+<blockquote>
+<p>#include&lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>int nums[10000005];<br>&#x2F;&#x2F;实现最大值的获取<br>class myqueuemax<br>{<br>   public:<br>       deque<int> que1;<br>       void pop(int value)<br>       {<br>           &#x2F;&#x2F;如果队首元素已经不在滑动窗口才弹出<br>           if(!que1.empty()&amp;&amp;value&#x3D;&#x3D;que1.front())<br>           que1.pop_front();<br>       }<br>       void push(int value)<br>       {<br>           &#x2F;&#x2F;加入的元素是否比队尾大就弹出队尾，保证单调递减<br>           while(!que1.empty()&amp;&amp;value&gt;que1.back())<br>           que1.pop_back();<br>           que1.push_back(value);<br>       }<br>       int front()<br>       {<br>           return que1.front();<br>       }<br>};</int></p>
+<p>&#x2F;&#x2F;实现最小值的获取<br>class myqueuemin<br>{<br>   public:<br>       deque<int> que2;<br>       void pop(int value)<br>       {<br>           &#x2F;&#x2F;如果队首元素已经不在滑动窗口才弹出<br>           if(!que2.empty()&amp;&amp;value&#x3D;&#x3D;que2.front())<br>           que2.pop_front();<br>       }<br>       void push(int value)<br>       {<br>           &#x2F;&#x2F;加入的元素是否比队尾大就弹出队尾，保证单调递增<br>           while(!que2.empty()&amp;&amp;value&lt;que2.back())<br>           que2.pop_back();<br>           que2.push_back(value);<br>       }<br>       int front()<br>       {<br>           return que2.front();<br>       }<br>};</int></p>
+<p>int main()<br>{<br>    myqueuemax que1;<br>    myqueuemin que2;<br>    int k,n;<br>    cin&gt;&gt;n&gt;&gt;k;<br>       &#x2F;&#x2F;最小值的输出<br>    for(int i&#x3D;0;i&lt;n;i++)<br>    {<br>        cin&gt;&gt;nums[i];<br>    }<br>     for(int i&#x3D;0;i&lt;k;i++)<br>    {<br>     que2.push(nums[i]);<br>    }<br>    cout&lt;&lt;que2.front()&lt;&lt;” “;<br>    for(int i&#x3D;k;i&lt;n;i++)<br>    {<br>        que2.pop(nums[i-k]);  &#x2F;&#x2F;直接利用下标对应的元素判断队首是否还在队列中<br>        que2.push(nums[i]);<br>        cout&lt;&lt;que2.front()&lt;&lt;” “;<br>    }<br>    cout&lt;&lt;endl;<br>   &#x2F;&#x2F;最大值的输出<br>    for(int i&#x3D;0;i&lt;k;i++)<br>    {<br>     que1.push(nums[i]);<br>    }<br>    cout&lt;&lt;que1.front()&lt;&lt;” “;<br>    for(int i&#x3D;k;i&lt;n;i++)<br>    {<br>        que1.pop(nums[i-k]);  &#x2F;&#x2F;直接利用下标对应的元素判断队首是否还在队列中<br>        que1.push(nums[i]);<br>        cout&lt;&lt;que1.front()&lt;&lt;” “;<br>    }<br>}</p>
+</blockquote>
 
                 
             </div>
