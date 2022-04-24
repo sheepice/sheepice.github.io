@@ -6,7 +6,7 @@
   <link href="https://sample.com/atom.xml" rel="self"/>
   
   <link href="https://sample.com/"/>
-  <updated>2022-04-18T10:11:44.890Z</updated>
+  <updated>2022-04-24T08:30:24.642Z</updated>
   <id>https://sample.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周总结5</title>
+    <link href="https://sample.com/2022/04/24/%E5%91%A8%E6%80%BB%E7%BB%935/"/>
+    <id>https://sample.com/2022/04/24/%E5%91%A8%E6%80%BB%E7%BB%935/</id>
+    <published>2022-04-24T07:27:44.000Z</published>
+    <updated>2022-04-24T08:30:24.642Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice的CSDN博客地址：<a href="https://blog.csdn.net/qq_60556896/">CSDN地址</a></p><p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！</p><h3 id="二、学习"><a href="#二、学习" class="headerlink" title="二、学习"></a>二、学习</h3><h5 id="①算法学习"><a href="#①算法学习" class="headerlink" title="①算法学习"></a>①算法学习</h5><p>其实说实话，这周主要栽在算法上面好久好久，就是记得之前的Carl哥说<font color="blue">算法这个东西就是你觉得一段时间你提升特别快，但是一旦做起题目来的话，你就会发现你压根啥也不会。这周真的非常真实的体会到这个东西，也彻底让自己感到自己在算法上确实是没有任何天赋了，所以有什么办法呢？</font>只好乖乖的积累，希望之后能顺利过大厂的一个面试题就好了吧！</p><p>这里<strong>主要总结一下这周遇到蛮多题目以及链接吧！</strong>其实大部分都是板子题目，但是一旦自己板子不熟悉，压根就不敢动手去写，就比如我到现在还没在力扣上做成功一个线段树的题目呜呜好难受。下面的链接便于之后回来看的时候能够重新做一些题目！</p><hr><p><strong><font color="red">题目分类及链接：</font></strong></p><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/">统计数组逆序对(树状数组解法)</a></p><p><a href="https://leetcode-cn.com/problems/count-good-triplets-in-an-array/">数组逆序对和顺序对一起统计</a></p><p><a href="https://leetcode-cn.com/problems/number-of-flowers-in-full-bloom/">树状数组离散化</a></p><p><a href="https://leetcode-cn.com/problems/QO5KpG/">线段树离散化</a></p><p><a href="https://leetcode-cn.com/problems/erect-the-fence/">二维凸包，数学向量叉乘</a></p><p><a href="https://leetcode-cn.com/problems/course-schedule-iii/">单调队列加贪心维护最值</a></p><hr><blockquote><p>上面的题目大多数是比赛的时候有思路但是最终还是没有写对的，而且我觉得也算是表面模板上比较好的题目，我觉得自己可以之后找个时间，多刷几遍，把模板再仔细的温习。我有个朋友从18年开始到2022年，一年去写一遍线段树的板子，说真的这些板子东西真的很重要！要不然就要我一样，压根不敢写板子，因为太不熟练了！</p></blockquote><h4 id="②操作系统粗学"><a href="#②操作系统粗学" class="headerlink" title="②操作系统粗学"></a>②操作系统粗学</h4><p>因为上周的时候操作系统就已经学到了信号量去空着各个进程的共享和互斥的作用。这周就主要还是学习一些用P,V操作去进行一些题目的理解吧。比如<font color="blue">多消费者，生产者问题，吸烟者问题，哲学家用餐问题。以及初学了管程，管程其实有点像类，对程序员显性，对用户隐性，而且也避免了去思索P，V操作的顺序等等的问题。</font>说个笑话，那个时候我真的想问，那为什么还要学信号量，只是为了考试吗哈哈哈！QAQ</p><h4 id="③英语"><a href="#③英语" class="headerlink" title="③英语"></a>③英语</h4><p>说真的着了魔一样，虽然自己英语真的很差，但是还是听不下英语课，上英语课的时候真的就很迷茫。老师总是会上课提问，但是不好意思的是，每次提问我的页面总是停留在某个算法题目，或者某个课内作业之上。然后一回答就社死。<font color="blue">不过幸运的是，因为自己的社牛吧！直接把英语课上有印象很活跃的东西都加了一遍，然后问各种作业，当然很开心的是，居然加上了一个广西的老乡，这可是在学校上了一个学期都没碰到的事情。只能说老乡见老乡两眼泪汪汪哈哈哈。</font>然后就是英语六级的复习，说复习也没复习，每天听六级听力，一篇文章听2-3遍才能够勉勉强强的听懂，<font color="red">不知道有没有英语听力很好的uu们分享一下英语听力的技巧啊，很欢迎跟本英语蒟蒻的小菜鸟分享一下。</font>希望英语六级的成绩能够稍微好看一点吧呜呜呜！然后就是翻译，我一个连口语都表达不清楚的人，做翻译还是有点痛苦，好多词会，但是一翻译就想不起来了，哇，真的好难好难！</p><h4 id="④总结学习"><a href="#④总结学习" class="headerlink" title="④总结学习"></a>④总结学习</h4><p>这周真的是学到难的一周！果然一个悖论说得没错，你学得越多，你会发现你知道的就越少呜呜！</p><hr><h3 id="三、运动"><a href="#三、运动" class="headerlink" title="三、运动"></a>三、运动</h3><p>这周的话还是有氧运动多一点吧，就还是每天去跑跑步然后跳跳绳之类的，但是这周可恶的天气，让我至少有3天没有去外边运动了，那几天还刚好学的做的东西挺难的然后加上上周比较emo，心态上就调整的不是很好吧！好在这周运动量蛮大，每次运动完一身的汗真的非常的舒服。</p><hr><h3 id="四、音乐"><a href="#四、音乐" class="headerlink" title="四、音乐"></a>四、音乐</h3><p>说真的，其实本来说自己这次寒假回来的时候，要多去学一些编曲啊，乐器啥的，但是真的热度就在前半个月，然后后面两个月，就是啥也没干。我得谢谢上周的emo吧，最起码上一周的emo让我知道我应该去做什么解决我的一些不好的情绪，所以这周开始去弹弹电子琴，吉他，然后哼一些自己内心的旋律，其实之前自己也写过歌，也发行了，虽然是帮别人写的，但是很可惜的是，自己写的词的那个本子不见了，那个时候也没把词哼成曲子，所以还是没有足够热爱吧感觉。<font color="blue">有的时候真的觉得挺奇怪的，因为我明明挺喜欢音乐，也挺希望创造出属于自己的作品，但是每次想去学一个和弦，弹一个曲子，总是进不到一个痴迷的状态，好像练了半个小时就干别的事情去了，似乎从中得到的乐趣真没有和朋友们打上几把游戏来得高涨。感觉时间规划和自己的内心管理真的真的有点不到位。</font></p><hr><h4 id="五、最后"><a href="#五、最后" class="headerlink" title="五、最后"></a>五、最后</h4><p>最后的话，我这周3天没出去运动就胖了6斤.(真的只胖脸呜呜呜！)</p><p>然后特别特别开心，居然在疫情的时候还能交到新朋友！</p><p>最近的疫情又愈发的严重了，希望uu们都能够戴好口罩，希望我们见面的时候一定还是那健康的我们。</p><p>下周要准备准备考试了，毕竟好久没听课，还是有点慌张！</p><p><strong>所以，下周见咯！</strong></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;sheepice的CSDN博客地址：&lt;a href=&quot;https://blog.csdn.net/qq_60556896/&quot;</summary>
+      
+    
+    
+    
+    <category term="周总结" scheme="https://sample.com/categories/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="周总结" scheme="https://sample.com/tags/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>单调队列初探</title>
