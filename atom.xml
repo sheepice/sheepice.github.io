@@ -6,7 +6,7 @@
   <link href="https://sample.com/atom.xml" rel="self"/>
   
   <link href="https://sample.com/"/>
-  <updated>2022-04-24T08:30:24.642Z</updated>
+  <updated>2022-04-26T11:55:42.246Z</updated>
   <id>https://sample.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>AcWing刷题1</title>
+    <link href="https://sample.com/2022/04/26/AcWing%E5%88%B7%E9%A2%981/"/>
+    <id>https://sample.com/2022/04/26/AcWing%E5%88%B7%E9%A2%981/</id>
+    <published>2022-04-26T11:12:00.000Z</published>
+    <updated>2022-04-26T11:55:42.246Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>最近发现一个算法题目的宝藏平台，上面的题目其实都是比较偏向应用题了，所以可能更适合用来提高自己笔试的能力。在这里还没有入口的uu们可以在这里看一看哦：<a href="https://www.acwing.com/about/">AcWing刷题网站</a></p><p>今天其实做了上周的周赛的一个题目，才发现自己很多基础的算法模板都没有掌握，所以只能说我算法还是没有真正的入门吧!今天其实也少稍微的学习了一下，关于区间合并的一个模板问题，题目描述如下：</p><h3 id="二、题目描述"><a href="#二、题目描述" class="headerlink" title="二、题目描述"></a>二、题目描述</h3><p><img src="https://img-blog.csdnimg.cn/a6fb2e10963448ab9c51e7bdd31459ba.png" alt="构造数组"></p><h3 id="三、思路"><a href="#三、思路" class="headerlink" title="三、思路"></a>三、思路</h3><p>本题的思路需要一些推导，也不是特别难，我们可以看到假设a数组中的$a_i &#x3D; a_j$的话，那么由于$b_{i + 1}$对于$b_i$来说只有两种可能，要不然和他相同，要不然比他大一，<font color="red">因此对于$a_i &#x3D; a_j$来说，b数组中下标为$[i,j]$必须满足$b_{i} &#x3D; b_j$所以这个区间所有的数字必须相同才能满足条件，那么按照这样的分法，我们是一定可以把一整个区间划分成不同的小段，假设我们划分成了m个小段，对于第一个小段来说，由于题目的限定，$b_0&#x3D;0$因此第一段只可能是0，那么接下来的每一段都有两种选择，要不然等于前面一段的数，要不然等于前面的数加1，因此最后的结果为$2^{m - 1}$。</font></p><p>而在划分区域的时候，我们要进行合并区域的操作，即两个有交集的区间应该取他们两个的并集才能够正确的划分最终的区段。</p><p><font color="blue">举个栗子：</font></p><blockquote><p>假设a[5] &#x3D; {1,2,1,2,3},我们在合并的时候假设要划分到1的时候区间为[0,2],而划分2的时候是[1,3],我们发现这两个区间需要b数组在两个区间内的值要相同，就必须把两个区间合并成为[0,3]即在这整个区间上的b数组的值必须都相同，最后才是最正确的答案，而合并区间的操作，可以利用两个哈希表来进行。</p></blockquote><h3 id="四、合并区间"><a href="#四、合并区间" class="headerlink" title="四、合并区间"></a>四、合并区间</h3><p>我觉得还是有必要说一下如何去合并区间呢？</p><p>①首先我们要开两个哈希表L,R。这两个表代表的含义分别是第i个区间的左边界和右边界。于是我们可以用下面的代码将这些边界预处理到我们的哈希表里面。</p><pre class="line-numbers language-c++"><code class="language-c++">    //好像有可能展示不出,大家知道这个地方是开一个哈希表就好    map<int, int> L,R;    for(int i = 1; i <= n; i++) &#123;        int a;   //a代表数组的第i个数        cin >> a;        R[a] = i;        if(!L.count(a)) L[a] = i;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>因此在上面的操作之后，我们已经把区间的左边界和右边界预处理好了，接下来就是如何去合并区间呢？</p><p>②合并区间的话，<font color="blue">首先我们需要用一个pair键对将哈希表里面的第一个值存储下来，然后进行一个排序，这样可以让我们在判断区间是否合并的时候是从前往后一段一段的去进行的，就保证了答案的正确性。</font>在合并的过程中就不断的判断下一段的左边界和前一段的右边界的大小关系，从而确定两个集合是否有交集。这样说会有点难理解，所以直接给出代码，便于食用！</p><pre class="line-numbers language-c++"><code class="language-c++">    //m代表区间的数量，l表示前一段左边界，r表示前一段右边界    int m = 0, l = -1, r = -1;    //按照哈希表的第一个元素放到p数组里面    for(auto& [k, v] : L) &#123;        p[m++] = &#123;L[k], R[k]&#125;;    &#125;        sort(p, p + m);    int cnt = 0;    for(int i = 0; i < m; i++) &#123;        //如果后一段的左边界比前一段的右边界还小        if(p[i].x < r) r = max(r, p[i].y);        //否则已经进入到了下一个区间划分        else &#123;            cnt++;            l = p[i].x;            r = p[i].y;        &#125;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>最后进行结果的输出就好了！</p><h3 id="五、AC代码"><a href="#五、AC代码" class="headerlink" title="五、AC代码"></a>五、AC代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>#define x first#define y secondusing namespace std;typedef pair<int, int> PII;const int N = 200050;const int mod = 998244353;PII p[N];int main() &#123;    int n;    cin >> n;    //这里可以用unordered_map速度会很快，但是可能会被TLE       //解决方法就是给两个哈希表一个较大的存储值，比如300010;    //好像有可能展示不出,大家知道这个地方是开一个哈希表就好    map<int, int> L,R;        for(int i = 1; i <= n; i++) &#123;        int a;        cin >> a;        R[a] = i;        if(!L.count(a)) L[a] = i;    &#125;    //m代表区间的数量，l表示前一段左边界，r表示前一段右边界    int m = 0, l = -1, r = -1;    //按照哈希表的第一个元素放到p数组里面    for(auto& [k, v] : L) &#123;        p[m++] = &#123;L[k], R[k]&#125;;    &#125;        sort(p, p + m);    int cnt = 0;    for(int i = 0; i < m; i++) &#123;        //如果后一段的左边界比前一段的右边界还小        if(p[i].x < r) r = max(r, p[i].y);        //否则已经进入到了下一个区间划分        else &#123;            cnt++;            l = p[i].x;            r = p[i].y;        &#125;    &#125;    int res = 1;    for(int i = 0; i < cnt - 1; i++) &#123;       res = res * 2 % mod;    &#125;    cout << res << endl;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;最近发现一个算法题目的宝藏平台，上面的题目其实都是比较偏向应用题了，所以可能更适合用来提高自己笔试的能力。在这里还没有入口的</summary>
+      
+    
+    
+    
+    <category term="AcWing刷题篇" scheme="https://sample.com/categories/AcWing%E5%88%B7%E9%A2%98%E7%AF%87/"/>
+    
+    
+    <category term="刷题" scheme="https://sample.com/tags/%E5%88%B7%E9%A2%98/"/>
+    
+    <category term="AcWing" scheme="https://sample.com/tags/AcWing/"/>
+    
+  </entry>
   
   <entry>
     <title>周总结5</title>
