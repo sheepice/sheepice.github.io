@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>周总结6</title>
+      <link href="/2022/05/01/%E5%91%A8%E6%80%BB%E7%BB%936/"/>
+      <url>/2022/05/01/%E5%91%A8%E6%80%BB%E7%BB%936/</url>
+      
+        <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice的<strong>CSDN博客地址</strong>：<a href="https://blog.csdn.net/qq_60556896/">CSDN地址</a></p><p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！</p><h3 id="二、算法学习"><a href="#二、算法学习" class="headerlink" title="二、算法学习"></a>二、算法学习</h3><p>这周因为课内要准备复习，所以好像这周对课外的东西没有看特别多，所以还是以算法学习为主吧！上周认识到了ACwing这个网站，然后知识付费了一下，和朋友购买了一个算法的课程，还挺不错的，<strong>基本是模板题目但是还是常做常新！</strong></p><p><font color="red">下面是这周的一个算法小结(选取一些之前没有写过博客的模板粘上去)：</font></p><h5 id="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"><a href="#①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！" class="headerlink" title="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"></a>①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！</h5><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>using namespace std;const int N = 100000 + 5;void quick_sort(vector<int> & q, int l, int r) &#123;    if(l >= r) return;    int m = (l + r) >> 1;    int mid = q[m];        int sd = l - 1, ed = r + 1;    while(sd < ed) &#123;        do sd++; while(q[sd] < mid);        do ed--; while(q[ed] > mid);        if(sd < ed) swap(q[sd], q[ed]);    &#125;    quick_sort(q, l, ed);    quick_sort(q, ed + 1, r);&#125;int main() &#123;    int n;    cin >> n;    vector<int> ss;    int num;    for(int i = 0; i < n; i++) &#123;        cin >> num;        ss.push_back(num);    &#125;    quick_sort(ss, 0, n - 1);    for(int i = 0; i < n; i++) cout << ss[i] << " ";&#125;作者：sheepice链接：https://www.acwing.com/activity/content/code/content/3347542/来源：AcWing著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h5 id="②归并排序-加求逆序对-树状数组求逆序对："><a href="#②归并排序-加求逆序对-树状数组求逆序对：" class="headerlink" title="②归并排序(加求逆序对) + 树状数组求逆序对："></a>②归并排序(加求逆序对) + 树状数组求逆序对：</h5><p>两种方式都尝试了一遍，具体代码链接如下：</p><p><a href="https://www.acwing.com/activity/content/code/content/3348147/">树状数组和归并排序求逆序对</a></p><h5 id="③一维，二维前缀和-一维，二维差分"><a href="#③一维，二维前缀和-一维，二维差分" class="headerlink" title="③一维，二维前缀和 + 一维，二维差分"></a>③一维，二维前缀和 + 一维，二维差分</h5><h5 id="④离散化操作-解决了区间和以及区间合并-：这里之后会总结一篇博客的！"><a href="#④离散化操作-解决了区间和以及区间合并-：这里之后会总结一篇博客的！" class="headerlink" title="④离散化操作(解决了区间和以及区间合并)：这里之后会总结一篇博客的！"></a>④离散化操作(解决了区间和以及区间合并)：这里之后会总结一篇博客的！</h5><blockquote><p>本周(其实就这两天)刷算法挺上头的,只能说能力在慢慢提升，之前以为刷的题越多越好，但是其实应该是巩固最起码的模板题目，然后再谈刷题，所以非常推荐y总的《算法基础课》，虽然有点小贵，但是钱得花在刀刃上，不是吗哈哈哈！</p></blockquote><p><font color="blue">附上这两天的刷题记录，上面真的总结到位了：</font></p><p><img src="https://img-blog.csdnimg.cn/25ec5ea3dd5a4a29a816eca74caf5339.png" alt="基础课第一节打卡完成"></p><h3 id="三、运动"><a href="#三、运动" class="headerlink" title="三、运动"></a>三、运动</h3><p><strong>本周的话，采用了一种运动方式，和家人们一起运动打卡，然后也一起听着歌，跑跑步啥的，真的非常的不错！</strong></p><img src="https://img-blog.csdnimg.cn/26c86d0ca32c4dbeb1cfac15f054067c.png" alt="运动打卡" style="zoom:33%;"><h3 id="四、小倾诉"><a href="#四、小倾诉" class="headerlink" title="四、小倾诉"></a>四、小倾诉</h3><p><strong>这周的话，有过不愉快的交谈。其实起因就是自己一直坚持一个比较虚伪的自己吧。明明运气的不公让你觉得自己的努力白费了两年，然后就会为了满足自己内心深处的那一点点自尊和不甘，编出一个让自己心安理得的谎言。然后被狠狠地揭穿了，其实那一刻我内心是无比的内疚和自责的，一个怪自己明明早就已经接受了现实，却还是无法放下过去。一个怪自己明明知道那么多道理，却还是在人面前加厚着自己的外衣。不过真的感谢用火把纸烧出洞的人吧，也许没有这么一个人出现的话，以后永远没有办法去正视在那一方面的自己吧！只可惜很多事情一旦发生，还是会产生各种各样的不堪的后果。这个谎言以后也不会再说了，虽然没有伤害他人，但是却真正地虚伪了不是自己的“我”，希望自己再多努力努力，之后不再嫉妒努力，而是享受那些一起拼搏的日子吧！</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 周总结 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 周总结 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>AcWing刷题1</title>
       <link href="/2022/04/26/AcWing%E5%88%B7%E9%A2%981/"/>
       <url>/2022/04/26/AcWing%E5%88%B7%E9%A2%981/</url>
