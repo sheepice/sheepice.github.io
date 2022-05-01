@@ -4,9 +4,11 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="力扣刷题5, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、前言sheepice的刷力扣篇章，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，这些题解的灵感来源于我自己看了很多神犇的题解，真的会很有收获。
-sheepice的CSDN地址：大家感兴趣也可以去里">
+    <meta name="keywords" content="离散化操作, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、离散化操作什么是离散化操作，这里给一个简单的解答。
+
+假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？
+如果数据非常大，但是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +20,7 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>力扣刷题5 | sheepice的博客</title>
+    <title>离散化操作 | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +314,12 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">力扣刷题5</h1>
+                    <h1 class="description center-align post-title">离散化操作</h1>
                 </div>
             </div>
         </div>
@@ -433,16 +435,8 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%88%B7%E9%A2%98/">
-                                <span class="chip bg-color">刷题</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8A%9B%E6%89%A3/">
-                                <span class="chip bg-color">力扣</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                <span class="chip bg-color">动态规划</span>
+                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                <span class="chip bg-color">模板</span>
                             </a>
                         
                     </div>
@@ -453,8 +447,8 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
-                                力扣刷题篇
+                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                模板
                             </a>
                         
                     </div>
@@ -466,28 +460,28 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-14
+                    2022-05-01
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-14
+                    2022-05-01
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    480
+                    939
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -507,87 +501,145 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>sheepice的刷力扣篇章，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，这些题解的灵感来源于我自己看了很多神犇的题解，真的会很有收获。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p>
-<h1 id="二、数位dp初刷"><a href="#二、数位dp初刷" class="headerlink" title="二、数位dp初刷"></a>二、数位dp初刷</h1><p><img src="https://img-blog.csdnimg.cn/372be999948a4fd587aa24b90da22d48.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="组合题dp"></p>
-<h1 id="三、思路"><a href="#三、思路" class="headerlink" title="三、思路"></a>三、思路</h1><p>这题其实如果用我们高中学的组合的思想，可以做。因为他本身就是一个组合的题目，也就是说，最简单的思路就是，分析不同位数情况下构成的小于n的情况。所以很容易得到，一共只有两种情况</p>
-<ul>
-<li>情况一：构成的数字比要求数字的位数小</li>
-<li>情况二：构成的数字比要求数字的位数大</li>
-</ul>
-<h3 id="①情况一"><a href="#①情况一" class="headerlink" title="①情况一"></a>①情况一</h3><p><font color="red">对于情况一来说，我们很容易进行分析，就是假设当前需要构成的位数为i,我们可以选择的数就是digits数组的长度，因此这种情况的结果累加的代码比较简单，直接给出：</font></p>
-<pre class="line-numbers language-c++"><code class="language-c++">//位数不相同的情况
-//m代表的是数字n的位数一共有多少位
-//m - 1就可以满足i所代表的位数一定小于n所代表的位数
-        for(int i = 1; i <= m - 1; i++) &#123;
-            ans += pow(lent,i);
-        &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②情况二的文字描述"><a href="#②情况二的文字描述" class="headerlink" title="②情况二的文字描述"></a>②情况二的文字描述</h3><p><font color="red"><del>对于情况二来说，由我们高中的知识就可以知道，我们可以依次的去比较每一位数在原digits的位置(由于数组是一个递增的情况)，所以当我们找到某个位置的时候，我们就能确定在位置之前的数，都是小于本位置，也就是可以进行一个选择。但是在这个地方，我们要知道不能完全依赖于这样的思想去写题目。</del></font></p>
+                <h1 id="一、离散化操作"><a href="#一、离散化操作" class="headerlink" title="一、离散化操作"></a>一、离散化操作</h1><p>什么是离散化操作，这里给一个简单的解答。</p>
 <blockquote>
+<p>假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？</p>
+<p>如果数据非常大，但是元素的个数非常小。我们离散化操作就会节省空间，同时通过这样的操作能够让我们优化时间复杂度！</p>
 </blockquote>
-<p><strong>就是假设我们现在选择到了4567的其中某一位且一定要从高位选起(也就是先选2所对应的位置)，这是为什么呢。比如我们给到的选择为1，2，3我们会发现在选择第一个高位的时候，无论我们选择什么，都能满足千位的数一定比4小，那根据乘法原理，很显然所有的答案其实就是$3×3×3×3$，也就是每个位置上都有3种选择</strong></p>
-<p><strong>考虑一种情况，如果考虑$n&#x3D;4567$的时候给到的选择为2，4，8，9呢？此时我们发现如果选择4的时候，会有两种选择2，4但是出于考虑，我们并不能直接说第一个位置2，4都能选，因为我们无法保证选完4之后，是否后面的选择能够保证百位上的数比5小，因此在计算第一位的时候，我们必须只能选2，然后后面的三个位置任意选,也就是$1×3×3×3$,那么很多人在这里就不理解，那4如果作为第一位呢？其实他放到了后面的判断中去了，因为当把4前面的2选完以后，如果后面的操作还能进行，就已经固定了千位为4，然后再进行后面结果的积累。</strong></p>
-<p><font color="red">所以最终的结果一定是不断的去更新每一位之后的选择可能性，因为我们已经确定好了位数之前的可能的结果，这也就是正确解答这个题目的一个顺序!当然如果大家不能理解的话，可以跟着后面的代码进行走一遍，然后多举一些例子辅助性的理解！</font></p>
-<h3 id="③情况二的数学描述"><a href="#③情况二的数学描述" class="headerlink" title="③情况二的数学描述"></a>③情况二的数学描述</h3><p>跟据情况二的文字描述，下面把它用数学语言再进行描述一遍。假设一个数字为n，这个数字一共的位数为len,题目给我们选择的大小位changes(也就是digits数组的长度)。如果我们此时正在确定该位数的第k位时候的结果(也就是说前k位的结果已经被统计确认好了)。我们首先要找到digits数组中的一个位置l(数组已经转化为int类型了)，此位置满足$digits[l] &lt;&#x3D; n[k]$(其中n[k]代表第k位代表的数字)，会分为三种情况：</p>
-<ul>
-<li><p>①$digits[l] &lt; n[k]$：说明l位置包括l在内的数都可以填充这个位置，也就是这个位置有$l+1$种可能性(别忘了下标是从0开始的),当确定这个位置之后，剩余的位置可以任意的进行选择也就是有$pow(len-k,changes)$。所以累加的结果应该为:$(l+1)×pow(len-k,changes)$,此后的结果，因为已经被全部确认了，所以循环要直接<strong>break</strong>!!</p>
-</li>
-<li><p>②$digits[l] &#x3D; n[k]$：说明l位置不包括l在内的数都可以填充这个位置(因为l位置后面还是一个未知的结果，应该等到下一次循环再进行累加)，也就是这个位置有$l+1$种可能性(别忘了下标是从0开始的),当确定这个位置之后，剩余的位置可以任意的进行选择也就是有$pow(len-k,changes)$。所以累加的结果应该为:$(l+1)*pow(len-k,changes)$</p>
-</li>
-<li><p>③找不到满足$digits[l] &lt;&#x3D; n[k]$条件的数:直接break！</p>
-</li>
-</ul>
-<h1 id="四、AC代码"><a href="#四、AC代码" class="headerlink" title="四、AC代码"></a>四、AC代码</h1><p>综上所述，最后把代码全部贴出来，仅供参考。</p>
-<pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;
-public:
-    int atMostNGivenDigitSet(vector<string>& digits, int n) &#123;
-        int lent = digits.size();
-        vector<int> nums(lent, 0);
-        for(int i = 0; i < lent; i++) &#123;
-            nums[i] = digits[i][0] - '0';
-        &#125;
-        long long ans = 0;
-        //求出n的位数以及每一位数字上的数
-        vector<int> nmb;
-        while(n != 0) &#123;
-            nmb.push_back(n % 10);
-            n /= 10;
-        &#125;
-        int m = nmb.size();   //一共的位数
-        //位数不相同的情况
-        for(int i = 1; i <= m - 1; i++) &#123;
-            ans += pow(lent,i);
-        &#125;
-        //位数相同的情况
-        for(int i = m - 1, p = 1; i >= 0; i--, p++) &#123;
-            //因为数组的递增，可以用二分去寻找位置
-            //先找到小于等于此位数的第一个位置
-            //当然其实因为数组的常量比较小，直接循环找也没有问题的
-            int l = -1, r = lent;
-            while(l + 1 != r) &#123;
-                int mid = (l + r) >> 1;
-                if(nums[mid] > nmb[i]) r = mid;
-                else l = mid;
-            &#125;
-            if(l == -1) break;
-            else if(nums[l] == nmb[i]) &#123;
-                ans += l * pow(lent, m - p);
-                //如果就连最后一位都相等的时候，一定要记得加上与本身完全相同的那一个结果
-                //因为循环后不会再继续探索后面的结果了
-                //这里可以举一些例子帮助理解
-                if(i == 0) ans++;
-            &#125;
-            else &#123;
-                ans += (l + 1) * pow(lent, m - p);
-                //已经找到了所有结果了记得break
-                break;
-            &#125;
-        &#125;
-        return ans;
+<h1 id="二、实现方法"><a href="#二、实现方法" class="headerlink" title="二、实现方法"></a>二、实现方法</h1><p>为了满足这样的要求(假设有n个数)，我们只需要让每一个数对应一个下标，而这个下标就是离散化他对应的区间$[1,n]$里面的某一个数！这里主要采用c++的实现操作！下面是具体的实现方法</p>
+<h4 id="①开一个vector数组"><a href="#①开一个vector数组" class="headerlink" title="①开一个vector数组"></a>①开一个vector数组</h4><p>因为后面需要用到库函数，所以会更方便解题，但是其实用哈希表对应也是可以的！</p>
+<pre class="line-numbers language-c++"><code class="language-c++">vector<int> allis;
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="②数据放入数组之中"><a href="#②数据放入数组之中" class="headerlink" title="②数据放入数组之中"></a>②数据放入数组之中</h4><pre class="line-numbers language-c++"><code class="language-c++">allis.push_back(x);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="③排序之后去重"><a href="#③排序之后去重" class="headerlink" title="③排序之后去重"></a>③排序之后去重</h4><p>去重的目的只为了之后在找数的时候没有重复的数！(其实不去重可能也可以过)</p>
+<pre class="line-numbers language-c++"><code class="language-c++">//排序去重
+    sort(allis.begin(), allis.end());
+//去重的库函数
+    allis.erase(unique(allis.begin(), allis.end()), allis.end());
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="④查找数所在的位置，最后返回应该映射的那一个数"><a href="#④查找数所在的位置，最后返回应该映射的那一个数" class="headerlink" title="④查找数所在的位置，最后返回应该映射的那一个数"></a>④查找数所在的位置，最后返回应该映射的那一个数</h4><p>这里也用了库函数，但是其实就是一个简单的二分，因为排序之后的数组是递增的，所以二分查找加快速度！</p>
+<pre class="line-numbers language-c++"><code class="language-c++">int finds(int x) &#123;
+    int id;
+    //找到第一个大于等于x的数
+    //加1是为了让下标从1开始
+    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
+    return id;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="④举例分析"><a href="#④举例分析" class="headerlink" title="④举例分析"></a>④举例分析</h4><blockquote>
+<p>假设给你一个数组，元素有1,200,2。我们的第三步操作就会让这个数组变成，1,2,200。假设后续操作遍历需要200的时候，我们就会先利用finds函数，返回3，从而，从头开始遍历的时候数组就会呈现出1，3，2的形式。</p>
+</blockquote>
+<h1 id="三、例题"><a href="#三、例题" class="headerlink" title="三、例题"></a>三、例题</h1><h3 id="（1）例题1：区间求和"><a href="#（1）例题1：区间求和" class="headerlink" title="（1）例题1：区间求和"></a>（1）例题1：区间求和</h3><p><img src="https://img-blog.csdnimg.cn/676ec2fb1b404c4a9eec4670d784d133.png" alt="区间求和"></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这一题乍一看其实就是一个前缀和，然后最后区间查询用前缀和的思想就好了。但是本题的难点就在区间和数的范围都是几乎接近了一个int的大小，如果我们直接用前缀和，从头到尾遍历一遍，首先数组不可能开那么大，其次是即使是O(N)的时间复杂度，因为N过大，也必然会超时。<font color="red">但是我们发现，n和m的值比较的小，所以从他们入手，把我们所有输入的数都进行一个离散化，最后其实就相当于最多求一个(n + 2m)那么多次的一个前缀和！</font>因为输入的数字有n个，然后有2m个断点值(左端点和右端点)。因此如果我们把他们转化到一个非常小的区间去求前缀和，就变得非常的简单！所以套用之前的离散化操作，这里直接给出代码！</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+using namespace std;
+const int N = 300005;
+
+typedef pair<int, int> PII;
+
+vector<int> allis;
+vector<PII> add, query;
+int a[N], sum[N];
+int n, m;
+int finds(int x) &#123;&#125;
+    int id;
+    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
+    return id;
     &#125;
-&#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+int main() &#123;
+    cin >> n >> m;
+    for(int i = 1; i <= n; i++) &#123;
+        int x, c;
+        cin >> x >> c;
+        allis.push_back(x);
+        add.push_back( &#123;x, c&#125; );
+        &#125;
+    for(int i = 1; i <= m; i++) &#123;
+        int l, r;
+        cin >> l >> r;
+        allis.push_back(l);
+        allis.push_back(r);
+        query.push_back( &#123;l, r&#125; );
+        &#125;
+    
+    //排序去重
+    sort(allis.begin(), allis.end());
+    allis.erase(unique(allis.begin(), allis.end()), allis.end());
+    
+    // for(auto alli : allis) cout << alli << " ";
+    
+    //处理插入
+    for(auto item : add) &#123;&#125;
+        int s = finds(item.first);
+        a[s] += item.second;
+        &#125;
+    
+    //前缀和
+    for(int i = 1; i <= allis.size(); i++) &#123;
+        sum[i] = sum[i - 1] + a[i];
+        &#125;
+    
+    //查询
+    for(auto item : query) &#123;
+        int l = finds(item.first), r = finds(item.second);
+        int ans = 0;
+        ans = sum[r] - sum[l - 1];
+        cout << ans << endl;
+        &#125;
+    return 0;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="（2）例题2：区间合并"><a href="#（2）例题2：区间合并" class="headerlink" title="（2）例题2：区间合并"></a>（2）例题2：区间合并</h3><p><img src="https://img-blog.csdnimg.cn/543283207df9411d8490deea79b3f0ed.png" alt="区间合并"></p>
+<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>因为区间合并的相关知识已经写过博客了，对区间合并不了解的uu们，可以点击这里去看看<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124435766?spm=1001.2014.3001.5501">区间合并的刷题</a>。那么这题就是在区间合并的前提下，加上一个离散化操作，所以非常的简单哈！</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+using namespace std;
+
+typedef pair<int, int> PII;
+const int N = 200000 + 10;
+PII p[N];
+
+vector<int> allis;
+vector<PII> query;
+
+int finds(int x) &#123;
+    return lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
+&#125;
+
+int main() &#123;
+    int n;
+    cin >> n;
+    int count = 0;
+    for(int i = 1; i <= n; i++) &#123;
+        int l, r;
+        cin >> l >> r;
+        allis.push_back(l);
+        allis.push_back(r);
+        query.push_back(&#123;l, r&#125;);
+    &#125;
+    //去重排序
+    sort(allis.begin(), allis.end());
+    allis.erase(unique(allis.begin(), allis.end()), allis.end());
+    int t = 0;
+    for(auto item : query) &#123;
+        int l = finds(item.first), r = finds(item.second);
+        p[t++] = &#123;l, r&#125;;
+    &#125;
+    //这个地方不能用sort(p.begin(),p.end());
+    sort(p, p + t);
+    int st = -1, ed = -1;
+    for(int i = 0; i < t; i++) &#123;
+        if(p[i].first <= ed) ed = max(ed, p[i].second);
+        else &#123;
+            count++;
+            st = p[i].first;
+            ed = p[i].second;
+        &#125;
+    &#125;
+    cout << count << endl;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -614,7 +666,7 @@ public:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/04/14/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%985/">https://sample.com/2022/04/14/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%985/</a>
+                    <a href="https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/">https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -652,16 +704,8 @@ public:
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%88%B7%E9%A2%98/">
-                                    <span class="chip bg-color">刷题</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8A%9B%E6%89%A3/">
-                                    <span class="chip bg-color">力扣</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                                    <span class="chip bg-color">动态规划</span>
+                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                    <span class="chip bg-color">模板</span>
                                 </a>
                             
                         </div>
@@ -835,17 +879,18 @@ public:
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/04/17/%E5%91%A8%E6%80%BB%E7%BB%934/">
+                <a href="/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="周总结4">
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="离散化操作">
                         
-                        <span class="card-title">周总结4</span>
+                        <span class="card-title">离散化操作</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -855,9 +900,59 @@ public:
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
+                                    模板
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/01/%E5%91%A8%E6%80%BB%E7%BB%936/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpeg" class="responsive-img" alt="周总结6">
+                        
+                        <span class="card-title">周总结6</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -875,63 +970,6 @@ public:
                     
                     <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
                         <span class="chip bg-color">周总结</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/04/13/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%88%9D%E6%8E%A2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="线段树初探">
-                        
-                        <span class="card-title">线段树初探</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-13
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
-                                    模板
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%88%B7%E9%A2%98/">
-                        <span class="chip bg-color">刷题</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
-                        <span class="chip bg-color">线段树</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
                     </a>
                     
                 </div>
