@@ -4,11 +4,14 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="离散化操作, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、离散化操作什么是离散化操作，这里给一个简单的解答。
+    <meta name="keywords" content="shell语法(4), 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、文件重定向每个进程默认打开3个文件描述符：
 
-假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？
-如果数据非常大，但是">
+stdin：标准输入，从命令行读取数据，文件描述符为0
+stdout：标准输出，从命令行输出数据，文件描述符为1
+stderr：标准错误输出，向命令行输出数据，文件描述符为2
+
+可以用文件重">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +23,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>离散化操作 | sheepice的博客</title>
+    <title>shell语法(4) | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +317,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">离散化操作</h1>
+                    <h1 class="description center-align post-title">shell语法(4)</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +438,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                <span class="chip bg-color">模板</span>
+                            <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">linux系统课堂笔记</span>
                             </a>
                         
                     </div>
@@ -447,8 +450,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
-                                模板
+                            <a href="/categories/linux/" class="post-category">
+                                linux
                             </a>
                         
                     </div>
@@ -460,28 +463,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-01
+                    2022-05-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-01
+                    2022-05-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    939
+                    419
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -501,145 +504,85 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、离散化操作"><a href="#一、离散化操作" class="headerlink" title="一、离散化操作"></a>一、离散化操作</h1><p>什么是离散化操作，这里给一个简单的解答。</p>
-<blockquote>
-<p>假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？</p>
-<p>如果数据非常大，但是元素的个数非常小。我们离散化操作就会节省空间，同时通过这样的操作能够让我们优化时间复杂度！</p>
-</blockquote>
-<h1 id="二、实现方法"><a href="#二、实现方法" class="headerlink" title="二、实现方法"></a>二、实现方法</h1><p>为了满足这样的要求(假设有n个数)，我们只需要让每一个数对应一个下标，而这个下标就是离散化他对应的区间$[1,n]$里面的某一个数！这里主要采用c++的实现操作！下面是具体的实现方法</p>
-<h4 id="①开一个vector数组"><a href="#①开一个vector数组" class="headerlink" title="①开一个vector数组"></a>①开一个vector数组</h4><p>因为后面需要用到库函数，所以会更方便解题，但是其实用哈希表对应也是可以的！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">vector<int> allis;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="②数据放入数组之中"><a href="#②数据放入数组之中" class="headerlink" title="②数据放入数组之中"></a>②数据放入数组之中</h4><pre class="line-numbers language-c++"><code class="language-c++">allis.push_back(x);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="③排序之后去重"><a href="#③排序之后去重" class="headerlink" title="③排序之后去重"></a>③排序之后去重</h4><p>去重的目的只为了之后在找数的时候没有重复的数！(其实不去重可能也可以过)</p>
-<pre class="line-numbers language-c++"><code class="language-c++">//排序去重
-    sort(allis.begin(), allis.end());
-//去重的库函数
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
+                <h1 id="一、文件重定向"><a href="#一、文件重定向" class="headerlink" title="一、文件重定向"></a>一、文件重定向</h1><p>每个进程默认打开3个文件描述符：</p>
+<ul>
+<li><code>stdin</code>：标准输入，从命令行读取数据，文件描述符为0</li>
+<li><code>stdout</code>：标准输出，从命令行输出数据，文件描述符为1</li>
+<li><code>stderr</code>：标准错误输出，向命令行输出数据，文件描述符为2</li>
+</ul>
+<p>可以用文件重定向将这三个文件重定向到其他的文件当中</p>
+<h3 id="①重定向命令列表"><a href="#①重定向命令列表" class="headerlink" title="①重定向命令列表"></a>①重定向命令列表</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">command &gt; file</td>
+<td align="center">将stdout重定向到file文件内</td>
+</tr>
+<tr>
+<td align="center">command &lt; file</td>
+<td align="center">将stdin重定向到file文件内</td>
+</tr>
+<tr>
+<td align="center">command &gt;&gt; file</td>
+<td align="center">以stdout的形式追加到file文件内</td>
+</tr>
+<tr>
+<td align="center">command n &gt; file</td>
+<td align="center">将文件描述符n重定向到file中</td>
+</tr>
+<tr>
+<td align="center">command n &gt;&gt; flie</td>
+<td align="center">将文件描述符n追加到file文件中</td>
+</tr>
+</tbody></table>
+<h4 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h4><pre class="line-numbers language-shell"><code class="language-shell">echo -e "Hello \c" > output.txt  #将Hello重定向输出到file
+echo "World" >> output.txt         #将World追加到文件后
+read str < output.txt             #将文件的内容读给str
+echo $str                         #输出Hello World
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="④查找数所在的位置，最后返回应该映射的那一个数"><a href="#④查找数所在的位置，最后返回应该映射的那一个数" class="headerlink" title="④查找数所在的位置，最后返回应该映射的那一个数"></a>④查找数所在的位置，最后返回应该映射的那一个数</h4><p>这里也用了库函数，但是其实就是一个简单的二分，因为排序之后的数组是递增的，所以二分查找加快速度！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">int finds(int x) &#123;
-    int id;
-    //找到第一个大于等于x的数
-    //加1是为了让下标从1开始
-    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
-    return id;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="④举例分析"><a href="#④举例分析" class="headerlink" title="④举例分析"></a>④举例分析</h4><blockquote>
-<p>假设给你一个数组，元素有1,200,2。我们的第三步操作就会让这个数组变成，1,2,200。假设后续操作遍历需要200的时候，我们就会先利用finds函数，返回3，从而，从头开始遍历的时候数组就会呈现出1，3，2的形式。</p>
-</blockquote>
-<h1 id="三、例题"><a href="#三、例题" class="headerlink" title="三、例题"></a>三、例题</h1><h3 id="（1）例题1：区间求和"><a href="#（1）例题1：区间求和" class="headerlink" title="（1）例题1：区间求和"></a>（1）例题1：区间求和</h3><p><img src="https://img-blog.csdnimg.cn/676ec2fb1b404c4a9eec4670d784d133.png" alt="区间求和"></p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这一题乍一看其实就是一个前缀和，然后最后区间查询用前缀和的思想就好了。但是本题的难点就在区间和数的范围都是几乎接近了一个int的大小，如果我们直接用前缀和，从头到尾遍历一遍，首先数组不可能开那么大，其次是即使是O(N)的时间复杂度，因为N过大，也必然会超时。<font color="red">但是我们发现，n和m的值比较的小，所以从他们入手，把我们所有输入的数都进行一个离散化，最后其实就相当于最多求一个(n + 2m)那么多次的一个前缀和！</font>因为输入的数字有n个，然后有2m个断点值(左端点和右端点)。因此如果我们把他们转化到一个非常小的区间去求前缀和，就变得非常的简单！所以套用之前的离散化操作，这里直接给出代码！</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-const int N = 300005;
+<h4 id="同时重定向输入输出"><a href="#同时重定向输入输出" class="headerlink" title="同时重定向输入输出"></a>同时重定向输入输出</h4><p>创建bash脚本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">#! /bin/bash
 
-typedef pair<int, int> PII;
+read a
+read b
+echo $(expr "$a" + "$b")
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>创建input.txt,脸面的内容为</p>
+<pre class="line-numbers language-shell"><code class="language-shell">3
+4
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>执行命令</p>
+<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh   #添加可执行操作
+acs@2ba77538d358:~$ test.sh < input.txt > output.txt  
+acs@2ba77538d358:~$ cat output.txt   #里面内容为7
+7
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="引入外部脚本"><a href="#引入外部脚本" class="headerlink" title="引入外部脚本"></a>引入外部脚本</h1><p>类似于c引入一个头文件</p>
+<p>语法格式</p>
+<pre class="line-numbers language-shell"><code class="language-shell">. filename  #注意有一个空格
+或者
+source filename
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><font color="blue">举一个例子</font></p>
+<p>比如先创建一个bash脚本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ vim test1.sh
+#然后在vim里面写东西
+#！ /bin/bash
 
-vector<int> allis;
-vector<PII> add, query;
-int a[N], sum[N];
-int n, m;
-int finds(int x) &#123;&#125;
-    int id;
-    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
-    return id;
-    &#125;
+name=wjw
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后再创建一个新的脚本</p>
+<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ vim test2.sh
+#然后在vim里面写东西
+#！ /bin/bash
+source test1.sh
 
-int main() &#123;
-    cin >> n >> m;
-    for(int i = 1; i <= n; i++) &#123;
-        int x, c;
-        cin >> x >> c;
-        allis.push_back(x);
-        add.push_back( &#123;x, c&#125; );
-        &#125;
-    for(int i = 1; i <= m; i++) &#123;
-        int l, r;
-        cin >> l >> r;
-        allis.push_back(l);
-        allis.push_back(r);
-        query.push_back( &#123;l, r&#125; );
-        &#125;
-    
-    //排序去重
-    sort(allis.begin(), allis.end());
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
-    
-    // for(auto alli : allis) cout << alli << " ";
-    
-    //处理插入
-    for(auto item : add) &#123;&#125;
-        int s = finds(item.first);
-        a[s] += item.second;
-        &#125;
-    
-    //前缀和
-    for(int i = 1; i <= allis.size(); i++) &#123;
-        sum[i] = sum[i - 1] + a[i];
-        &#125;
-    
-    //查询
-    for(auto item : query) &#123;
-        int l = finds(item.first), r = finds(item.second);
-        int ans = 0;
-        ans = sum[r] - sum[l - 1];
-        cout << ans << endl;
-        &#125;
-    return 0;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="（2）例题2：区间合并"><a href="#（2）例题2：区间合并" class="headerlink" title="（2）例题2：区间合并"></a>（2）例题2：区间合并</h3><p><img src="https://img-blog.csdnimg.cn/543283207df9411d8490deea79b3f0ed.png" alt="区间合并"></p>
-<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>因为区间合并的相关知识已经写过博客了，对区间合并不了解的uu们，可以点击这里去看看<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124435766?spm=1001.2014.3001.5501">区间合并的刷题</a>。那么这题就是在区间合并的前提下，加上一个离散化操作，所以非常的简单哈！</p>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-
-typedef pair<int, int> PII;
-const int N = 200000 + 10;
-PII p[N];
-
-vector<int> allis;
-vector<PII> query;
-
-int finds(int x) &#123;
-    return lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
-&#125;
-
-int main() &#123;
-    int n;
-    cin >> n;
-    int count = 0;
-    for(int i = 1; i <= n; i++) &#123;
-        int l, r;
-        cin >> l >> r;
-        allis.push_back(l);
-        allis.push_back(r);
-        query.push_back(&#123;l, r&#125;);
-    &#125;
-    //去重排序
-    sort(allis.begin(), allis.end());
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
-    int t = 0;
-    for(auto item : query) &#123;
-        int l = finds(item.first), r = finds(item.second);
-        p[t++] = &#123;l, r&#125;;
-    &#125;
-    //这个地方不能用sort(p.begin(),p.end());
-    sort(p, p + t);
-    int st = -1, ed = -1;
-    for(int i = 0; i < t; i++) &#123;
-        if(p[i].first <= ed) ed = max(ed, p[i].second);
-        else &#123;
-            count++;
-            st = p[i].first;
-            ed = p[i].second;
-        &#125;
-    &#125;
-    cout << count << endl;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+echo $name  #会输出wjw
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -666,7 +609,7 @@ int main() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/">https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/</a>
+                    <a href="https://sample.com/2022/05/09/shell%E8%AF%AD%E6%B3%95-4/">https://sample.com/2022/05/09/shell%E8%AF%AD%E6%B3%95-4/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -704,8 +647,8 @@ int main() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                    <span class="chip bg-color">模板</span>
+                                <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">linux系统课堂笔记</span>
                                 </a>
                             
                         </div>
@@ -879,17 +822,18 @@ int main() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/05/06/shell%E8%AF%AD%E6%B3%95-1/">
+                <a href="/2022/05/09/shell%E8%AF%AD%E6%B3%95-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpeg" class="responsive-img" alt="shell语法(1)">
+                        <img src="/medias/featureimages/2.jpeg" class="responsive-img" alt="shell语法(4)">
                         
-                        <span class="card-title">shell语法(1)</span>
+                        <span class="card-title">shell语法(4)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -899,9 +843,9 @@ int main() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -914,6 +858,7 @@ int main() &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -932,13 +877,13 @@ int main() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/01/%E5%91%A8%E6%80%BB%E7%BB%936/">
+                <a href="/2022/05/09/shell%E8%AF%AD%E6%B3%95-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpeg" class="responsive-img" alt="周总结6">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="shell语法(3)">
                         
-                        <span class="card-title">周总结6</span>
+                        <span class="card-title">shell语法(3)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -949,14 +894,14 @@ int main() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
-                                    周总结
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -966,8 +911,8 @@ int main() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">周总结</span>
+                    <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">linux系统课堂笔记</span>
                     </a>
                     
                 </div>

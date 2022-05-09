@@ -473,7 +473,7 @@ expr 表达式
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-06
+                    2022-05-09
                 </div>
                 
 
@@ -507,7 +507,7 @@ expr 表达式
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、expr命令"><a href="#一、expr命令" class="headerlink" title="一、expr命令"></a>一、expr命令</h1><p>expr 命令用户求表达式的值，格式如下</p>
+                <h1 id="一、expr命令"><a href="#一、expr命令" class="headerlink" title="一、expr命令"></a>一、expr命令</h1><p><code>expr</code> 命令用户求表达式的值，格式如下</p>
 <blockquote>
 <p>expr 表达式</p>
 </blockquote>
@@ -517,6 +517,7 @@ expr 表达式
 <li>用\去转义一些特定字符</li>
 <li>对包含空格和其他特殊字符的字符串要用引号括起来</li>
 <li>最后是返回到stdout(标准输出)中输出结果：所以用$(command) 或者 ‘commmand’进行输出。</li>
+<li>不仅会输出一个结果，同时也会有一个返回值(0代表真，1代表假)</li>
 </ul>
 <p><font color="blue">例如</font></p>
 <pre class="line-numbers language-shell"><code class="language-shell">str=“Hello World”
@@ -524,7 +525,7 @@ echo 'expr length "$str"'  #输出字符串长度12
 echo 'expr index "$str" aWd' #输出aWd任一个字符最先出现的位置，这里就是W出现在7(下标从1开始),如果找不到就输出0
 echo 'expr substr "$str" 2 3' #输出ell
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="①整数表达式"><a href="#①整数表达式" class="headerlink" title="①整数表达式"></a>①整数表达式</h3><p>expr 支持普通的算数操作！</p>
+<h3 id="①整数表达式"><a href="#①整数表达式" class="headerlink" title="①整数表达式"></a>①整数表达式</h3><p><code>expr</code> 支持普通的算数操作！</p>
 <p><font color="blue">例如</font></p>
 <pre class="line-numbers language-shell"><code class="language-shell">a=3
 b=4
@@ -547,7 +548,7 @@ echo 'expr $a \& $b'  #输出a的值,返回3
 echo 'expr $c \| $d'  #输出d的值,返回4
 echo 'expr $a \| $b'  #输出a的值,不再计算b
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="二、read命令"><a href="#二、read命令" class="headerlink" title="二、read命令"></a>二、read命令</h1><p>从stdin里面读入单行数据</p>
+<h1 id="二、read命令"><a href="#二、read命令" class="headerlink" title="二、read命令"></a>二、read命令</h1><p>从stdin里面读入单行数据,当读到文件结束符<code>Ctrl + d</code>的时候返回<code>exit code</code>,为1则继续读，为0则正常退出！</p>
 <p>参数说明</p>
 <ul>
 <li>-p : 后面可以接提示的信息</li>
@@ -694,7 +695,7 @@ acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出1代表�
 <td align="center">a是否大于等于b</td>
 </tr>
 <tr>
-<td align="center">-lr</td>
+<td align="center">-le</td>
 <td align="center">a是否小于等于b</td>
 </tr>
 </tbody></table>
@@ -1016,18 +1017,17 @@ name=wjw wing
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/06/shell%E8%AF%AD%E6%B3%95-2/">
+                <a href="/2022/05/09/shell%E8%AF%AD%E6%B3%95-3/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpeg" class="responsive-img" alt="shell语法(2)">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="shell语法(3)">
                         
-                        <span class="card-title">shell语法(2)</span>
+                        <span class="card-title">shell语法(3)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1037,9 +1037,9 @@ name=wjw wing
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1052,7 +1052,6 @@ name=wjw wing
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1341,7 +1340,7 @@ name=wjw wing
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">17.8k</span>
+                        class="white-color">18.6k</span>
             
             
             

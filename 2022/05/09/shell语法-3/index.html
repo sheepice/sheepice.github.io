@@ -4,11 +4,20 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="离散化操作, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、离散化操作什么是离散化操作，这里给一个简单的解答。
+    <meta name="keywords" content="shell语法(3), 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、判断语句①if…them形式if condition
+then
+    语句1
+    语句2
+fi
 
-假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？
-如果数据非常大，但是">
+例如
+a=3
+b=4
+
+if [ &#34;$a&#34; -lt &#34;$b&#34; ] &amp;&amp; [ &#34;$a&#34; -gt 2 ]
+then
+    echo $">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +29,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>离散化操作 | sheepice的博客</title>
+    <title>shell语法(3) | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -314,12 +323,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">离散化操作</h1>
+                    <h1 class="description center-align post-title">shell语法(3)</h1>
                 </div>
             </div>
         </div>
@@ -435,8 +444,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                <span class="chip bg-color">模板</span>
+                            <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">linux系统课堂笔记</span>
                             </a>
                         
                     </div>
@@ -447,8 +456,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
-                                模板
+                            <a href="/categories/linux/" class="post-category">
+                                linux
                             </a>
                         
                     </div>
@@ -460,28 +469,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-01
+                    2022-05-09
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-05-01
+                    2022-05-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    939
+                    260
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    1 分
                 </div>
                 
 
@@ -501,145 +510,180 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、离散化操作"><a href="#一、离散化操作" class="headerlink" title="一、离散化操作"></a>一、离散化操作</h1><p>什么是离散化操作，这里给一个简单的解答。</p>
-<blockquote>
-<p>假设给你一个数组，元素有1,2,200,30000,400000。按照元素的个数，将最终的数组变成1,2,3,4,5的操作就是离散化。离散化的操作有什么好处呢？</p>
-<p>如果数据非常大，但是元素的个数非常小。我们离散化操作就会节省空间，同时通过这样的操作能够让我们优化时间复杂度！</p>
+                <h1 id="一、判断语句"><a href="#一、判断语句" class="headerlink" title="一、判断语句"></a>一、判断语句</h1><h3 id="①if…them形式"><a href="#①if…them形式" class="headerlink" title="①if…them形式"></a>①if…them形式</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
+then
+    语句1
+    语句2
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color="blue">例如</font></p>
+<pre class="line-numbers language-shell"><code class="language-shell">a=3
+b=4
+
+if [ "$a" -lt "$b" ] && [ "$a" -gt 2 ]
+then
+    echo $&#123;a&#125;在范围内
+fi
+#输出，3在范围内
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②单层if-else"><a href="#②单层if-else" class="headerlink" title="②单层if-else"></a>②单层if-else</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
+then
+    语句1
+    语句2
+else
+    语句1
+    语句2
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color="blue">例如</font></p>
+<pre class="line-numbers language-shell"><code class="language-shell">a=3
+b=4
+
+if ! ["$a" -lt "$b"]
+    echo $&#123;a&#125;不小于$&#123;b&#125;
+else
+    echo $&#123;a&#125;小于$&#123;b&#125;
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="③多层if-else"><a href="#③多层if-else" class="headerlink" title="③多层if-else"></a>③多层if-else</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
+then
+    语句
+elif condition
+then
+    语句
+else 
+then
+    语句
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="④case语句"><a href="#④case语句" class="headerlink" title="④case语句"></a>④case语句</h3><pre class="line-numbers language-shell"><code class="language-shell">case 变量($a) in
+    1)
+        语句
+        ;;
+    2)
+        语句
+        ;;
+    *)
+        语句
+        ;;
+esac
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="二、循环结构"><a href="#二、循环结构" class="headerlink" title="二、循环结构"></a>二、循环结构</h1><h3 id="①-for-var-in-v1-v2-v3"><a href="#①-for-var-in-v1-v2-v3" class="headerlink" title="① for var in v1 v2 v3"></a>① for var in v1 v2 v3</h3><pre class="line-numbers language-shell"><code class="language-shell">#命令格式
+for var in v1 v2 v3
+do
+    语句1
+    语句2
+done
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color="blue">例如</font></p>
+<pre class="line-numbers language-shell"><code class="language-shell">for i in a 2 cc
+do
+    echo $i
+done
+#输出a /n 2 /n cc
+#------------------------
+for file in 'ls'(''表示获取某个命令的stdout结果,等同于$())
+do
+    echo $file
+done
+#输出当前目录下的文件名
+#------------------------
+for i in $(sec 1 10)
+do
+    echo $i
+done
+#输出1-10
+#------------------------
+for i in (1..20)  #可以输出字母，也可以反向输出
+do
+    echo $i
+done
+#输出1-20
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="②for-…-…-…"><a href="#②for-…-…-…" class="headerlink" title="②for ((…; …; …))"></a>②for ((…; …; …))</h3><pre class="line-numbers language-shell"><code class="language-shell">for ((i = 1; i <= 10; i++))
+do
+    echo $i
+done
+#输出1-10
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="③while…do…done"><a href="#③while…do…done" class="headerlink" title="③while…do…done"></a>③while…do…done</h3><pre class="line-numbers language-shell"><code class="language-shell">while read name
+do
+    echo $name
+done
+#读取什么就输出什么
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="④untill…do…done"><a href="#④untill…do…done" class="headerlink" title="④untill…do…done"></a>④untill…do…done</h3><blockquote>
+<p>当条件为真的时候才结束,否则一直循环,当然可以直接用Ctrl + c直接杀死现在的进程！</p>
 </blockquote>
-<h1 id="二、实现方法"><a href="#二、实现方法" class="headerlink" title="二、实现方法"></a>二、实现方法</h1><p>为了满足这样的要求(假设有n个数)，我们只需要让每一个数对应一个下标，而这个下标就是离散化他对应的区间$[1,n]$里面的某一个数！这里主要采用c++的实现操作！下面是具体的实现方法</p>
-<h4 id="①开一个vector数组"><a href="#①开一个vector数组" class="headerlink" title="①开一个vector数组"></a>①开一个vector数组</h4><p>因为后面需要用到库函数，所以会更方便解题，但是其实用哈希表对应也是可以的！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">vector<int> allis;
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="②数据放入数组之中"><a href="#②数据放入数组之中" class="headerlink" title="②数据放入数组之中"></a>②数据放入数组之中</h4><pre class="line-numbers language-c++"><code class="language-c++">allis.push_back(x);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="③排序之后去重"><a href="#③排序之后去重" class="headerlink" title="③排序之后去重"></a>③排序之后去重</h4><p>去重的目的只为了之后在找数的时候没有重复的数！(其实不去重可能也可以过)</p>
-<pre class="line-numbers language-c++"><code class="language-c++">//排序去重
-    sort(allis.begin(), allis.end());
-//去重的库函数
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="④查找数所在的位置，最后返回应该映射的那一个数"><a href="#④查找数所在的位置，最后返回应该映射的那一个数" class="headerlink" title="④查找数所在的位置，最后返回应该映射的那一个数"></a>④查找数所在的位置，最后返回应该映射的那一个数</h4><p>这里也用了库函数，但是其实就是一个简单的二分，因为排序之后的数组是递增的，所以二分查找加快速度！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">int finds(int x) &#123;
-    int id;
-    //找到第一个大于等于x的数
-    //加1是为了让下标从1开始
-    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
-    return id;
+<pre class="line-numbers language-shell"><code class="language-shell">untill [ "$&#123;word&#125;" == "yes" ]
+do
+    read -p "please input yes" word
+done
+#只有当用户输入yes的时候才会结束
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="⑤死循环的处理方式"><a href="#⑤死循环的处理方式" class="headerlink" title="⑤死循环的处理方式"></a>⑤死循环的处理方式</h3><ol>
+<li>如果终端可以打开该程序，输入<code>Ctrl +  c</code>就可以结束了！</li>
+<li><ul>
+<li>使用top命令找到该进程的PID，也就是第一列的数字</li>
+<li>输入<code>kill -9 PID</code>即可关掉这个进程</li>
+</ul>
+</li>
+</ol>
+<h1 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h1><p><code>bash</code>中的函数类似于c中的函数，但是返回值是<code>exit code</code></p>
+<p>如果想要获取函数最后的一个stdout的结果，可以通过<code>echo</code>输出到<code>stdout</code>中然后通过<code>$&#123;function_name&#125;</code>来获取stdout中的结果。</p>
+<p>如果不写<code>return</code>的时候默认<code>return 0</code></p>
+<pre class="line-numbers language-shell"><code class="language-shell">#示例1
+func() &#123;
+    name=wjw
+    echo "hello $name"
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="④举例分析"><a href="#④举例分析" class="headerlink" title="④举例分析"></a>④举例分析</h4><blockquote>
-<p>假设给你一个数组，元素有1,200,2。我们的第三步操作就会让这个数组变成，1,2,200。假设后续操作遍历需要200的时候，我们就会先利用finds函数，返回3，从而，从头开始遍历的时候数组就会呈现出1，3，2的形式。</p>
-</blockquote>
-<h1 id="三、例题"><a href="#三、例题" class="headerlink" title="三、例题"></a>三、例题</h1><h3 id="（1）例题1：区间求和"><a href="#（1）例题1：区间求和" class="headerlink" title="（1）例题1：区间求和"></a>（1）例题1：区间求和</h3><p><img src="https://img-blog.csdnimg.cn/676ec2fb1b404c4a9eec4670d784d133.png" alt="区间求和"></p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>这一题乍一看其实就是一个前缀和，然后最后区间查询用前缀和的思想就好了。但是本题的难点就在区间和数的范围都是几乎接近了一个int的大小，如果我们直接用前缀和，从头到尾遍历一遍，首先数组不可能开那么大，其次是即使是O(N)的时间复杂度，因为N过大，也必然会超时。<font color="red">但是我们发现，n和m的值比较的小，所以从他们入手，把我们所有输入的数都进行一个离散化，最后其实就相当于最多求一个(n + 2m)那么多次的一个前缀和！</font>因为输入的数字有n个，然后有2m个断点值(左端点和右端点)。因此如果我们把他们转化到一个非常小的区间去求前缀和，就变得非常的简单！所以套用之前的离散化操作，这里直接给出代码！</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-const int N = 300005;
+func #直接调用，输出hello wjw
 
-typedef pair<int, int> PII;
-
-vector<int> allis;
-vector<PII> add, query;
-int a[N], sum[N];
-int n, m;
-int finds(int x) &#123;&#125;
-    int id;
-    id = lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
-    return id;
-    &#125;
-
-int main() &#123;
-    cin >> n >> m;
-    for(int i = 1; i <= n; i++) &#123;
-        int x, c;
-        cin >> x >> c;
-        allis.push_back(x);
-        add.push_back( &#123;x, c&#125; );
-        &#125;
-    for(int i = 1; i <= m; i++) &#123;
-        int l, r;
-        cin >> l >> r;
-        allis.push_back(l);
-        allis.push_back(r);
-        query.push_back( &#123;l, r&#125; );
-        &#125;
-    
-    //排序去重
-    sort(allis.begin(), allis.end());
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
-    
-    // for(auto alli : allis) cout << alli << " ";
-    
-    //处理插入
-    for(auto item : add) &#123;&#125;
-        int s = finds(item.first);
-        a[s] += item.second;
-        &#125;
-    
-    //前缀和
-    for(int i = 1; i <= allis.size(); i++) &#123;
-        sum[i] = sum[i - 1] + a[i];
-        &#125;
-    
-    //查询
-    for(auto item : query) &#123;
-        int l = finds(item.first), r = finds(item.second);
-        int ans = 0;
-        ans = sum[r] - sum[l - 1];
-        cout << ans << endl;
-        &#125;
-    return 0;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="（2）例题2：区间合并"><a href="#（2）例题2：区间合并" class="headerlink" title="（2）例题2：区间合并"></a>（2）例题2：区间合并</h3><p><img src="https://img-blog.csdnimg.cn/543283207df9411d8490deea79b3f0ed.png" alt="区间合并"></p>
-<h3 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h3><p>因为区间合并的相关知识已经写过博客了，对区间合并不了解的uu们，可以点击这里去看看<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124435766?spm=1001.2014.3001.5501">区间合并的刷题</a>。那么这题就是在区间合并的前提下，加上一个离散化操作，所以非常的简单哈！</p>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-
-typedef pair<int, int> PII;
-const int N = 200000 + 10;
-PII p[N];
-
-vector<int> allis;
-vector<PII> query;
-
-int finds(int x) &#123;
-    return lower_bound(allis.begin(), allis.end(), x) - allis.begin() + 1;
+#示例2
+func() &#123;
+    name=wjw
+    echo "$name"
+    return 123
 &#125;
 
-int main() &#123;
-    int n;
-    cin >> n;
-    int count = 0;
-    for(int i = 1; i <= n; i++) &#123;
-        int l, r;
-        cin >> l >> r;
-        allis.push_back(l);
-        allis.push_back(r);
-        query.push_back(&#123;l, r&#125;);
-    &#125;
-    //去重排序
-    sort(allis.begin(), allis.end());
-    allis.erase(unique(allis.begin(), allis.end()), allis.end());
-    int t = 0;
-    for(auto item : query) &#123;
-        int l = finds(item.first), r = finds(item.second);
-        p[t++] = &#123;l, r&#125;;
-    &#125;
-    //这个地方不能用sort(p.begin(),p.end());
-    sort(p, p + t);
-    int st = -1, ed = -1;
-    for(int i = 0; i < t; i++) &#123;
-        if(p[i].first <= ed) ed = max(ed, p[i].second);
-        else &#123;
-            count++;
-            st = p[i].first;
-            ed = p[i].second;
-        &#125;
-    &#125;
-    cout << count << endl;
+output=$(func)   #保存wjw
+ret=$?             #保存123
+
+#示例3
+func() &#123;
+    if [$1 -le 0]
+    then
+        echo 0
+        return 0
+    fi
+    sum=$(func 'expr $1 - 1')
+    echo $(expr $sum + $1)
 &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+echo $(func 10) #递归输出从0-10的累加和！
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="四、exit命令"><a href="#四、exit命令" class="headerlink" title="四、exit命令"></a>四、exit命令</h1><ul>
+<li><code>exit</code>命令用来退出当前<code>shell</code>进程，并返回一个退出状态</li>
+<li><code>exit</code>命令可以接受一个整数值作为参数，代表退出状态，如果不指定，默认为0</li>
+<li>退出状态只能介于0-255之间的整数，只有0代表正常退出</li>
+</ul>
+<pre class="line-numbers language-shell"><code class="language-shell">#! /bin/bash
+
+if [ $# -ne 1 ] #如果参数等于1就正常退出，不等于1就非正常退出
+then
+    echo "NO"
+    exit 1
+else
+    echo "YES"
+    exit 0
+fi
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><font color="blue">如果执行该脚本</font></p>
+<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh
+acs@2ba77538d358:~$ ./test.sh wjw 18
+acs@2ba77538d358:~$ echo $?  #输出的是1
+acs@2ba77538d358:~$ ./test.sh wjw
+acs@2ba77538d358:~$ echo $?  #输出的是0
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -666,7 +710,7 @@ int main() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/">https://sample.com/2022/05/01/%E7%A6%BB%E6%95%A3%E5%8C%96%E6%93%8D%E4%BD%9C/</a>
+                    <a href="https://sample.com/2022/05/09/shell%E8%AF%AD%E6%B3%95-3/">https://sample.com/2022/05/09/shell%E8%AF%AD%E6%B3%95-3/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -704,8 +748,8 @@ int main() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                    <span class="chip bg-color">模板</span>
+                                <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">linux系统课堂笔记</span>
                                 </a>
                             
                         </div>
@@ -883,13 +927,13 @@ int main() &#123;
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/06/shell%E8%AF%AD%E6%B3%95-1/">
+                <a href="/2022/05/09/shell%E8%AF%AD%E6%B3%95-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpeg" class="responsive-img" alt="shell语法(1)">
+                        <img src="/medias/featureimages/2.jpeg" class="responsive-img" alt="shell语法(4)">
                         
-                        <span class="card-title">shell语法(1)</span>
+                        <span class="card-title">shell语法(4)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -900,7 +944,7 @@ int main() &#123;
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
                         </span>
                         <span class="publish-author">
                             
@@ -932,13 +976,13 @@ int main() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/01/%E5%91%A8%E6%80%BB%E7%BB%936/">
+                <a href="/2022/05/06/shell%E8%AF%AD%E6%B3%95-2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpeg" class="responsive-img" alt="周总结6">
+                        <img src="/medias/featureimages/7.jpeg" class="responsive-img" alt="shell语法(2)">
                         
-                        <span class="card-title">周总结6</span>
+                        <span class="card-title">shell语法(2)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -949,14 +993,14 @@ int main() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-01
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
-                                    周总结
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -966,8 +1010,8 @@ int main() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">周总结</span>
+                    <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">linux系统课堂笔记</span>
                     </a>
                     
                 </div>
