@@ -4,9 +4,10 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="单调队列初探, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、前言今天总结的一个东西叫做单调队列，其实单调队列这个名字一听就知道是跟数据结构有关。而之所以命名为这个，肯定说明了他代表队列里面的元素都是成为一个单调的形式存在在队列中的。今天主要介绍两种实现单调队列的方法吧。
-首先考虑这样的一个题目：">
+    <meta name="keywords" content="周总结7, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、前言sheepice的CSDN博客地址：CSDN地址
+欢迎大家来到一周一总结的栏目！！希望能够和大家一起努力！上周事情贼多，然后又加上周日的时候又在考试，所以上周的总结放到这周一起吧，虽然已经忘记了上周干了什么了哈哈哈！
+三叶姐也搭配了">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>单调队列初探 | sheepice的博客</title>
+    <title>周总结7 | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +313,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">单调队列初探</h1>
+                    <h1 class="description center-align post-title">周总结7</h1>
                 </div>
             </div>
         </div>
@@ -433,8 +434,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                <span class="chip bg-color">模板</span>
+                            <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
+                                <span class="chip bg-color">周总结</span>
                             </a>
                         
                     </div>
@@ -445,8 +446,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%A8%A1%E6%9D%BF/" class="post-category">
-                                模板
+                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
+                                周总结
                             </a>
                         
                     </div>
@@ -458,14 +459,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-04-18
+                    2022-05-15
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-18
+                    2022-05-15
                 </div>
                 
 
@@ -499,79 +500,30 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>今天总结的一个东西叫做单调队列，其实单调队列这个名字一听就知道是跟数据结构有关。而之所以命名为这个，肯定说明了他代表队列里面的元素都是成为一个单调的形式存在在队列中的。今天主要介绍两种实现单调队列的方法吧。</p>
-<p>首先考虑这样的一个题目：这是洛谷的P1886<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1886">滑动窗口单调队列</a>。</p>
-<h4 id="①题目描述如下："><a href="#①题目描述如下：" class="headerlink" title="①题目描述如下："></a>①题目描述如下：</h4><p><img src="https://img-blog.csdnimg.cn/7c11d13af76247afb2d61c477494a958.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="滑动窗口单调队列"></p>
-<p>数据范围为：$1 &lt;&#x3D; n &lt;&#x3D; k &lt;&#x3D; 10^6$。</p>
-<h4 id="②解题思路"><a href="#②解题思路" class="headerlink" title="②解题思路"></a>②解题思路</h4><p>我们不妨以求某个窗口的最小值为例子(最大值同理也可以那么推导)。我们首先做的事情就是，依次的放入元素，到一个我们设置好的队列之中，因为这个队列要满足最后输出的结果是最小值，<font color="red">此时我们的队列应当满足单调递增的顺序</font>，这样的话我们每次输出的结果就是在输出一个队首的元素，保证输出的结果是在队列里面是最小的。那么一旦我即将要入队的元素比我目前队尾的元素要小的话，那么队尾会直接弹出，这是因为队尾元素和即将入队的元素已经在一个窗口里面了，由于即将入队的元素小，那么肯定就会有此滑动窗口元素的最小值不可能是原先队尾的元素了。<font color="red">如果当队首元素的下标已经不包含在滑动窗口里面的话</font>，那么我们要进行一个队首出队的行为，保证后面答案的更新不包括滑动窗口以外的元素！</p>
-<h4 id="③一些问题及举例说明"><a href="#③一些问题及举例说明" class="headerlink" title="③一些问题及举例说明"></a>③一些问题及举例说明</h4><blockquote>
-<p>1.为什么队列要满足单调递增呢？</p>
-<p>我们考虑题目中的样例，当我们1入队以后，3能不能入队呢？答案是能。因为我们无法保证3之后的数字会不会比3还大，假设3之后的数字是4，5，6，……，那么当我们输出第一个答案1之后，滑动窗口往后移动，此时最小值就是3了，所以保证队列是单调递增的。</p>
-</blockquote>
-<blockquote>
-<p>2.如何去判断队首元素不在滑动窗口里面呢？</p>
-<p>要判断队首元素在不在窗口，就是说其坐标是不是比窗口的左边边界要大。这就需要我们另外用方法记录下来队首元素的坐标，比如开一个数组进行坐标的记录。假设我们遍历到第i个元素了，那么滑动窗口的左边界其实就是(i - k),此时就判断他是否比队首元素坐标小就好，如果不是，就让队首元素弹出就好了。</p>
-</blockquote>
-<h1 id="二、实现方法1-数组模拟"><a href="#二、实现方法1-数组模拟" class="headerlink" title="二、实现方法1(数组模拟)"></a>二、实现方法1(数组模拟)</h1><p>其实数组模拟了一个比较底层的数据结构deque,也就是双向队列。这个队列之所以能够满足题目的要求，就是因为，队首和队尾元素都可以进行弹出的操作，也就像一个管道一样，你可以从管道的两头出去，而不仅仅像一个队列一样，只能队首进行弹出。</p>
-<p>以下代码有相关注释，结合前言，大家可以试着走一下程序。</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
-using namespace std;
-const int N = 1e+6 + 5;
-int nums[N];
-int q[N];  //队列
-int p[N];  //下标 
-int main() &#123;
-    int n, k;
-    cin >> n >> k;
-    int head, tail;
-    for(int i = 0; i < n; i++) &#123;
-        cin >> nums[i];
-    &#125;
-    //输出滑动窗口最小值
-    head = 0, tail = -1;
-    for(int i = 0; i < n; i++) &#123;
-        //如果入队元素比队尾大，就队尾出队 
-        while(head <= tail && q[tail] >= nums[i])
-        tail--;
-        //入队操作
-        q[++tail] = nums[i];
-        p[tail] = i;
-        //如果滑动窗口不包括队首元素，队首出队
-        if(head <= tail && i - k >= p[head])
-        head++;
-        //进行输出
-        if(i - k + 1 >= 0) cout << q[head] <<" "; 
-    &#125;
-    cout << endl;
-    
-    //输出滑动窗口最大值
-    memset(q, 0, sizeof(q));
-    memset(p, 0, sizeof(p));
-    head = 0, tail = -1;
-    for(int i = 0; i < n; i++) &#123;
-        //如果入队元素比队尾大，就队尾出队 
-        while(head <= tail && q[tail] <= nums[i])
-        tail--;
-        //入队操作
-        q[++tail] = nums[i];
-        p[tail] = i;
-        //如果滑动窗口不包括队首元素，队首出队
-        if(head <= tail && i - k >= p[head])
-        head++;
-        //进行输出
-        if(i - k + 1 >= 0) cout << q[head] <<" "; 
-    &#125;  
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="三、实现方法2-deque"><a href="#三、实现方法2-deque" class="headerlink" title="三、实现方法2(deque)"></a>三、实现方法2(deque)</h1><p>我们可以直接用STL自带的deque底层队列进行模拟，这个地方，可以重新设置一下类，然后让队列的入队出队方式有一些细微的变化。这里的代码仅供参考，也是能过的，当然会稍微有点难理解吧,因为用到类和函数重置的相关知识了！</p>
-<p>下面代码依次拼在一起就是最终的AC代码啦！</p>
-<p>不知道为什么这里的代码不给我放到代码块里面，所以为了有更好的观感，可以去我的CSDN里面看这篇文章！</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124255565?spm=1001.2014.3001.5502">CSDN单调队列初探</a></p>
-<blockquote>
-<p>#include&lt;bits&#x2F;stdc++.h&gt;<br>using namespace std;<br>int nums[10000005];<br>&#x2F;&#x2F;实现最大值的获取<br>class myqueuemax<br>{<br>   public:<br>       deque<int> que1;<br>       void pop(int value)<br>       {<br>           &#x2F;&#x2F;如果队首元素已经不在滑动窗口才弹出<br>           if(!que1.empty()&amp;&amp;value&#x3D;&#x3D;que1.front())<br>           que1.pop_front();<br>       }<br>       void push(int value)<br>       {<br>           &#x2F;&#x2F;加入的元素是否比队尾大就弹出队尾，保证单调递减<br>           while(!que1.empty()&amp;&amp;value&gt;que1.back())<br>           que1.pop_back();<br>           que1.push_back(value);<br>       }<br>       int front()<br>       {<br>           return que1.front();<br>       }<br>};</int></p>
-<p>&#x2F;&#x2F;实现最小值的获取<br>class myqueuemin<br>{<br>   public:<br>       deque<int> que2;<br>       void pop(int value)<br>       {<br>           &#x2F;&#x2F;如果队首元素已经不在滑动窗口才弹出<br>           if(!que2.empty()&amp;&amp;value&#x3D;&#x3D;que2.front())<br>           que2.pop_front();<br>       }<br>       void push(int value)<br>       {<br>           &#x2F;&#x2F;加入的元素是否比队尾大就弹出队尾，保证单调递增<br>           while(!que2.empty()&amp;&amp;value&lt;que2.back())<br>           que2.pop_back();<br>           que2.push_back(value);<br>       }<br>       int front()<br>       {<br>           return que2.front();<br>       }<br>};</int></p>
-<p>int main()<br>{<br>    myqueuemax que1;<br>    myqueuemin que2;<br>    int k,n;<br>    cin&gt;&gt;n&gt;&gt;k;<br>       &#x2F;&#x2F;最小值的输出<br>    for(int i&#x3D;0;i&lt;n;i++)<br>    {<br>        cin&gt;&gt;nums[i];<br>    }<br>     for(int i&#x3D;0;i&lt;k;i++)<br>    {<br>     que2.push(nums[i]);<br>    }<br>    cout&lt;&lt;que2.front()&lt;&lt;” “;<br>    for(int i&#x3D;k;i&lt;n;i++)<br>    {<br>        que2.pop(nums[i-k]);  &#x2F;&#x2F;直接利用下标对应的元素判断队首是否还在队列中<br>        que2.push(nums[i]);<br>        cout&lt;&lt;que2.front()&lt;&lt;” “;<br>    }<br>    cout&lt;&lt;endl;<br>   &#x2F;&#x2F;最大值的输出<br>    for(int i&#x3D;0;i&lt;k;i++)<br>    {<br>     que1.push(nums[i]);<br>    }<br>    cout&lt;&lt;que1.front()&lt;&lt;” “;<br>    for(int i&#x3D;k;i&lt;n;i++)<br>    {<br>        que1.pop(nums[i-k]);  &#x2F;&#x2F;直接利用下标对应的元素判断队首是否还在队列中<br>        que1.push(nums[i]);<br>        cout&lt;&lt;que1.front()&lt;&lt;” “;<br>    }<br>}</p>
-</blockquote>
+                <h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice的<strong>CSDN博客地址</strong>：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/">CSDN地址</a></p>
+<p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！上周事情贼多，然后又加上周日的时候又在考试，所以上周的总结放到这周一起吧，虽然已经忘记了上周干了什么了哈哈哈！</p>
+<p><font color="red">三叶姐也搭配了hexo地址，在这里强烈推荐<a target="_blank" rel="noopener" href="https://sharingsource.github.io/about/">三叶姐的hexo</a></font></p>
+<h3 id="二、算法学习"><a href="#二、算法学习" class="headerlink" title="二、算法学习"></a>二、算法学习</h3><p>这两周，总体来说，好像还是学了很多的算法的，也有蛮多是复习的！</p>
+<p><font color="blue">下面是一些能想到学的和复习的算法</font></p>
+<ol>
+<li>最长公共子序列问题</li>
+<li>最长上升子序列问题</li>
+<li>与质数相关的问题(质数筛选，分解质因子)</li>
+<li>dfs(邻接表存图，树的重心问题)</li>
+<li>bfs(邻接表存图，树的层次问题)</li>
+<li>拓扑排序(先处理入度为0的点)</li>
+<li>并查集(路径压缩，有一道超级难的食物链问题)</li>
+<li>字典树(Trie数):用二维数组模拟，idx表示节点</li>
+<li>KMP算法(其实就是自己匹配自己)</li>
+<li>字符串哈希，用unsigned long long 自动取余，经验值：131转换进制，好像还学了一个叫前缀哈希的东西，记得要减前缀的时候进行左移</li>
+<li>堆排序(down操作，up操作，包括如果要维护第k个插入的数，有一个heap_swap操作！)</li>
+</ol>
+<p><strong>这么看来，这两周学的东西有点多啊，但是还是感觉没能够对模板熟记于心，每次看y总写代码的时候，就感觉特别得心应手，什么时候才能有这样一半的水平啊，好好的背模板吧！</strong></p>
+<h3 id="三、Linux操作系统学习"><a href="#三、Linux操作系统学习" class="headerlink" title="三、Linux操作系统学习"></a>三、Linux操作系统学习</h3><ol>
+<li>巩固了一下tmux和vim的相关用法</li>
+<li>学了shell语法，然后内容比较多，已经在开始复习，后边会进行相关的复习！</li>
+</ol>
+<h3 id="四、生活"><a href="#四、生活" class="headerlink" title="四、生活"></a>四、生活</h3><p>感觉这两周虽然很忙，然后学校的内容很多很多吧，但是好像这两周心态调整的特别好哈哈，虽然每天都在熬夜，有的时候甚至4-5点才睡觉，但是一点也不累，还是比较放松一点的，我觉得好像就是放下了很多很多包袱就会特别放松。这两周也尝试了很多很多的方式，包括自己开一些腾讯会议和同学们去交流一些东西，自己也准备了很多开会用的东西，也希望能够把自己想讲的东西更好的能够传输出去。会议后得到的反馈也非常不错，目前来说，感觉非常好。然后也交了不少的朋友，只能说还蛮有成就感的吧。最开心的当然也是本周末的时候出去看了一个非常好看的电影，只能说真的非常好看，剧情无限反转，惊心动魄的感觉了属于是。然后还进到了5-6年都没进去好好吃过一餐的KFC，我再也不想因为痘痘满脸都是吃不到好吃的东西了，不过确实好贵啊，也正是因为贵，吃不了太多东西，我就没有长胖，这属于是回报性消费了对吧哈哈啊哈哈哈！嗯嗯呢，没想到因为疫情，周总结这个栏目直接在家里面写了整整已经2-3个月了哈哈哈，只能说，感触很大，就是觉得虽然作为一个程序员，好像每天对着电脑写写博客啊，写写算法啊，然后写一些工程，学一些框架就够了，但是总是还是会感受到身边少了一些什么东西吧，不知道在家的时间还需要持续多久吧，但是我真的非常非常希望赶快能够和好朋友们聚在一起，一起玩游戏，一起吃大餐，一起拼搏，因为那样的感觉真的真的非常非常的好，呜呜呜呜。最后的话，希望疫情早日结束，我们一起回到最初的美好吧！</p>
 
                 
             </div>
@@ -598,7 +550,7 @@ int main() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/04/18/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E5%88%9D%E6%8E%A2/">https://sample.com/2022/04/18/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97%E5%88%9D%E6%8E%A2/</a>
+                    <a href="https://sample.com/2022/05/15/%E5%91%A8%E6%80%BB%E7%BB%937/">https://sample.com/2022/05/15/%E5%91%A8%E6%80%BB%E7%BB%937/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -636,8 +588,8 @@ int main() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                    <span class="chip bg-color">模板</span>
+                                <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
+                                    <span class="chip bg-color">周总结</span>
                                 </a>
                             
                         </div>
@@ -811,17 +763,18 @@ int main() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/04/24/%E5%91%A8%E6%80%BB%E7%BB%935/">
+                <a href="/2022/05/15/%E5%91%A8%E6%80%BB%E7%BB%937/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpeg" class="responsive-img" alt="周总结5">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="周总结7">
                         
-                        <span class="card-title">周总结5</span>
+                        <span class="card-title">周总结7</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -831,9 +784,9 @@ int main() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-15
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -846,6 +799,7 @@ int main() &#123;
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -864,13 +818,13 @@ int main() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/17/%E5%91%A8%E6%80%BB%E7%BB%934/">
+                <a href="/2022/05/09/shell%E8%AF%AD%E6%B3%95-4/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="周总结4">
+                        <img src="/medias/featureimages/2.jpeg" class="responsive-img" alt="shell语法(4)">
                         
-                        <span class="card-title">周总结4</span>
+                        <span class="card-title">shell语法(4)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -881,14 +835,14 @@ int main() &#123;
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-09
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%91%A8%E6%80%BB%E7%BB%93/" class="post-category">
-                                    周总结
+                            <a href="/categories/linux/" class="post-category">
+                                    linux
                                 </a>
                             
                             
@@ -898,8 +852,8 @@ int main() &#123;
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%91%A8%E6%80%BB%E7%BB%93/">
-                        <span class="chip bg-color">周总结</span>
+                    <a href="/tags/linux%E7%B3%BB%E7%BB%9F%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">linux系统课堂笔记</span>
                     </a>
                     
                 </div>

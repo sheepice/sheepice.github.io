@@ -6,7 +6,7 @@
   <link href="https://sample.com/atom.xml" rel="self"/>
   
   <link href="https://sample.com/"/>
-  <updated>2022-05-09T11:27:26.525Z</updated>
+  <updated>2022-05-15T12:34:11.845Z</updated>
   <id>https://sample.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>周总结7</title>
+    <link href="https://sample.com/2022/05/15/%E5%91%A8%E6%80%BB%E7%BB%937/"/>
+    <id>https://sample.com/2022/05/15/%E5%91%A8%E6%80%BB%E7%BB%937/</id>
+    <published>2022-05-15T10:49:57.000Z</published>
+    <updated>2022-05-15T12:34:11.845Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice的<strong>CSDN博客地址</strong>：<a href="https://blog.csdn.net/qq_60556896/">CSDN地址</a></p><p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！上周事情贼多，然后又加上周日的时候又在考试，所以上周的总结放到这周一起吧，虽然已经忘记了上周干了什么了哈哈哈！</p><p><font color="red">三叶姐也搭配了hexo地址，在这里强烈推荐<a href="https://sharingsource.github.io/about/">三叶姐的hexo</a></font></p><h3 id="二、算法学习"><a href="#二、算法学习" class="headerlink" title="二、算法学习"></a>二、算法学习</h3><p>这两周，总体来说，好像还是学了很多的算法的，也有蛮多是复习的！</p><p><font color="blue">下面是一些能想到学的和复习的算法</font></p><ol><li>最长公共子序列问题</li><li>最长上升子序列问题</li><li>与质数相关的问题(质数筛选，分解质因子)</li><li>dfs(邻接表存图，树的重心问题)</li><li>bfs(邻接表存图，树的层次问题)</li><li>拓扑排序(先处理入度为0的点)</li><li>并查集(路径压缩，有一道超级难的食物链问题)</li><li>字典树(Trie数):用二维数组模拟，idx表示节点</li><li>KMP算法(其实就是自己匹配自己)</li><li>字符串哈希，用unsigned long long 自动取余，经验值：131转换进制，好像还学了一个叫前缀哈希的东西，记得要减前缀的时候进行左移</li><li>堆排序(down操作，up操作，包括如果要维护第k个插入的数，有一个heap_swap操作！)</li></ol><p><strong>这么看来，这两周学的东西有点多啊，但是还是感觉没能够对模板熟记于心，每次看y总写代码的时候，就感觉特别得心应手，什么时候才能有这样一半的水平啊，好好的背模板吧！</strong></p><h3 id="三、Linux操作系统学习"><a href="#三、Linux操作系统学习" class="headerlink" title="三、Linux操作系统学习"></a>三、Linux操作系统学习</h3><ol><li>巩固了一下tmux和vim的相关用法</li><li>学了shell语法，然后内容比较多，已经在开始复习，后边会进行相关的复习！</li></ol><h3 id="四、生活"><a href="#四、生活" class="headerlink" title="四、生活"></a>四、生活</h3><p>感觉这两周虽然很忙，然后学校的内容很多很多吧，但是好像这两周心态调整的特别好哈哈，虽然每天都在熬夜，有的时候甚至4-5点才睡觉，但是一点也不累，还是比较放松一点的，我觉得好像就是放下了很多很多包袱就会特别放松。这两周也尝试了很多很多的方式，包括自己开一些腾讯会议和同学们去交流一些东西，自己也准备了很多开会用的东西，也希望能够把自己想讲的东西更好的能够传输出去。会议后得到的反馈也非常不错，目前来说，感觉非常好。然后也交了不少的朋友，只能说还蛮有成就感的吧。最开心的当然也是本周末的时候出去看了一个非常好看的电影，只能说真的非常好看，剧情无限反转，惊心动魄的感觉了属于是。然后还进到了5-6年都没进去好好吃过一餐的KFC，我再也不想因为痘痘满脸都是吃不到好吃的东西了，不过确实好贵啊，也正是因为贵，吃不了太多东西，我就没有长胖，这属于是回报性消费了对吧哈哈啊哈哈哈！嗯嗯呢，没想到因为疫情，周总结这个栏目直接在家里面写了整整已经2-3个月了哈哈哈，只能说，感触很大，就是觉得虽然作为一个程序员，好像每天对着电脑写写博客啊，写写算法啊，然后写一些工程，学一些框架就够了，但是总是还是会感受到身边少了一些什么东西吧，不知道在家的时间还需要持续多久吧，但是我真的非常非常希望赶快能够和好朋友们聚在一起，一起玩游戏，一起吃大餐，一起拼搏，因为那样的感觉真的真的非常非常的好，呜呜呜呜。最后的话，希望疫情早日结束，我们一起回到最初的美好吧！</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;sheepice的&lt;strong&gt;CSDN博客地址&lt;/strong&gt;：&lt;a href=&quot;https://blog.csdn.</summary>
+      
+    
+    
+    
+    <category term="周总结" scheme="https://sample.com/categories/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+    
+    <category term="周总结" scheme="https://sample.com/tags/%E5%91%A8%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
   
   <entry>
     <title>shell语法(4)</title>
@@ -483,32 +507,6 @@
     <updated>2022-04-18T09:19:23.903Z</updated>
     
     <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p><p><a href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p><hr><h3 id="二、leetcode每日一题"><a href="#二、leetcode每日一题" class="headerlink" title="二、leetcode每日一题"></a>二、leetcode每日一题</h3><p><img src="https://img-blog.csdnimg.cn/39df104b32574cbbac56a8e175e46cc2.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="滑动窗口题目"></p><p>说实话，这一题在刚开始用双指针的时候，是有些地方没有想明白的，比如当最后的右指针移动到某个位置把k次数用完后，左指针应该移动到哪个位置，所以开始死磕了好久，最后也是积累了这样一种滑动窗口的办法吧。其实就是不要等右指针移到位才开始计算结果，边移动的时候就可以开始计算了，利用维护一个sum值，当sum依然小于k的时候，右指针就可以一直往后面移动，sum也一直++，知道他大于k的那一刻，我们的left就需要移动到他等于k的地方。那么这一题和后面要-+(三叶姐的简单题加餐)的题目是几乎一样的，只不过这题是需要计算最多有多少个“F”和“T”最后取两者的最大值就是答案啦！</p><pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;public:    string s;    int jl;    int maxConsecutiveAnswers(string answerKey, int k) &#123;        s = answerKey;        jl = k;        int ans = 0;        ans = max(getmax('T'), getmax('F'));        return ans;    &#125;    int getmax(char ss) &#123;        int n = s.size();        int sum = 0;        int as = 0;        for(int i = 0, j = 0; j < n; j++) &#123;            //不等于ss时，翻牌操作++；            sum += (s[j] != ss);            //翻牌的操作已经用空了            while(sum > jl) &#123;                sum -= (s[i] != ss);                i++;            &#125;            //边走边记录下来答案            as = max(as, j - i + 1);        &#125;        return as;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="三、-套餐（简单题加餐）"><a href="#三、-套餐（简单题加餐）" class="headerlink" title="三、-+套餐（简单题加餐）"></a>三、-+套餐（简单题加餐）</h3><p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247486241&idx=1&sn=609ca05e6e21a72023172b52d0af0a75&chksm=fd9ca03ecaeb2928018ef5b2faf20b170ae123813eec30962d2ea2d3c93e78e54ddde0d51c87&cur_album_id=1805384400772087811&scene=189#wechat_redirect">最大连续1的个数</a></p><p>上方来自三叶姐的题解，里面涉及到dp做法；二分加前缀和；还有今天的滑动窗口，非常的厉害！！</p>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h3 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;一、前言&lt;/h3&gt;&lt;p&gt;sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三</summary>
-      
-    
-    
-    
-    <category term="力扣刷题篇" scheme="https://sample.com/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/"/>
-    
-    
-    <category term="刷题" scheme="https://sample.com/tags/%E5%88%B7%E9%A2%98/"/>
-    
-    <category term="力扣" scheme="https://sample.com/tags/%E5%8A%9B%E6%89%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>力扣刷题1</title>
-    <link href="https://sample.com/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/"/>
-    <id>https://sample.com/2022/03/28/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%981/</id>
-    <published>2022-03-28T08:37:29.000Z</published>
-    <updated>2022-03-28T09:19:54.126Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h3><p>sheepice开启新的篇章了，虽然现在比较忙，但是如果有空，且写到一些比较有启发的力扣题的时候希望能够发一点点题解，毕竟三叶姐坚持了那么久，也给我有了很好的榜样作用！</p><p><a href="https://blog.csdn.net/qq_60556896/">sheepice的CSDN地址</a>：大家感兴趣也可以去里面，说不定能学到一点东西哦！</p><hr><h3 id="二、leecode每日一题"><a href="#二、leecode每日一题" class="headerlink" title="二、leecode每日一题"></a>二、leecode每日一题</h3><h5 id="①首先是今天的每日一题，题目如下："><a href="#①首先是今天的每日一题，题目如下：" class="headerlink" title="①首先是今天的每日一题，题目如下："></a>①首先是今天的每日一题，题目如下：</h5><p><img src="https://img-blog.csdnimg.cn/69c46960dcf04186a11aab308856d966.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="交替二进制"></p><h5 id="②题目解答（1）"><a href="#②题目解答（1）" class="headerlink" title="②题目解答（1）"></a>②题目解答（1）</h5><pre class="line-numbers language-c++"><code class="language-c++">//版本1，逐步的进行判断class Solution &#123;public:    bool hasAlternatingBits(int n) &#123;        int prev = 100;  //因为二进制每一位不可能超过2，所以prev比2大就好        while (n != 0) &#123;            int cur = n & 1;    //当前判断的位数            if (cur == prev) &#123;  //如果与上一位相等就不满足                return false;            &#125;            prev = cur;         //前缀等于当前，进行下一次的判断            n >>= 1;        &#125;        return true;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h5 id="③题目解答（2）"><a href="#③题目解答（2）" class="headerlink" title="③题目解答（2）"></a>③题目解答（2）</h5><p>因为位运算的性质，所以这题其实可以几行代码就解决的。例如一个二进制数为101，如何判断他是交替的呢。首先令u&#x3D;101，然后u &gt;&gt; 1是等于010的，这一步可以看成让一个本来是101交替的，变成010交替，那么u^(u&gt;&gt;1)等于111，也就是说对于交替进行的数字，必然有其本身抑或本身右移一位后得到的结果位数全部为1!!</p><pre class="line-numbers language-c++"><code class="language-c++">//版本二：利用位运算的相关性质class Solution &#123;public:    bool hasAlternatingBits(int n) &#123;        long a = n ^ (n >> 1);        //a加1后如果为真，111变成1000与原数按位与必然为0        return (a & (a+1)) == 0;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="三、三叶姐的拓展"><a href="#三、三叶姐的拓展" class="headerlink" title="三、三叶姐的拓展"></a>三、三叶姐的拓展</h3><p>这一题之后三叶姐给了一个位运算的入门专题，也是状态压缩的一个入门题目：</p><p><a href="https://mp.weixin.qq.com/s?__biz=MzU4NDE3MTEyMA==&mid=2247490530&idx=1&sn=f53d29ff37a37b41408a83e10bff0ee6&chksm=fd9cb0fdcaeb39eb014629bce596c667600ad22791f5c4e50307da0090c8777caaefadf85948&mpshare=1&scene=23&srcid=0328BdmtGDal2kCsgWYe74cB&sharer_sharetime=1648433142477&sharer_shareid=700066f28b945e5d1cd5d3f0173f1539#rd">【位运算专题】经典「状态压缩 + 位运算」入门题</a></p><h5 id="①题目如下："><a href="#①题目如下：" class="headerlink" title="①题目如下："></a>①题目如下：</h5><p><img src="https://img-blog.csdnimg.cn/45a0dd6be54f4da8946facbd537559b3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="状态压缩入门"></p><h5 id="②解答如下"><a href="#②解答如下" class="headerlink" title="②解答如下"></a>②解答如下</h5><p>因为数据给的比较小，然后要判断的只是小写字母，因此只需要把每一个单词小写字母出现的情况放在一个二进制数下进行表示就好了的！</p><pre class="line-numbers language-c++"><code class="language-c++">//c++版本的解答class Solution &#123;public:    int maxProduct(vector<string>& words) &#123;        int n = words.size();        vector<int> dp(n,0);        for(int i = 0; i < n; i++) &#123;            for(int j = 0; j < words[i].size(); j++) &#123;                char u = words[i][j];                //进行每一位1的存储                dp[i] |= (1 << (u - 'a'));              &#125;        &#125;        int ans = 0;        //从头比较到尾，满足无重复数字就进行相关的答案记录        for(int i = 0; i < n - 1; i++) &#123;            for(int j = i+1; j < n; j++) &#123;                if((dp[i] & dp[j]) == 0) &#123;//这里取最大值的地方可以注意一下//可以用ans = max(ans, (int)(words[i].size() * words[j].size()));//因为.size()结构是返回无符号类型的int所以力扣上会报错！！！                    if(words[i].size() * words[j].size() > ans)                    ans = words[i].size() * words[j].size();                &#125;            &#125;        &#125;        return ans;    &#125;&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
     
     
       
