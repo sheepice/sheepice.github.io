@@ -476,14 +476,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -517,86 +517,88 @@
 </blockquote>
 <h3 id="四、合并区间"><a href="#四、合并区间" class="headerlink" title="四、合并区间"></a>四、合并区间</h3><p>我觉得还是有必要说一下如何去合并区间呢？</p>
 <p>①首先我们要开两个哈希表L,R。这两个表代表的含义分别是第i个区间的左边界和右边界。于是我们可以用下面的代码将这些边界预处理到我们的哈希表里面。</p>
-<pre class="line-numbers language-c++"><code class="language-c++">    //好像有可能展示不出,大家知道这个地方是开一个哈希表就好
-    map<int, int> L,R;
-    for(int i = 1; i <= n; i++) &#123;
-        int a;   //a代表数组的第i个数
-        cin >> a;
-        R[a] = i;
-        if(!L.count(a)) L[a] = i;
-    &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;好像有可能展示不出,大家知道这个地方是开一个哈希表就好
+map&lt;int, int&gt; L,R;
+   for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;
+       int a;   &#x2F;&#x2F;a代表数组的第i个数
+       cin &gt;&gt; a;
+       R[a] &#x3D; i;
+       if(!L.count(a)) L[a] &#x3D; i;
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>因此在上面的操作之后，我们已经把区间的左边界和右边界预处理好了，接下来就是如何去合并区间呢？</p>
 <p>②合并区间的话，<font color="blue">首先我们需要用一个pair键对将哈希表里面的第一个值存储下来，然后进行一个排序，这样可以让我们在判断区间是否合并的时候是从前往后一段一段的去进行的，就保证了答案的正确性。</font>在合并的过程中就不断的判断下一段的左边界和前一段的右边界的大小关系，从而确定两个集合是否有交集。这样说会有点难理解，所以直接给出代码，便于食用！</p>
-<pre class="line-numbers language-c++"><code class="language-c++">    //m代表区间的数量，l表示前一段左边界，r表示前一段右边界
-    int m = 0, l = -1, r = -1;
-    //按照哈希表的第一个元素放到p数组里面
-    for(auto& [k, v] : L) &#123;
-        p[m++] = &#123;L[k], R[k]&#125;;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;m代表区间的数量，l表示前一段左边界，r表示前一段右边界
+int m &#x3D; 0, l &#x3D; -1, r &#x3D; -1;
+&#x2F;&#x2F;按照哈希表的第一个元素放到p数组里面
+for(auto&amp; [k, v] : L) &#123;
+    p[m++] &#x3D; &#123;L[k], R[k]&#125;;
+&#125;
+
+sort(p, p + m);
+int cnt &#x3D; 0;
+for(int i &#x3D; 0; i &lt; m; i++) &#123;
+    &#x2F;&#x2F;如果后一段的左边界比前一段的右边界还小
+    if(p[i].x &lt; r) r &#x3D; max(r, p[i].y);
+    &#x2F;&#x2F;否则已经进入到了下一个区间划分
+    else &#123;
+        cnt++;
+        l &#x3D; p[i].x;
+        r &#x3D; p[i].y;
     &#125;
-    
-    sort(p, p + m);
-    int cnt = 0;
-    for(int i = 0; i < m; i++) &#123;
-        //如果后一段的左边界比前一段的右边界还小
-        if(p[i].x < r) r = max(r, p[i].y);
-        //否则已经进入到了下一个区间划分
-        else &#123;
-            cnt++;
-            l = p[i].x;
-            r = p[i].y;
-        &#125;
-    &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>最后进行结果的输出就好了！</p>
-<h3 id="五、AC代码"><a href="#五、AC代码" class="headerlink" title="五、AC代码"></a>五、AC代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<h3 id="五、AC代码"><a href="#五、AC代码" class="headerlink" title="五、AC代码"></a>五、AC代码</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 #define x first
 #define y second
 using namespace std;
-typedef pair<int, int> PII;
-const int N = 200050;
-const int mod = 998244353;
+typedef pair&lt;int, int&gt; PII;
+const int N &#x3D; 200050;
+const int mod &#x3D; 998244353;
 PII p[N];
 int main() &#123;
     int n;
-    cin >> n;
-    //这里可以用unordered_map速度会很快，但是可能会被TLE
-       //解决方法就是给两个哈希表一个较大的存储值，比如300010;
-    //好像有可能展示不出,大家知道这个地方是开一个哈希表就好
-    map<int, int> L,R;
+    cin &gt;&gt; n;
+    &#x2F;&#x2F;这里可以用unordered_map速度会很快，但是可能会被TLE
+   	&#x2F;&#x2F;解决方法就是给两个哈希表一个较大的存储值，比如300010;
+    &#x2F;&#x2F;好像有可能展示不出,大家知道这个地方是开一个哈希表就好
+    map&lt;int, int&gt; L,R;
     
-    for(int i = 1; i <= n; i++) &#123;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;
         int a;
-        cin >> a;
-        R[a] = i;
-        if(!L.count(a)) L[a] = i;
+        cin &gt;&gt; a;
+        R[a] &#x3D; i;
+        if(!L.count(a)) L[a] &#x3D; i;
     &#125;
-    //m代表区间的数量，l表示前一段左边界，r表示前一段右边界
-    int m = 0, l = -1, r = -1;
-    //按照哈希表的第一个元素放到p数组里面
-    for(auto& [k, v] : L) &#123;
-        p[m++] = &#123;L[k], R[k]&#125;;
+    &#x2F;&#x2F;m代表区间的数量，l表示前一段左边界，r表示前一段右边界
+    int m &#x3D; 0, l &#x3D; -1, r &#x3D; -1;
+    &#x2F;&#x2F;按照哈希表的第一个元素放到p数组里面
+    for(auto&amp; [k, v] : L) &#123;
+        p[m++] &#x3D; &#123;L[k], R[k]&#125;;
     &#125;
     
     sort(p, p + m);
-    int cnt = 0;
-    for(int i = 0; i < m; i++) &#123;
-        //如果后一段的左边界比前一段的右边界还小
-        if(p[i].x < r) r = max(r, p[i].y);
-        //否则已经进入到了下一个区间划分
+    int cnt &#x3D; 0;
+    for(int i &#x3D; 0; i &lt; m; i++) &#123;
+        &#x2F;&#x2F;如果后一段的左边界比前一段的右边界还小
+        if(p[i].x &lt; r) r &#x3D; max(r, p[i].y);
+        &#x2F;&#x2F;否则已经进入到了下一个区间划分
         else &#123;
             cnt++;
-            l = p[i].x;
-            r = p[i].y;
+            l &#x3D; p[i].x;
+            r &#x3D; p[i].y;
         &#125;
     &#125;
-    int res = 1;
-    for(int i = 0; i < cnt - 1; i++) &#123;
-       res = res * 2 % mod;
+    int res &#x3D; 1;
+    for(int i &#x3D; 0; i &lt; cnt - 1; i++) &#123;
+       res &#x3D; res * 2 % mod;
     &#125;
-    cout << res << endl;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    cout &lt;&lt; res &lt;&lt; endl;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 
                 
             </div>
@@ -1109,7 +1111,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

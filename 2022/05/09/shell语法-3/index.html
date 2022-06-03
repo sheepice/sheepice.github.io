@@ -7,17 +7,15 @@
     <meta name="keywords" content="shell语法(3), 博客的制作，学习分享，c++，音乐，艺术">
     <meta name="description" content="一、判断语句①if…them形式if condition
 then
-    语句1
-    语句2
+	语句1
+	语句2
 fi
 
 例如
-a=3
-b=4
+a&amp;#x3D;3
+b&amp;#x3D;4
 
-if [ &#34;$a&#34; -lt &#34;$b&#34; ] &amp;&amp; [ &#34;$a&#34; -gt 2 ]
-then
-    echo $">
+if [ &amp;quot;$a&amp;quot; -lt &amp;quot;$b&amp;quot; ] &amp;amp;&amp;amp">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -483,14 +481,14 @@ then
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    260
+                    780
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -513,117 +511,133 @@ then
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、判断语句"><a href="#一、判断语句" class="headerlink" title="一、判断语句"></a>一、判断语句</h1><h3 id="①if…them形式"><a href="#①if…them形式" class="headerlink" title="①if…them形式"></a>①if…them形式</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
+                <h1 id="一、判断语句"><a href="#一、判断语句" class="headerlink" title="一、判断语句"></a>一、判断语句</h1><h3 id="①if…them形式"><a href="#①if…them形式" class="headerlink" title="①if…them形式"></a>①if…them形式</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">if condition
 then
-    语句1
-    语句2
-fi
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">a=3
-b=4
+	语句1
+	语句2
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-if [ "$a" -lt "$b" ] && [ "$a" -gt 2 ]
-then
-    echo $&#123;a&#125;在范围内
-fi
-#输出，3在范围内
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②单层if-else"><a href="#②单层if-else" class="headerlink" title="②单层if-else"></a>②单层if-else</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
-then
-    语句1
-    语句2
-else
-    语句1
-    语句2
-fi
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">a=3
-b=4
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">a&#x3D;3
+b&#x3D;4
 
-if ! ["$a" -lt "$b"]
-    echo $&#123;a&#125;不小于$&#123;b&#125;
-else
-    echo $&#123;a&#125;小于$&#123;b&#125;
-fi
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="③多层if-else"><a href="#③多层if-else" class="headerlink" title="③多层if-else"></a>③多层if-else</h3><pre class="line-numbers language-shell"><code class="language-shell">if condition
+if [ &quot;$a&quot; -lt &quot;$b&quot; ] &amp;&amp; [ &quot;$a&quot; -gt 2 ]
 then
-    语句
+	echo $&#123;a&#125;在范围内
+fi
+#输出，3在范围内<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②单层if-else"><a href="#②单层if-else" class="headerlink" title="②单层if-else"></a>②单层if-else</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">if condition
+then
+	语句1
+	语句2
+else
+	语句1
+	语句2
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><font color="blue">例如</font></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">a&#x3D;3
+b&#x3D;4
+
+if ! [&quot;$a&quot; -lt &quot;$b&quot;]
+	echo $&#123;a&#125;不小于$&#123;b&#125;
+else
+	echo $&#123;a&#125;小于$&#123;b&#125;
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="③多层if-else"><a href="#③多层if-else" class="headerlink" title="③多层if-else"></a>③多层if-else</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">if condition
+then
+	语句
 elif condition
 then
-    语句
+	语句
 else 
 then
-    语句
-fi
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="④case语句"><a href="#④case语句" class="headerlink" title="④case语句"></a>④case语句</h3><pre class="line-numbers language-shell"><code class="language-shell">case 变量($a) in
-    1)
-        语句
-        ;;
-    2)
-        语句
-        ;;
-    *)
-        语句
-        ;;
-esac
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="二、循环结构"><a href="#二、循环结构" class="headerlink" title="二、循环结构"></a>二、循环结构</h1><h3 id="①-for-var-in-v1-v2-v3"><a href="#①-for-var-in-v1-v2-v3" class="headerlink" title="① for var in v1 v2 v3"></a>① for var in v1 v2 v3</h3><pre class="line-numbers language-shell"><code class="language-shell">#命令格式
+	语句
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="④case语句"><a href="#④case语句" class="headerlink" title="④case语句"></a>④case语句</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">case 变量($a) in
+	1)
+		语句
+		;;
+	2)
+		语句
+		;;
+	*)
+		语句
+		;;
+esac<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="二、循环结构"><a href="#二、循环结构" class="headerlink" title="二、循环结构"></a>二、循环结构</h1><h3 id="①-for-var-in-v1-v2-v3"><a href="#①-for-var-in-v1-v2-v3" class="headerlink" title="① for var in v1 v2 v3"></a>① for var in v1 v2 v3</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#命令格式
 for var in v1 v2 v3
 do
-    语句1
-    语句2
-done
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	语句1
+	语句2
+done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">for i in a 2 cc
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">for i in a 2 cc
 do
-    echo $i
+	echo $i
 done
-#输出a /n 2 /n cc
+#输出a &#x2F;n 2 &#x2F;n cc
 #------------------------
-for file in 'ls'(''表示获取某个命令的stdout结果,等同于$())
+for file in &#39;ls&#39;(&#39;&#39;表示获取某个命令的stdout结果,等同于$())
 do
-    echo $file
+	echo $file
 done
 #输出当前目录下的文件名
 #------------------------
 for i in $(sec 1 10)
 do
-    echo $i
+	echo $i
 done
 #输出1-10
 #------------------------
 for i in (1..20)  #可以输出字母，也可以反向输出
 do
-    echo $i
+	echo $i
 done
-#输出1-20
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②for-…-…-…"><a href="#②for-…-…-…" class="headerlink" title="②for ((…; …; …))"></a>②for ((…; …; …))</h3><pre class="line-numbers language-shell"><code class="language-shell">for ((i = 1; i <= 10; i++))
+#输出1-20<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②for-…-…-…"><a href="#②for-…-…-…" class="headerlink" title="②for ((…; …; …))"></a>②for ((…; …; …))</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">for ((i &#x3D; 1; i &lt;&#x3D; 10; i++))
 do
-    echo $i
+	echo $i
 done
-#输出1-10
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="③while…do…done"><a href="#③while…do…done" class="headerlink" title="③while…do…done"></a>③while…do…done</h3><pre class="line-numbers language-shell"><code class="language-shell">while read name
+#输出1-10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="③while…do…done"><a href="#③while…do…done" class="headerlink" title="③while…do…done"></a>③while…do…done</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">while read name
 do
-    echo $name
+	echo $name
 done
-#读取什么就输出什么
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#读取什么就输出什么<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="④untill…do…done"><a href="#④untill…do…done" class="headerlink" title="④untill…do…done"></a>④untill…do…done</h3><blockquote>
 <p>当条件为真的时候才结束,否则一直循环,当然可以直接用Ctrl + c直接杀死现在的进程！</p>
 </blockquote>
-<pre class="line-numbers language-shell"><code class="language-shell">untill [ "$&#123;word&#125;" == "yes" ]
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">untill [ &quot;$&#123;word&#125;&quot; &#x3D;&#x3D; &quot;yes&quot; ]
 do
-    read -p "please input yes" word
+	read -p &quot;please input yes&quot; word
 done
-#只有当用户输入yes的时候才会结束
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#只有当用户输入yes的时候才会结束<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="⑤死循环的处理方式"><a href="#⑤死循环的处理方式" class="headerlink" title="⑤死循环的处理方式"></a>⑤死循环的处理方式</h3><ol>
 <li>如果终端可以打开该程序，输入<code>Ctrl +  c</code>就可以结束了！</li>
 <li><ul>
@@ -635,58 +649,62 @@ done
 <h1 id="三、函数"><a href="#三、函数" class="headerlink" title="三、函数"></a>三、函数</h1><p><code>bash</code>中的函数类似于c中的函数，但是返回值是<code>exit code</code></p>
 <p>如果想要获取函数最后的一个stdout的结果，可以通过<code>echo</code>输出到<code>stdout</code>中然后通过<code>$&#123;function_name&#125;</code>来获取stdout中的结果。</p>
 <p>如果不写<code>return</code>的时候默认<code>return 0</code></p>
-<pre class="line-numbers language-shell"><code class="language-shell">#示例1
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#示例1
 func() &#123;
-    name=wjw
-    echo "hello $name"
+	name&#x3D;wjw
+	echo &quot;hello $name&quot;
 &#125;
 func #直接调用，输出hello wjw
 
 #示例2
 func() &#123;
-    name=wjw
-    echo "$name"
-    return 123
+	name&#x3D;wjw
+	echo &quot;$name&quot;
+	return 123
 &#125;
 
-output=$(func)   #保存wjw
-ret=$?             #保存123
+output&#x3D;$(func)   #保存wjw
+ret&#x3D;$?			 #保存123
 
 #示例3
 func() &#123;
-    if [$1 -le 0]
-    then
-        echo 0
-        return 0
-    fi
-    sum=$(func 'expr $1 - 1')
-    echo $(expr $sum + $1)
+	if [$1 -le 0]
+	then
+		echo 0
+		return 0
+	fi
+	sum&#x3D;$(func &#39;expr $1 - 1&#39;)
+	echo $(expr $sum + $1)
 &#125;
-echo $(func 10) #递归输出从0-10的累加和！
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+echo $(func 10) #递归输出从0-10的累加和！<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="四、exit命令"><a href="#四、exit命令" class="headerlink" title="四、exit命令"></a>四、exit命令</h1><ul>
 <li><code>exit</code>命令用来退出当前<code>shell</code>进程，并返回一个退出状态</li>
 <li><code>exit</code>命令可以接受一个整数值作为参数，代表退出状态，如果不指定，默认为0</li>
 <li>退出状态只能介于0-255之间的整数，只有0代表正常退出</li>
 </ul>
-<pre class="line-numbers language-shell"><code class="language-shell">#! /bin/bash
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#! &#x2F;bin&#x2F;bash
 
 if [ $# -ne 1 ] #如果参数等于1就正常退出，不等于1就非正常退出
 then
-    echo "NO"
-    exit 1
+	echo &quot;NO&quot;
+	exit 1
 else
-    echo "YES"
-    exit 0
-fi
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	echo &quot;YES&quot;
+	exit 0
+fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <p><font color="blue">如果执行该脚本</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh
-acs@2ba77538d358:~$ ./test.sh wjw 18
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh
+acs@2ba77538d358:~$ .&#x2F;test.sh wjw 18
 acs@2ba77538d358:~$ echo $?  #输出的是1
-acs@2ba77538d358:~$ ./test.sh wjw
-acs@2ba77538d358:~$ echo $?  #输出的是0
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ .&#x2F;test.sh wjw
+acs@2ba77538d358:~$ echo $?  #输出的是0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1195,7 +1213,7 @@ acs@2ba77538d358:~$ echo $?  #输出的是0
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

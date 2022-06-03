@@ -472,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    7 分
                 </div>
                 
 
@@ -517,55 +517,57 @@
 </blockquote>
 <h1 id="二、实现方法1-数组模拟"><a href="#二、实现方法1-数组模拟" class="headerlink" title="二、实现方法1(数组模拟)"></a>二、实现方法1(数组模拟)</h1><p>其实数组模拟了一个比较底层的数据结构deque,也就是双向队列。这个队列之所以能够满足题目的要求，就是因为，队首和队尾元素都可以进行弹出的操作，也就像一个管道一样，你可以从管道的两头出去，而不仅仅像一个队列一样，只能队首进行弹出。</p>
 <p>以下代码有相关注释，结合前言，大家可以试着走一下程序。</p>
-<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 using namespace std;
-const int N = 1e+6 + 5;
+const int N &#x3D; 1e+6 + 5;
 int nums[N];
-int q[N];  //队列
-int p[N];  //下标 
+int q[N];  &#x2F;&#x2F;队列
+int p[N];  &#x2F;&#x2F;下标 
 int main() &#123;
-    int n, k;
-    cin >> n >> k;
-    int head, tail;
-    for(int i = 0; i < n; i++) &#123;
-        cin >> nums[i];
-    &#125;
-    //输出滑动窗口最小值
-    head = 0, tail = -1;
-    for(int i = 0; i < n; i++) &#123;
-        //如果入队元素比队尾大，就队尾出队 
-        while(head <= tail && q[tail] >= nums[i])
-        tail--;
-        //入队操作
-        q[++tail] = nums[i];
-        p[tail] = i;
-        //如果滑动窗口不包括队首元素，队首出队
-        if(head <= tail && i - k >= p[head])
-        head++;
-        //进行输出
-        if(i - k + 1 >= 0) cout << q[head] <<" "; 
-    &#125;
-    cout << endl;
-    
-    //输出滑动窗口最大值
-    memset(q, 0, sizeof(q));
-    memset(p, 0, sizeof(p));
-    head = 0, tail = -1;
-    for(int i = 0; i < n; i++) &#123;
-        //如果入队元素比队尾大，就队尾出队 
-        while(head <= tail && q[tail] <= nums[i])
-        tail--;
-        //入队操作
-        q[++tail] = nums[i];
-        p[tail] = i;
-        //如果滑动窗口不包括队首元素，队首出队
-        if(head <= tail && i - k >= p[head])
-        head++;
-        //进行输出
-        if(i - k + 1 >= 0) cout << q[head] <<" "; 
-    &#125;  
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	int n, k;
+	cin &gt;&gt; n &gt;&gt; k;
+	int head, tail;
+	for(int i &#x3D; 0; i &lt; n; i++) &#123;
+		cin &gt;&gt; nums[i];
+	&#125;
+	&#x2F;&#x2F;输出滑动窗口最小值
+	head &#x3D; 0, tail &#x3D; -1;
+	for(int i &#x3D; 0; i &lt; n; i++) &#123;
+		&#x2F;&#x2F;如果入队元素比队尾大，就队尾出队 
+		while(head &lt;&#x3D; tail &amp;&amp; q[tail] &gt;&#x3D; nums[i])
+		tail--;
+		&#x2F;&#x2F;入队操作
+		q[++tail] &#x3D; nums[i];
+		p[tail] &#x3D; i;
+		&#x2F;&#x2F;如果滑动窗口不包括队首元素，队首出队
+		if(head &lt;&#x3D; tail &amp;&amp; i - k &gt;&#x3D; p[head])
+		head++;
+		&#x2F;&#x2F;进行输出
+		if(i - k + 1 &gt;&#x3D; 0) cout &lt;&lt; q[head] &lt;&lt;&quot; &quot;; 
+	&#125;
+	cout &lt;&lt; endl;
+	
+	&#x2F;&#x2F;输出滑动窗口最大值
+	memset(q, 0, sizeof(q));
+	memset(p, 0, sizeof(p));
+	head &#x3D; 0, tail &#x3D; -1;
+	for(int i &#x3D; 0; i &lt; n; i++) &#123;
+		&#x2F;&#x2F;如果入队元素比队尾大，就队尾出队 
+		while(head &lt;&#x3D; tail &amp;&amp; q[tail] &lt;&#x3D; nums[i])
+		tail--;
+		&#x2F;&#x2F;入队操作
+		q[++tail] &#x3D; nums[i];
+		p[tail] &#x3D; i;
+		&#x2F;&#x2F;如果滑动窗口不包括队首元素，队首出队
+		if(head &lt;&#x3D; tail &amp;&amp; i - k &gt;&#x3D; p[head])
+		head++;
+		&#x2F;&#x2F;进行输出
+		if(i - k + 1 &gt;&#x3D; 0) cout &lt;&lt; q[head] &lt;&lt;&quot; &quot;; 
+	&#125;  
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="三、实现方法2-deque"><a href="#三、实现方法2-deque" class="headerlink" title="三、实现方法2(deque)"></a>三、实现方法2(deque)</h1><p>我们可以直接用STL自带的deque底层队列进行模拟，这个地方，可以重新设置一下类，然后让队列的入队出队方式有一些细微的变化。这里的代码仅供参考，也是能过的，当然会稍微有点难理解吧,因为用到类和函数重置的相关知识了！</p>
 <p>下面代码依次拼在一起就是最终的AC代码啦！</p>
 <p>不知道为什么这里的代码不给我放到代码块里面，所以为了有更好的观感，可以去我的CSDN里面看这篇文章！</p>
@@ -1083,7 +1085,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

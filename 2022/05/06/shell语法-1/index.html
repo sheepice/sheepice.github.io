@@ -474,14 +474,14 @@ linux系统默认使用bash脚本
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    232
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    4 分
                 </div>
                 
 
@@ -507,11 +507,11 @@ linux系统默认使用bash脚本
                 <h1 id="一、概论"><a href="#一、概论" class="headerlink" title="一、概论"></a>一、概论</h1><p><font color="red">本篇好像在hexo网站看不了，请移步到CSDN网站观赏！！！！</font><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_60556896/article/details/124619776?spm=1001.2014.3001.5502">CSDN网站入口</a></p>
 <p>shell是我们通过命令行与操作系统沟通的语言。可以直接在命令行中运行，也可以将一套逻辑组织成一个文件，方便复用。</p>
 <p>linux系统默认使用bash脚本</p>
-<h3 id="①vim-test-sh文件之后-创建一个文件"><a href="#①vim-test-sh文件之后-创建一个文件" class="headerlink" title="①vim test.sh文件之后(创建一个文件)"></a>①<strong>vim test.sh</strong>文件之后(创建一个文件)</h3><pre class="line-numbers language-shell"><code class="language-shell">#首行指明bash为默认的脚本解释器
-#! /bin/bash
+<h3 id="①vim-test-sh文件之后-创建一个文件"><a href="#①vim-test-sh文件之后-创建一个文件" class="headerlink" title="①vim test.sh文件之后(创建一个文件)"></a>①<strong>vim test.sh</strong>文件之后(创建一个文件)</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#首行指明bash为默认的脚本解释器
+#! &#x2F;bin&#x2F;bash
 #输出hello world
-echo "hello world"
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+echo &quot;hello world&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="②运行方式"><a href="#②运行方式" class="headerlink" title="②运行方式"></a>②运行方式</h3><ol>
 <li><p>bash + 文件名 ： bash test.sh</p>
 </li>
@@ -524,35 +524,47 @@ echo "hello world"
 <p>也可以用相对路径:  ~&#x2F;test.sh #家目录下执行</p>
 </li>
 </ol>
-<h1 id="二、注释"><a href="#二、注释" class="headerlink" title="二、注释"></a>二、注释</h1><h3 id="①单行注释"><a href="#①单行注释" class="headerlink" title="①单行注释"></a>①单行注释</h3><pre class="line-numbers language-shell"><code class="language-shell"># 这是一行注释
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="②多行注释"><a href="#②多行注释" class="headerlink" title="②多行注释"></a>②多行注释</h3><pre class="line-numbers language-shell"><code class="language-shell">:<<EDF
+<h1 id="二、注释"><a href="#二、注释" class="headerlink" title="二、注释"></a>二、注释</h1><h3 id="①单行注释"><a href="#①单行注释" class="headerlink" title="①单行注释"></a>①单行注释</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"># 这是一行注释<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="②多行注释"><a href="#②多行注释" class="headerlink" title="②多行注释"></a>②多行注释</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">:&lt;&lt;EDF
 注释1
 注释2
 注释n
-<<EOF
-# EOF可以用其他任意字符串都可以
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&lt;&lt;EOF
+# EOF可以用其他任意字符串都可以<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="三、变量"><a href="#三、变量" class="headerlink" title="三、变量"></a>三、变量</h1><h3 id="①定义变量"><a href="#①定义变量" class="headerlink" title="①定义变量"></a>①定义变量</h3><p>定义变量不需要加$符号</p>
-<pre class="line-numbers language-shell"><code class="language-shell">name1="wjw" #定义变量等号两边不能有空格
-name2='wjw' #单引号也可以定义
-name3=wjw #也可以不加引号
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">name1&#x3D;&quot;wjw&quot; #定义变量等号两边不能有空格
+name2&#x3D;&#39;wjw&#39; #单引号也可以定义
+name3&#x3D;wjw #也可以不加引号<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="②使用变量"><a href="#②使用变量" class="headerlink" title="②使用变量"></a>②使用变量</h3><p>使用变量的时候需要加上$或者 加上一个{};</p>
-<pre class="line-numbers language-shell"><code class="language-shell">name=wjw #定义变量
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">name&#x3D;wjw #定义变量
 echo $&#123;name&#125; #输出wjw
-echo $&#123;name&#125;hhh #输出wjwhhh
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+echo $&#123;name&#125;hhh #输出wjwhhh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="③只读变量"><a href="#③只读变量" class="headerlink" title="③只读变量"></a>③只读变量</h3><p>变量的值是没办法改变的</p>
-<pre class="line-numbers language-shell"><code class="language-shell">name=wjw
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">name&#x3D;wjw
 readonly name #第一种写法
-declare -r name #第二种写法
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+declare -r name #第二种写法<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="④删除变量"><a href="#④删除变量" class="headerlink" title="④删除变量"></a>④删除变量</h3><p>用unset可以删除变量</p>
-<pre class="line-numbers language-shell"><code class="language-shell">name=wjw
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">name&#x3D;wjw
 unset name
-echo $name #输出空行
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+echo $name #输出空行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="⑤变量类型"><a href="#⑤变量类型" class="headerlink" title="⑤变量类型"></a>⑤变量类型</h3><ul>
 <li>自定义变量(局部变量)<ul>
 <li>子进程不能访问的变量</li>
@@ -564,30 +576,111 @@ echo $name #输出空行
 </li>
 </ul>
 <p>自定义变量改成环境变量(下面是在终端下进行操作)</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ name=wjw #定义变量
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ name&#x3D;wjw #定义变量
 acs@2ba77538d358:~$ export name #第一种方式
 acs@2ba77538d358:~$ declear -x name #第二种方式
-acs@2ba77538d358:~$ exit #退出当前进程
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ exit #退出当前进程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>环境变量改成自定义变量</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ export name=wjw #定义环境变量
-acs@2ba77538d358:~$ declear +x name #改为自定义变量
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ export name&#x3D;wjw #定义环境变量
+acs@2ba77538d358:~$ declear +x name #改为自定义变量<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>开一个子进程</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ bash #开一个子进程
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ bash #开一个子进程
 #在子进程下，只可以访问环境变量
-acs@2ba77538d358:~$ exit 或者 [Ctrl + d]都可以退出子进程
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ exit 或者 [Ctrl + d]都可以退出子进程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="⑥字符串"><a href="#⑥字符串" class="headerlink" title="⑥字符串"></a>⑥字符串</h3><p>单引号：原样输出，不会转义，也不会直接取值</p>
 <p>双引号：(不加引号) 会转义也会取值</p>
-<pre class="line-numbers language-shell"><code class="language-shell">
-name=wjw
-echo 'hello,$name \"hh\"'    #输出hello,$name \"hh\"
-echo "hello,$name \"hh\""    #输出hello,wjw "hh"
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
+name&#x3D;wjw
+echo &#39;hello,$name \&quot;hh\&quot;&#39;    #输出hello,$name \&quot;hh\&quot;
+echo &quot;hello,$name \&quot;hh\&quot;&quot;    #输出hello,wjw &quot;hh&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>获取字符串长度</p>
-<p>&#96;&#96;&#96;shell</p>
-<p>name&#x3D;”wjw”<br>echo $</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
+name&#x3D;&quot;wjw&quot;
+echo $&#123;#name&#125;   #输出3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>提取字串</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
+name&#x3D;hello,wjw
+echo $&#123;name:0:5&#125; #提取从0开始的5个字符
+#此处的定义类似于c++的substring函数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="四、默认变量"><a href="#四、默认变量" class="headerlink" title="四、默认变量"></a>四、默认变量</h1><h3 id="①文件参数变量"><a href="#①文件参数变量" class="headerlink" title="①文件参数变量"></a>①文件参数变量</h3><p>在执行shell脚本的时候，可以向脚本传递参数。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#! &#x2F;bin&#x2F;bash
+echo &quot;文件名: &quot;$0
+echo &quot;第一个参数: &quot;$1
+echo &quot;第二个参数: &quot;$2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>然后如果执行该脚本的话：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh
+acs@2ba77538d358:~$ .&#x2F;test.sh wjw 18
+#后续会输出的是
+文件名: .&#x2F;test.sh
+第一个参数: wjw
+第二个参数: 18<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②其他默认参数变量"><a href="#②其他默认参数变量" class="headerlink" title="②其他默认参数变量"></a>②其他默认参数变量</h3><table>
+<thead>
+<tr>
+<th align="center">参数</th>
+<th align="center">参数的相关说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">$#</td>
+<td align="center">代表文件传入的参数个数，如上面例子中的值为4</td>
+</tr>
+<tr>
+<td align="center">$*</td>
+<td align="center">由所有参数构成的用空格隔开的字符串，如“.&#x2F;test.sh wjw 18”</td>
+</tr>
+<tr>
+<td align="center">$@</td>
+<td align="center">每个参数用分别用双引号括起来，“.&#x2F;test.sh” “ wjw” “18”</td>
+</tr>
+<tr>
+<td align="center">$$</td>
+<td align="center">脚本当前运行的进程ID</td>
+</tr>
+<tr>
+<td align="center"><strong>$?</strong></td>
+<td align="center"><strong>上一条命令的退出状态，0表示正常，其他值表示错误</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>$(command)</strong></td>
+<td align="center"><strong>返回command 这条命令的stdout(标准输出)</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>‘command’</strong></td>
+<td align="center"><strong>返回command 这条命令的stdout(标准输出)</strong></td>
+</tr>
+</tbody></table>
+<h1 id="五、数组"><a href="#五、数组" class="headerlink" title="五、数组"></a>五、数组</h1><p>数组可以存放多个不同类型的值，只支持一维数组，初始化不需要指明数组的大小</p>
+<p><strong>下标从0开始</strong></p>
+<h3 id="①定义"><a href="#①定义" class="headerlink" title="①定义"></a>①定义</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">array&#x3D;(1 abc &quot;def&quot; wjw) #第一种方法
+array[0]&#x3D;1     #第二种方法
+array[1]&#x3D;abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②读取并输出"><a href="#②读取并输出" class="headerlink" title="②读取并输出"></a>②读取并输出</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">
+echo $&#123;array[index]&#125;  #读取并输出(隔行输出)
+echo $&#123;array[@ or *]&#125; #读取整个字符串(空格输出)
+#没有开到的空间用不上，例如
+array[0]&#x3D;wjw
+array[1000]&#x3D;18
+echo $&#123;array[*]&#125;  #打印结果为wjw 18
+echo $&#123;#array[*]&#125; #打印结果为2(代表数组元素个数)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1096,7 +1189,7 @@ echo "hello,$name \"hh\""    #输出hello,wjw "hh"
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

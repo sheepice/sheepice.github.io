@@ -476,14 +476,14 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    650
+                    675
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -513,10 +513,10 @@ sheepice的CSDN地址：大家感兴趣也可以去里面，说不定">
 <hr>
 <h5 id="①思路："><a href="#①思路：" class="headerlink" title="①思路："></a>①思路：</h5><p>采用哈希表记录下来所有出现过的数和对应的次数，然后利用<strong>绝对值大小进行排序</strong>（这个排序可以方便我们对表进行一次遍历，只需要看arr[i]对应的arr[i] * 2的次数是不是比前者大，即满足前者能够充分的匹配后者，然后一旦不满足就return false就好了的。</p>
 <hr>
-<h5 id="②解答："><a href="#②解答：" class="headerlink" title="②解答："></a>②解答：</h5><pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;
+<h5 id="②解答："><a href="#②解答：" class="headerlink" title="②解答："></a>②解答：</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
 public:
-    bool canReorderDoubled(vector<int>& arr) &#123;
-         unordered_map<int, int> cnt;
+    bool canReorderDoubled(vector&lt;int&gt;&amp; arr) &#123;
+         unordered_map&lt;int, int&gt; cnt;
         for (int x : arr) &#123;
             ++cnt[x];
         &#125;
@@ -524,34 +524,34 @@ public:
             return false;
         &#125;
 
-        vector<int> vals;
+        vector&lt;int&gt; vals;
         vals.reserve(cnt.size());
-        for (auto &[x, y] : cnt) &#123;
+        for (auto &amp;[x, y] : cnt) &#123;
             vals.push_back(x);
         &#125;
-        sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) < abs(b); &#125;);
+        sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) &lt; abs(b); &#125;);
 
         for (int x : vals) &#123;
-            if (cnt[2 * x] < cnt[x]) &#123; // 无法找到足够的 2x 与 x 配对
+            if (cnt[2 * x] &lt; cnt[x]) &#123; &#x2F;&#x2F; 无法找到足够的 2x 与 x 配对
                 return false;
             &#125;
-            cnt[2 * x] -= cnt[x];
+            cnt[2 * x] -&#x3D; cnt[x];
         &#125;
         return true;
     &#125;
-&#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <hr>
-<h5 id="③学到的东西"><a href="#③学到的东西" class="headerlink" title="③学到的东西"></a>③学到的东西</h5><pre class="line-numbers language-c++"><code class="language-c++">//应该都是容器的相关知识，但是我还没看到，就先记录一下
+<h5 id="③学到的东西"><a href="#③学到的东西" class="headerlink" title="③学到的东西"></a>③学到的东西</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;应该都是容器的相关知识，但是我还没看到，就先记录一下
 1.
-    //将哈希表里面的第一个元素放到数组里面，
-    for (auto &[x, y] : cnt) &#123;
+    &#x2F;&#x2F;将哈希表里面的第一个元素放到数组里面，
+    for (auto &amp;[x, y] : cnt) &#123;
             vals.push_back(x);
         &#125;
 2.
-    //直接在sort里面进行比较函数的书写
-    sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) < abs(b); &#125;);
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &#x2F;&#x2F;直接在sort里面进行比较函数的书写
+    sort(vals.begin(), vals.end(), [](int a, int b) &#123; return abs(a) &lt; abs(b); &#125;);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <hr>
 <h3 id="三、三叶姐的题解"><a href="#三、三叶姐的题解" class="headerlink" title="三、三叶姐的题解"></a>三、三叶姐的题解</h3><p>xxxxxxxxxx &#x2F;&#x2F;c++版本的解答class Solution {public:    int maxProduct(vector<string>&amp; words) {        int n &#x3D; words.size();        vector<int> dp(n,0);        for(int i &#x3D; 0; i &lt; n; i++) {            for(int j &#x3D; 0; j &lt; words[i].size(); j++) {                char u &#x3D; words[i][j];                &#x2F;&#x2F;进行每一位1的存储                dp[i] |&#x3D; (1 &lt;&lt; (u - ‘a’));              }        }        int ans &#x3D; 0;        &#x2F;&#x2F;从头比较到尾，满足无重复数字就进行相关的答案记录        for(int i &#x3D; 0; i &lt; n - 1; i++) {            for(int j &#x3D; i+1; j &lt; n; j++) {                if((dp[i] &amp; dp[j]) &#x3D;&#x3D; 0) {&#x2F;&#x2F;这里取最大值的地方可以注意一下&#x2F;&#x2F;可以用ans &#x3D; max(ans, (int)(words[i].size() * words[j].size()));&#x2F;&#x2F;因为.size()结构是返回无符号类型的int所以力扣上会报错！！！                    if(words[i].size() * words[j].size() &gt; ans)                    ans &#x3D; words[i].size() * words[j].size();                }            }        }        return ans;    }};c++</int></string></p>
 <p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/array-of-doubled-pairs/solution/by-ac_oier-d1z7/">三叶姐的题解</a></p>
@@ -1060,7 +1060,7 @@ public:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

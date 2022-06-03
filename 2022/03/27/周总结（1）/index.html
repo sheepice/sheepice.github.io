@@ -507,44 +507,44 @@
 <p>欢迎大家来到&#x3D;&#x3D;一周一总结&#x3D;&#x3D;的栏目！！希望能够和大家一起努力！</p>
 <h3 id="二、学习任务"><a href="#二、学习任务" class="headerlink" title="二、学习任务"></a>二、学习任务</h3><h5 id="①力扣的刷题任务"><a href="#①力扣的刷题任务" class="headerlink" title="①力扣的刷题任务"></a>①力扣的刷题任务</h5><p>这周的力扣好像都没有出太难的题目，唯一令我印象比较深刻的是一道困难题<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/k-th-smallest-in-lexicographical-order/">字典序的第k小的数字</a>，这个题目的模仿了字典树的一个遍历过程，当时真的没有想到，但是其实还是有点眉目的，虽然最后还是没写出来吧。遗憾的是，自己还是没有把字典树给学精通来！</p>
 <p><img src="https://img-blog.csdnimg.cn/b15450e05169480fbb75e160274b782a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6JKf6JK7c2hlZXA=,size_20,color_FFFFFF,t_70,g_se,x_16"></p>
-<pre class="line-numbers language-c++"><code class="language-c++">//贴一下这个题目的一个求解过程吧
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;贴一下这个题目的一个求解过程吧
 class Solution &#123;
 public:
     long min(long a, long b)&#123;
-        if(a >= b) return b;
+        if(a &gt;&#x3D; b) return b;
         return a;
     &#125;
-    //找到此时的数字的所有树节点的个数
+    &#x2F;&#x2F;找到此时的数字的所有树节点的个数
     int findnums(long cur,int n)&#123;
-        long next = cur+1;
-        long sumtox = 0;
-        while(cur <= n)&#123;
-            sumtox += min(next-cur,n-cur+1);
-            next *= 10;
-            cur *= 10;
+        long next &#x3D; cur+1;
+        long sumtox &#x3D; 0;
+        while(cur &lt;&#x3D; n)&#123;
+            sumtox +&#x3D; min(next-cur,n-cur+1);
+            next *&#x3D; 10;
+            cur *&#x3D; 10;
         &#125;
         return (int) sumtox;
     &#125;
     int findKthNumber(int n, int k) &#123;
-        long cur = 1;
+        long cur &#x3D; 1;
         k--;
-        while(k > 0)&#123;
-            int nodes = findnums(cur, n);
-            //如果结点数小于此时数量，直接在同一层搜索
-            if(k >= nodes)&#123;
-                k -= nodes;
+        while(k &gt; 0)&#123;
+            int nodes &#x3D; findnums(cur, n);
+            &#x2F;&#x2F;如果结点数小于此时数量，直接在同一层搜索
+            if(k &gt;&#x3D; nodes)&#123;
+                k -&#x3D; nodes;
                 cur++;
             &#125;
-            //否则到树的下一层搜索
+            &#x2F;&#x2F;否则到树的下一层搜索
             else&#123;
-                cur *= 10;
+                cur *&#x3D; 10;
                 k--;
             &#125;
         &#125;
         return (int)cur;
     &#125;
-&#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>&#x3D;&#x3D;当时反正是想不出来的，希望以后看到总结的时候能够写出来这题吧！&#x3D;&#x3D;</p>
 <p><strong>过完本周就是坚持力扣刷题38天了，当然这个连续刷题是有水分的，有的时候遇到完全没有思路的题目就直接跳过去了，蒟蒻太菜，求大佬们带带！</strong></p>
 <hr>
@@ -1070,7 +1070,7 @@ public:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

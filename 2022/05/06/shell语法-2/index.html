@@ -480,14 +480,14 @@ expr 表达式
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    1.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -523,34 +523,40 @@ expr 表达式
 <li>不仅会输出一个结果，同时也会有一个返回值(0代表真，1代表假)</li>
 </ul>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">str=“Hello World”
-echo 'expr length "$str"'  #输出字符串长度12
-echo 'expr index "$str" aWd' #输出aWd任一个字符最先出现的位置，这里就是W出现在7(下标从1开始),如果找不到就输出0
-echo 'expr substr "$str" 2 3' #输出ell
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">str&#x3D;“Hello World”
+echo &#39;expr length &quot;$str&quot;&#39;  #输出字符串长度12
+echo &#39;expr index &quot;$str&quot; aWd&#39; #输出aWd任一个字符最先出现的位置，这里就是W出现在7(下标从1开始),如果找不到就输出0
+echo &#39;expr substr &quot;$str&quot; 2 3&#39; #输出ell<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="①整数表达式"><a href="#①整数表达式" class="headerlink" title="①整数表达式"></a>①整数表达式</h3><p><code>expr</code> 支持普通的算数操作！</p>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">a=3
-b=4
-echo 'expr $a + $b' #输出7
-echo 'expr $a \* $b' #输出12
-echo 'expr $a % $b' #输出3
-echo 'expr \( $a + 1 \) \* \( $b + 1 \)' #输出20，等同于(3+1)*(4+1)
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">a&#x3D;3
+b&#x3D;4
+echo &#39;expr $a + $b&#39; #输出7
+echo &#39;expr $a \* $b&#39; #输出12
+echo &#39;expr $a % $b&#39; #输出3
+echo &#39;expr \( $a + 1 \) \* \( $b + 1 \)&#39; #输出20，等同于(3+1)*(4+1)
 #除号，加号，减号，取模号都不需要转义
 #也可以用单引号让其识别不为关键字
-#比如'expr $a '*' $b'
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+#比如&#39;expr $a &#39;*&#39; $b&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="②逻辑表达式"><a href="#②逻辑表达式" class="headerlink" title="②逻辑表达式"></a>②逻辑表达式</h3><p>和c++大致相同，但是返回值有点点不同，比如|，&amp;两个返回的不仅仅是0或1</p>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">a=3
-b=4
-c=0
-d=5
-echo 'expr $c \& $d'  #输出0不再计算d
-echo 'expr $a \& $b'  #输出a的值,返回3
-echo 'expr $c \| $d'  #输出d的值,返回4
-echo 'expr $a \| $b'  #输出a的值,不再计算b
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">a&#x3D;3
+b&#x3D;4
+c&#x3D;0
+d&#x3D;5
+echo &#39;expr $c \&amp; $d&#39;  #输出0不再计算d
+echo &#39;expr $a \&amp; $b&#39;  #输出a的值,返回3
+echo &#39;expr $c \| $d&#39;  #输出d的值,返回4
+echo &#39;expr $a \| $b&#39;  #输出a的值,不再计算b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="二、read命令"><a href="#二、read命令" class="headerlink" title="二、read命令"></a>二、read命令</h1><p>从stdin里面读入单行数据,当读到文件结束符<code>Ctrl + d</code>的时候返回<code>exit code</code>,为1则继续读，为0则正常退出！</p>
 <p>参数说明</p>
 <ul>
@@ -558,41 +564,51 @@ echo 'expr $a \| $b'  #输出a的值,不再计算b
 <li>-t : 后面跟秒数，超过该秒数后会自动忽略此行命令</li>
 </ul>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">#! /bin/bash
-read -p "Please input your name: " -t 30 name #读入用户名，等待30s，用户不输入，自动跳过此命令
-#echo "hello,$name"
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#! &#x2F;bin&#x2F;bash
+read -p &quot;Please input your name: &quot; -t 30 name #读入用户名，等待30s，用户不输入，自动跳过此命令
+#echo &quot;hello,$name&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p>那么在终端进行</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ./test.sh
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ .&#x2F;test.sh
 acs@2ba77538d358:~$ Please input your name: #提示用户输入
 acs@2ba77538d358:~$ wjw #用户进行输入(若30s内不输入则代表name为空，进入下一行命令)
-acs@2ba77538d358:~$ hello,wjw  #标准输出
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="三、echo命令"><a href="#三、echo命令" class="headerlink" title="三、echo命令"></a>三、echo命令</h1><h3 id="①显示普通字符串"><a href="#①显示普通字符串" class="headerlink" title="①显示普通字符串"></a>①显示普通字符串</h3><pre class="line-numbers language-shell"><code class="language-shell">echo wjw    #引号可以省略
-echo "wjw"
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="②显示转义字符"><a href="#②显示转义字符" class="headerlink" title="②显示转义字符"></a>②显示转义字符</h3><pre class="line-numbers language-shell"><code class="language-shell">echo "\"hello\"wjw"  #输出“hello”wjw
-echo \"hello\"wjw    #不加外面引号也可以
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="③显示换行"><a href="#③显示换行" class="headerlink" title="③显示换行"></a>③显示换行</h3><pre class="line-numbers language-shell"><code class="language-shell">echo -e "hi\nwjw"  #-e开启转义
+acs@2ba77538d358:~$ hello,wjw  #标准输出<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="三、echo命令"><a href="#三、echo命令" class="headerlink" title="三、echo命令"></a>三、echo命令</h1><h3 id="①显示普通字符串"><a href="#①显示普通字符串" class="headerlink" title="①显示普通字符串"></a>①显示普通字符串</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">echo wjw    #引号可以省略
+echo &quot;wjw&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②显示转义字符"><a href="#②显示转义字符" class="headerlink" title="②显示转义字符"></a>②显示转义字符</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">echo &quot;\&quot;hello\&quot;wjw&quot;  #输出“hello”wjw
+echo \&quot;hello\&quot;wjw    #不加外面引号也可以<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="③显示换行"><a href="#③显示换行" class="headerlink" title="③显示换行"></a>③显示换行</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">echo -e &quot;hi\nwjw&quot;  #-e开启转义
 #可以在终端用 man echo 打开帮助命令，查看一些参数
 #最后输出
 hi
 wjw
-# -c 强制不换行
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="④显示结果到文件内"><a href="#④显示结果到文件内" class="headerlink" title="④显示结果到文件内"></a>④显示结果到文件内</h3><pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ./test.sh
-acs@2ba77538d358:~$ echo "hello,world" > temp.txt
-#此时会在temp.txt多一个hello，world
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+# -c 强制不换行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="④显示结果到文件内"><a href="#④显示结果到文件内" class="headerlink" title="④显示结果到文件内"></a>④显示结果到文件内</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ .&#x2F;test.sh
+acs@2ba77538d358:~$ echo &quot;hello,world&quot; &gt; temp.txt
+#此时会在temp.txt多一个hello，world<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="四、printf命令"><a href="#四、printf命令" class="headerlink" title="四、printf命令"></a>四、printf命令</h1><p><font color="red">此命令可能用的不是特别多</font></p>
 <p>和c语言的差不多，只不过用空格去表示括号的内容</p>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">printf "%10d!\n" 123
-printf "%.2f!\n" 123.2345
-print "My name is %s\n" "wjw"  #字符串输出
-printf "%d * %d = %d\n" 2 3 'expr 2\* 3'  #表达式的值作为参数
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">printf &quot;%10d!\n&quot; 123
+printf &quot;%.2f!\n&quot; 123.2345
+print &quot;My name is %s\n&quot; &quot;wjw&quot;  #字符串输出
+printf &quot;%d * %d &#x3D; %d\n&quot; 2 3 &#39;expr 2\* 3&#39;  #表达式的值作为参数<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><font color="blue">输出结果</font></p>
 <blockquote>
 <p>​       123!</p>
@@ -605,11 +621,15 @@ printf "%d * %d = %d\n" 2 3 'expr 2\* 3'  #表达式的值作为参数
 <li>表达式最终的结果返回退出状态，<font color="red">如果为0则真，反之1则假!</font></li>
 </ul>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
 homework test.sh
-acs@2ba77538d358:~$ test -e test.sh && echo "exist" || echo "not exist" #输出exist
-acs@2ba77538d358:~$ test -e test2.sh && echo "exist" || echo "not exist" #输出not exist
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ test -e test.sh &amp;&amp; echo &quot;exist&quot; || echo &quot;not exist&quot; #输出exist
+acs@2ba77538d358:~$ test -e test2.sh &amp;&amp; echo &quot;exist&quot; || echo &quot;not exist&quot; #输出not exist<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
 <blockquote>
 <p>test命令用于判断文件的类型，以及对变量做比较。</p>
 <p>test命令用<font color="red">exit code</font>作为返回状态！<font color="red">如果为0则真，反之1则假!</font></p>
@@ -635,11 +655,13 @@ acs@2ba77538d358:~$ test -e test2.sh && echo "exist" || echo "not exist" #输出
 </tr>
 </tbody></table>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
 homework test.sh
 acs@2ba77538d358:~$ test -e test.sh
-acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出0代表文件存在
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出0代表文件存在<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <table>
 <thead>
 <tr>
@@ -665,11 +687,13 @@ acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出0代表�
 </tr>
 </tbody></table>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
 homework test.sh output.txt
 acs@2ba77538d358:~$ test -x output.txt
-acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出1代表文件是不可以执行的
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出1代表文件是不可以执行的<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <table>
 <thead>
 <tr>
@@ -703,10 +727,12 @@ acs@2ba77538d358:~$ echo $? #返回上个命令的返回状态，输出1代表�
 </tr>
 </tbody></table>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ test $a -eq $b    #判断a是否等于b
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ test $a -eq $b    #判断a是否等于b
 acs@2ba77538d358:~$ test 3 -lt 4
-acs@2ba77538d358:~$ echo $?  #返回0，代表3小于4
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ echo $?  #返回0，代表3小于4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
 <table>
 <thead>
 <tr>
@@ -732,15 +758,17 @@ acs@2ba77538d358:~$ echo $?  #返回0，代表3小于4
 </tr>
 </tbody></table>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ test -z "wjw" && echo "T" || echo "N"
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ test -z &quot;wjw&quot; &amp;&amp; echo &quot;T&quot; || echo &quot;N&quot;
 #输出N，代表非空
-acs@2ba77538d358:~$ test -n "wjw" && echo "T" || echo "N"
+acs@2ba77538d358:~$ test -n &quot;wjw&quot; &amp;&amp; echo &quot;T&quot; || echo &quot;N&quot;
 #输出Y，代表非空
-acs@2ba77538d358:~$ s1=yxc
-acs@2ba77538d358:~$ s2=wjw
-acs@2ba77538d358:~$ test "s1" == "s2" && echo "T" || echo "N"
-#输出N，代表两个字符串不相等
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ s1&#x3D;yxc
+acs@2ba77538d358:~$ s2&#x3D;wjw
+acs@2ba77538d358:~$ test &quot;s1&quot; &#x3D;&#x3D; &quot;s2&quot; &amp;&amp; echo &quot;T&quot; || echo &quot;N&quot;
+#输出N，代表两个字符串不相等<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <table>
 <thead>
 <tr>
@@ -762,25 +790,27 @@ acs@2ba77538d358:~$ test "s1" == "s2" && echo "T" || echo "N"
 </tr>
 </tbody></table>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ ls #显示当前路径下的文件
 homework.txt test.sh
 acs@2ba77538d358:~$ test -x test.sh -a -r homework.txt
-acs@2ba77538d358:~$ echo $?   #返回0，代表第一个文件可读，第二个文件可以执行
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+acs@2ba77538d358:~$ echo $?   #返回0，代表第一个文件可读，第二个文件可以执行<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="③判断符号"><a href="#③判断符号" class="headerlink" title="③判断符号[]"></a>③判断符号[]</h3><p>与test的用法几乎是一模一样的，更常用与if语句之中,<font color="red">括号和命令之间也要加空格</font></p>
 <p><font color="blue">例如</font></p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ [ 2 -lt 3 ]
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ [ 2 -lt 3 ]
 acs@2ba77538d358:~$ echo $?  #返回0代表2是小于3的
-acs@2ba77538d358:~$ [ "s1" == "s2" ] && echo "T" || echo "N"
+acs@2ba77538d358:~$ [ &quot;s1&quot; &#x3D;&#x3D; &quot;s2&quot; ] &amp;&amp; echo &quot;T&quot; || echo &quot;N&quot;
 #输出N，代表两个字符串不相等
 
 注意
-name=wjw wing
+name&#x3D;wjw wing
 #不能直接用
-[ $name == "wjw wing"]
+[ $name &#x3D;&#x3D; &quot;wjw wing&quot;]
 #需要加上双引号，把空格包含
-[ “$name” == "wjw wing"]
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+[ “$name” &#x3D;&#x3D; &quot;wjw wing&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1289,7 +1319,7 @@ name=wjw wing
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

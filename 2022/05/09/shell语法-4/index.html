@@ -477,7 +477,7 @@ stderr：标准错误输出，向命令行输出数据，文件描述符为2
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    419
+                    440
                 </div>
                 
 
@@ -542,50 +542,54 @@ stderr：标准错误输出，向命令行输出数据，文件描述符为2
 <td align="center">将文件描述符n追加到file文件中</td>
 </tr>
 </tbody></table>
-<h4 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h4><pre class="line-numbers language-shell"><code class="language-shell">echo -e "Hello \c" > output.txt  #将Hello重定向输出到file
-echo "World" >> output.txt         #将World追加到文件后
-read str < output.txt             #将文件的内容读给str
-echo $str                         #输出Hello World
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">echo -e &quot;Hello \c&quot; &gt; output.txt  #将Hello重定向输出到file
+echo &quot;World&quot; &gt;&gt; output.txt		 #将World追加到文件后
+read str &lt; output.txt			 #将文件的内容读给str
+echo $str						 #输出Hello World<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h4 id="同时重定向输入输出"><a href="#同时重定向输入输出" class="headerlink" title="同时重定向输入输出"></a>同时重定向输入输出</h4><p>创建bash脚本</p>
-<pre class="line-numbers language-shell"><code class="language-shell">#! /bin/bash
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#! &#x2F;bin&#x2F;bash
 
 read a
 read b
-echo $(expr "$a" + "$b")
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+echo $(expr &quot;$a&quot; + &quot;$b&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>创建input.txt,脸面的内容为</p>
-<pre class="line-numbers language-shell"><code class="language-shell">3
-4
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">3
+4<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
 <p>执行命令</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh   #添加可执行操作
-acs@2ba77538d358:~$ test.sh < input.txt > output.txt  
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ chmod +x test.sh   #添加可执行操作
+acs@2ba77538d358:~$ test.sh &lt; input.txt &gt; output.txt  
 acs@2ba77538d358:~$ cat output.txt   #里面内容为7
-7
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="引入外部脚本"><a href="#引入外部脚本" class="headerlink" title="引入外部脚本"></a>引入外部脚本</h1><p>类似于c引入一个头文件</p>
 <p>语法格式</p>
-<pre class="line-numbers language-shell"><code class="language-shell">. filename  #注意有一个空格
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">. filename  #注意有一个空格
 或者
-source filename
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+source filename<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
 <p><font color="blue">举一个例子</font></p>
 <p>比如先创建一个bash脚本</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ vim test1.sh
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ vim test1.sh
 #然后在vim里面写东西
-#！ /bin/bash
+#！ &#x2F;bin&#x2F;bash
 
-name=wjw
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+name&#x3D;wjw<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>然后再创建一个新的脚本</p>
-<pre class="line-numbers language-shell"><code class="language-shell">acs@2ba77538d358:~$ vim test2.sh
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">acs@2ba77538d358:~$ vim test2.sh
 #然后在vim里面写东西
-#！ /bin/bash
+#！ &#x2F;bin&#x2F;bash
 source test1.sh
 
-echo $name  #会输出wjw
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+echo $name  #会输出wjw<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1094,7 +1098,7 @@ echo $name  #会输出wjw
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

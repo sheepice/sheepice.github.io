@@ -480,14 +480,14 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    480
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    7 分
                 </div>
                 
 
@@ -519,13 +519,15 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
 <li>情况二：构成的数字比要求数字的位数大</li>
 </ul>
 <h3 id="①情况一"><a href="#①情况一" class="headerlink" title="①情况一"></a>①情况一</h3><p><font color="red">对于情况一来说，我们很容易进行分析，就是假设当前需要构成的位数为i,我们可以选择的数就是digits数组的长度，因此这种情况的结果累加的代码比较简单，直接给出：</font></p>
-<pre class="line-numbers language-c++"><code class="language-c++">//位数不相同的情况
-//m代表的是数字n的位数一共有多少位
-//m - 1就可以满足i所代表的位数一定小于n所代表的位数
-        for(int i = 1; i <= m - 1; i++) &#123;
-            ans += pow(lent,i);
-        &#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;位数不相同的情况
+&#x2F;&#x2F;m代表的是数字n的位数一共有多少位
+&#x2F;&#x2F;m - 1就可以满足i所代表的位数一定小于n所代表的位数
+        for(int i &#x3D; 1; i &lt;&#x3D; m - 1; i++) &#123;
+            ans +&#x3D; pow(lent,i);
+        &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="②情况二的文字描述"><a href="#②情况二的文字描述" class="headerlink" title="②情况二的文字描述"></a>②情况二的文字描述</h3><p><font color="red"><del>对于情况二来说，由我们高中的知识就可以知道，我们可以依次的去比较每一位数在原digits的位置(由于数组是一个递增的情况)，所以当我们找到某个位置的时候，我们就能确定在位置之前的数，都是小于本位置，也就是可以进行一个选择。但是在这个地方，我们要知道不能完全依赖于这样的思想去写题目。</del></font></p>
 <blockquote>
 </blockquote>
@@ -542,55 +544,55 @@ sheepice的CSDN地址：大家感兴趣也可以去里">
 </li>
 </ul>
 <h1 id="四、AC代码"><a href="#四、AC代码" class="headerlink" title="四、AC代码"></a>四、AC代码</h1><p>综上所述，最后把代码全部贴出来，仅供参考。</p>
-<pre class="line-numbers language-c++"><code class="language-c++">class Solution &#123;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution &#123;
 public:
-    int atMostNGivenDigitSet(vector<string>& digits, int n) &#123;
-        int lent = digits.size();
-        vector<int> nums(lent, 0);
-        for(int i = 0; i < lent; i++) &#123;
-            nums[i] = digits[i][0] - '0';
+    int atMostNGivenDigitSet(vector&lt;string&gt;&amp; digits, int n) &#123;
+        int lent &#x3D; digits.size();
+        vector&lt;int&gt; nums(lent, 0);
+        for(int i &#x3D; 0; i &lt; lent; i++) &#123;
+            nums[i] &#x3D; digits[i][0] - &#39;0&#39;;
         &#125;
-        long long ans = 0;
-        //求出n的位数以及每一位数字上的数
-        vector<int> nmb;
-        while(n != 0) &#123;
+        long long ans &#x3D; 0;
+        &#x2F;&#x2F;求出n的位数以及每一位数字上的数
+        vector&lt;int&gt; nmb;
+        while(n !&#x3D; 0) &#123;
             nmb.push_back(n % 10);
-            n /= 10;
+            n &#x2F;&#x3D; 10;
         &#125;
-        int m = nmb.size();   //一共的位数
-        //位数不相同的情况
-        for(int i = 1; i <= m - 1; i++) &#123;
-            ans += pow(lent,i);
+        int m &#x3D; nmb.size();   &#x2F;&#x2F;一共的位数
+        &#x2F;&#x2F;位数不相同的情况
+        for(int i &#x3D; 1; i &lt;&#x3D; m - 1; i++) &#123;
+            ans +&#x3D; pow(lent,i);
         &#125;
-        //位数相同的情况
-        for(int i = m - 1, p = 1; i >= 0; i--, p++) &#123;
-            //因为数组的递增，可以用二分去寻找位置
-            //先找到小于等于此位数的第一个位置
-            //当然其实因为数组的常量比较小，直接循环找也没有问题的
-            int l = -1, r = lent;
-            while(l + 1 != r) &#123;
-                int mid = (l + r) >> 1;
-                if(nums[mid] > nmb[i]) r = mid;
-                else l = mid;
+        &#x2F;&#x2F;位数相同的情况
+        for(int i &#x3D; m - 1, p &#x3D; 1; i &gt;&#x3D; 0; i--, p++) &#123;
+            &#x2F;&#x2F;因为数组的递增，可以用二分去寻找位置
+            &#x2F;&#x2F;先找到小于等于此位数的第一个位置
+            &#x2F;&#x2F;当然其实因为数组的常量比较小，直接循环找也没有问题的
+            int l &#x3D; -1, r &#x3D; lent;
+            while(l + 1 !&#x3D; r) &#123;
+                int mid &#x3D; (l + r) &gt;&gt; 1;
+                if(nums[mid] &gt; nmb[i]) r &#x3D; mid;
+                else l &#x3D; mid;
             &#125;
-            if(l == -1) break;
-            else if(nums[l] == nmb[i]) &#123;
-                ans += l * pow(lent, m - p);
-                //如果就连最后一位都相等的时候，一定要记得加上与本身完全相同的那一个结果
-                //因为循环后不会再继续探索后面的结果了
-                //这里可以举一些例子帮助理解
-                if(i == 0) ans++;
+            if(l &#x3D;&#x3D; -1) break;
+            else if(nums[l] &#x3D;&#x3D; nmb[i]) &#123;
+                ans +&#x3D; l * pow(lent, m - p);
+                &#x2F;&#x2F;如果就连最后一位都相等的时候，一定要记得加上与本身完全相同的那一个结果
+                &#x2F;&#x2F;因为循环后不会再继续探索后面的结果了
+                &#x2F;&#x2F;这里可以举一些例子帮助理解
+                if(i &#x3D;&#x3D; 0) ans++;
             &#125;
             else &#123;
-                ans += (l + 1) * pow(lent, m - p);
-                //已经找到了所有结果了记得break
+                ans +&#x3D; (l + 1) * pow(lent, m - p);
+                &#x2F;&#x2F;已经找到了所有结果了记得break
                 break;
             &#125;
         &#125;
         return ans;
     &#125;
-&#125;;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1115,7 +1117,7 @@ public:
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

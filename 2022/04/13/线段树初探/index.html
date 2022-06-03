@@ -481,14 +481,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    837
+                    6.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    30 分
                 </div>
                 
 
@@ -520,499 +520,515 @@
 </blockquote>
 <h3 id="②好处"><a href="#②好处" class="headerlink" title="②好处"></a>②好处</h3><p>首先呢，由于线段树是一个二叉树，因此它可以让时间复杂度为$O(N)$的代码降低为$log_2(N)$的时间复杂度，在数据大的时候，很有可能就是这样的时间差距，带来更多的收益。那么线段树到底会解决什么样的问题，那么复杂的一棵树，为什么我一定要拿来用呢？有几个点：<font color="red">如果我们多次修改某个区间，求区间和又或者是多次让某个区间变成一个数</font>,类似这样的问题是可以用线段树的。当然这些问题是可以用线段数组来写的，但是有的时候我们会不得不用线段树，比如多次将一个区间变成同一个数。当然线段树的很多功能可以通过树状数组来代替，如果能够使用树状数组写的题目，最好能够优先选择树状数组。所以为什么还要去学习线段树呢？我觉得在刚开始我一直很畏惧去学，但是经过一天的学习之后我发现，学习完线段树，不仅是多了一个解决问题的手段，多学了一个数据结构，更多的是对递归，分治的思想又加深了。所以建议uu们都可以去学习这样的一颗复杂但是优美的树！</p>
 <h1 id="二、线段树的基本操作（1）"><a href="#二、线段树的基本操作（1）" class="headerlink" title="二、线段树的基本操作（1）"></a>二、线段树的基本操作（1）</h1><h3 id="①建树"><a href="#①建树" class="headerlink" title="①建树"></a>①建树</h3><p>毫无疑问对于这样的一个数据结构来说，我们肯定是得先要把它建出来。这样建树的过程其实在树的学习中，大家肯定都是会的，而因为线段树的定义不同，因此我们要在每次递归回溯的过程，让节点所代表的值加上他左子树和右子树的值，才最终代表某个节点是由下面子树的和而构建来的，具体代码如下：</p>
-<pre class="line-numbers language-c++"><code class="language-c++">void build_tree(int k, int l, int r) &#123;
-    if(l == r) &#123;
-        sum[k] = nums[l];
-        return; 
-    &#125;
-    int m = (l + r) >> 1; //取l，r的中点
-    //递归左子树，然后k<<1相当于2*k 
-    build_tree(k << 1, l, m);
-    //递归右子树，然后k << 1 | 1相当于2*k+1 
-    build_tree(k << 1 | 1, m + 1, r); 
-    //进行区间的求和累积(左子树和右子树的和)
-    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void build_tree(int k, int l, int r) &#123;
+	if(l &#x3D;&#x3D; r) &#123;
+		sum[k] &#x3D; nums[l];
+		return; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1; &#x2F;&#x2F;取l，r的中点
+	&#x2F;&#x2F;递归左子树，然后k&lt;&lt;1相当于2*k 
+	build_tree(k &lt;&lt; 1, l, m);
+	&#x2F;&#x2F;递归右子树，然后k &lt;&lt; 1 | 1相当于2*k+1 
+	build_tree(k &lt;&lt; 1 | 1, m + 1, r); 
+	&#x2F;&#x2F;进行区间的求和累积(左子树和右子树的和)
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + sum[k &lt;&lt; 1 | 1]; 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="②修改单个点的值"><a href="#②修改单个点的值" class="headerlink" title="②修改单个点的值"></a>②修改单个点的值</h3><p>如果题目要求让某个点加上一个val值的话，很显然，在更新一整颗树的时候，每一个线段带有该点都必须一起的进行更新，然后在更新的过程的时候，会有一个必要条件，也就是更新点的下标一定是会被包含在每次递归的左右区间之内的，所以有如下的代码。</p>
-<pre class="line-numbers language-c++"><code class="language-c++">//进行单个数的加值
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;进行单个数的加值
 void add(int k, int l, int r, int x, int val) &#123;
-    //改变的数根据递归肯定会在[l, r]的区间之内 
-    sum[k] += val;
-    if(l == r) return;
-    int m = (l + r) >> 1;
-    //要改变的数在左子树 
-    if(x <= m) &#123;
-        add(k << 1, l, m, x, val);
-    &#125;
-    //要改变的数在右子树 
-    else &#123;
-        add(k << 1 | 1, m + 1, r, x, val); 
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	&#x2F;&#x2F;改变的数根据递归肯定会在[l, r]的区间之内 
+	sum[k] +&#x3D; val;
+	if(l &#x3D;&#x3D; r) return;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;要改变的数在左子树 
+	if(x &lt;&#x3D; m) &#123;
+		add(k &lt;&lt; 1, l, m, x, val);
+	&#125;
+	&#x2F;&#x2F;要改变的数在右子树 
+	else &#123;
+		add(k &lt;&lt; 1 | 1, m + 1, r, x, val); 
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><strong>完成上面的操作之后，就可以让每一颗树进行对应的更新了，因此如果在次基础上，如果我们要查询一段区间和的时候，我们其实只需要递归的去计算每个区间的和就好了</strong></p>
 <h3 id="③针对只修改了单个点值的区间查询"><a href="#③针对只修改了单个点值的区间查询" class="headerlink" title="③针对只修改了单个点值的区间查询"></a>③针对只修改了单个点值的区间查询</h3><p><font color="red">这里可以注意一下标题，只针对修改了单个点值的区间查询，因为在这个前提下的计算和之后的计算有着不同的地方，所以先看一个点，再慢慢推进到后面的点。</font>这里的操作还是以下图为例子：</p>
 <p><img src="https://img-blog.csdnimg.cn/f96a5cc24c4c4d86989ef7b0f60c4aea.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="线段树图解"></p>
 <blockquote>
 <p>因为对于这里的递归会有很多的不理解的地方，在这稍作提示。如果我们在做一个区间计算的时候，如果计算的区间刚好在左子树，那么我们最后只需要递归左子树的和就好了，比如在编号为①的时候，我们要查找$[1,2]$区间的和，那么其实只需要到编号为②的地方去计算，右子树同理。那么如果我们跨了区间怎么半呢？比如在上图我要查找$[2,4]$区间的和呢，也很简单，只不过就是左子树的区间$[2,3]$和右子树的区间$[3,4]$两个计算的结果加在一起，具体很多的注释加在代码内，建议读者可以用一些例子理解这个递归式子。而下面第一行注释的lazy标记是后面要介绍的内容！</p>
 </blockquote>
-<pre class="line-numbers language-c++"><code class="language-c++">//计算某个区间的和，不含有lazy标记 
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;计算某个区间的和，不含有lazy标记 
 int cal(int k, int l, int r, int x, int y) &#123;
-    if(l == x && r == y) &#123;
-        return sum[k]; 
-    &#125;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        return cal(k << 1, l, m, x, y);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         return cal(k << 1 | 1, m + 1, r, x, y);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        return cal(k << 1, l, m, x, m) + 
-        cal(k << 1 | 1, m + 1, r, m + 1, y);
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return sum[k]; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	return cal(k &lt;&lt; 1, l, m, x, y);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 return cal(k &lt;&lt; 1 | 1, m + 1, r, x, y);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		return cal(k &lt;&lt; 1, l, m, x, m) + 
+		cal(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y);
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="④例题模板1"><a href="#④例题模板1" class="headerlink" title="④例题模板1"></a>④例题模板1</h3><p><img src="https://img-blog.csdnimg.cn/745ab82a49654f21a1ccc5b8c33fe9fb.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="例题1"></p>
 <p>​                                                                                             <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3374">例题1入口</a></p>
 <p><strong>这个例题将我们所说的结合起来就可以写了的，当然他是树状数组的一个板子，之所以用线段树去写，只是为了加深对线段树的熟悉度罢了。</strong></p>
-<h3 id="⑤AC全部代码"><a href="#⑤AC全部代码" class="headerlink" title="⑤AC全部代码"></a>⑤AC全部代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<h3 id="⑤AC全部代码"><a href="#⑤AC全部代码" class="headerlink" title="⑤AC全部代码"></a>⑤AC全部代码</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 using namespace std;
-//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
-int nums[500005];  //数据的存储 
-int sum[2000010];   //区间和的存储 
-int lz[2000010];     //lazy标记的存储
+&#x2F;&#x2F;开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+int nums[500005];  &#x2F;&#x2F;数据的存储 
+int sum[2000010];   &#x2F;&#x2F;区间和的存储 
+int lz[2000010];     &#x2F;&#x2F;lazy标记的存储
 int n, m;
 
-//进行线段树的构建 
+&#x2F;&#x2F;进行线段树的构建 
 void build_tree(int k, int l, int r) &#123;
-    if(l == r) &#123;
-        sum[k] = nums[l];
-        return; 
-    &#125;
-    int m = (l + r) >> 1; //取l，r的中点
-    //递归左子树，然后k<<1相当于2*k 
-    build_tree(k << 1, l, m);
-    //递归右子树，然后k << 1 | 1相当于2*k+1 
-    build_tree(k << 1 | 1, m + 1, r); 
-    //进行区间的求和累积(左子树和右子树的和)
-    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+	if(l &#x3D;&#x3D; r) &#123;
+		sum[k] &#x3D; nums[l];
+		return; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1; &#x2F;&#x2F;取l，r的中点
+	&#x2F;&#x2F;递归左子树，然后k&lt;&lt;1相当于2*k 
+	build_tree(k &lt;&lt; 1, l, m);
+	&#x2F;&#x2F;递归右子树，然后k &lt;&lt; 1 | 1相当于2*k+1 
+	build_tree(k &lt;&lt; 1 | 1, m + 1, r); 
+	&#x2F;&#x2F;进行区间的求和累积(左子树和右子树的和)
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + sum[k &lt;&lt; 1 | 1]; 
 &#125;
 
-//进行单个数的加值
+&#x2F;&#x2F;进行单个数的加值
 void add(int k, int l, int r, int x, int val) &#123;
-    //改变的数根据递归肯定会在[l, r]的区间之内 
-    sum[k] += val;
-    if(l == r) return;
-    int m = (l + r) >> 1;
-    //要改变的数在左子树 
-    if(x <= m) &#123;
-        add(k << 1, l, m, x, val);
-    &#125;
-    //要改变的数在右子树 
-    else &#123;
-        add(k << 1 | 1, m + 1, r, x, val); 
-    &#125;
+	&#x2F;&#x2F;改变的数根据递归肯定会在[l, r]的区间之内 
+	sum[k] +&#x3D; val;
+	if(l &#x3D;&#x3D; r) return;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;要改变的数在左子树 
+	if(x &lt;&#x3D; m) &#123;
+		add(k &lt;&lt; 1, l, m, x, val);
+	&#125;
+	&#x2F;&#x2F;要改变的数在右子树 
+	else &#123;
+		add(k &lt;&lt; 1 | 1, m + 1, r, x, val); 
+	&#125;
 &#125;
 
-//计算某个区间的和，不含有laze标记 
+&#x2F;&#x2F;计算某个区间的和，不含有laze标记 
 int cal(int k, int l, int r, int x, int y) &#123;
-    if(l == x && r == y) &#123;
-        return sum[k]; 
-    &#125;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        return cal(k << 1, l, m, x, y);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         return cal(k << 1 | 1, m + 1, r, x, y);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        return cal(k << 1, l, m, x, m) + 
-        cal(k << 1 | 1, m + 1, r, m + 1, y);
-    &#125;
+	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return sum[k]; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	return cal(k &lt;&lt; 1, l, m, x, y);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 return cal(k &lt;&lt; 1 | 1, m + 1, r, x, y);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		return cal(k &lt;&lt; 1, l, m, x, m) + 
+		cal(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y);
+	&#125;
 &#125;
 
 int main() &#123;
-    cin >> n >> m;
-    for(int i = 1; i <= n; i++) &#123;
-        cin >> nums[i];
-    &#125;
-    build_tree(1, 1, n);
-    for(int i = 1; i <=m; i++) &#123;
-        int cz, x, y;
-        cin >> cz >> x >> y;
-        if(cz == 1) &#123;
-            add(1, 1, n, x, y);
-        &#125;
-        else &#123;
-            cout << cal(1, 1, n, x, y) << endl;
-        &#125;
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;
+		cin &gt;&gt; nums[i];
+	&#125;
+	build_tree(1, 1, n);
+	for(int i &#x3D; 1; i &lt;&#x3D;m; i++) &#123;
+		int cz, x, y;
+		cin &gt;&gt; cz &gt;&gt; x &gt;&gt; y;
+		if(cz &#x3D;&#x3D; 1) &#123;
+			add(1, 1, n, x, y);
+		&#125;
+		else &#123;
+			cout &lt;&lt; cal(1, 1, n, x, y) &lt;&lt; endl;
+		&#125;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="三、线段树的基本操作（2）不下传懒惰标记版本"><a href="#三、线段树的基本操作（2）不下传懒惰标记版本" class="headerlink" title="三、线段树的基本操作（2）不下传懒惰标记版本"></a>三、线段树的基本操作（2）不下传懒惰标记版本</h1><p>在上面的操作，我们只是进行了对线段树中的某一个值进行一个加减的过程，那么很显然不能体现线段树的好处。那么如果我们对一整个区间去进行操作呢？我们先看一下下面的引入：</p>
 <h3 id="①引入懒惰标记"><a href="#①引入懒惰标记" class="headerlink" title="①引入懒惰标记"></a>①引入懒惰标记</h3><p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记"></p>
 <p><strong>如图所示，左边是我们最开始要构建的一颗树，右边是加入了懒惰标记的时候构建的一颗树，在这个地方我们看到了在两个地方我们由红色标记了一个东西，这就是我们的懒惰标记。由它的名字我们可以知道，就是我们可以偷懒，让程序不用去把所有的值进行修改，就可以得到我们最终的答案。也就是图中的下标为3，4的地方的并没有进行加1操作，但是他们的和是加上了2的，这是怎么偷懒的呢？</strong><font color="red">通俗来说，就是假设我们计算一个区间，如果线段树的那一段已经恰好完全包含了这个区间，正如[3,4]的区间被恰好包含在编号为3的子树上，那么我们就直接给他打上一个+1的标记，代表其实它的儿子是都需要加1的，但是由于我已经包含了他们，因此我们不再需要继续往下递归，因为它们的老爸已经把他们相加的结果记录好了，这个操作实现的代码如下：</font></p>
-<pre class="line-numbers language-c++"><code class="language-c++">void insert(int k, int l, int r, int x, int y, long long val) &#123;
-    //如果刚好区域被包含在[l,r]的区间内
-     if(l == x && r == y) &#123;
-         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
-         lz[k] += val;  
-         return;
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void insert(int k, int l, int r, int x, int y, long long val) &#123;
+	&#x2F;&#x2F;如果刚好区域被包含在[l,r]的区间内
+ 	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+ 		&#x2F;&#x2F;给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+ 		lz[k] +&#x3D; val;  
+ 		return;
     &#125;
-    //先让能够满足所求区间为总区间的子区间的加上对应的区间和 
-    sum[k] += (y - x + 1) * val;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        insert(k << 1, l, m, x, y, val);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         insert(k << 1 | 1, m + 1, r, x, y, val);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        insert(k << 1, l, m, x, m, val);
-        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
-    &#125; 
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    &#x2F;&#x2F;先让能够满足所求区间为总区间的子区间的加上对应的区间和 
+    sum[k] +&#x3D; (y - x + 1) * val;
+    int m &#x3D; (l + r) &gt;&gt; 1;
+    &#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	insert(k &lt;&lt; 1, l, m, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 insert(k &lt;&lt; 1 | 1, m + 1, r, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		insert(k &lt;&lt; 1, l, m, x, m, val);
+		insert(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, val);
+	&#125; 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="②区间的查询"><a href="#②区间的查询" class="headerlink" title="②区间的查询"></a>②区间的查询</h3><p>好了那么我们要查询一个区间怎么办呢？首先这里由于我们是这里先介绍不把懒惰标记下传的写法，因此，下面的方法与后面把懒惰标记下传的方法会有些不同的地方，大家注意看一下区别。</p>
 <p>回归正题，如果我们要查找一段区间，但是由于懒惰坐标并没有下传，这就会导致一个什么事情呢，就是在我们查询的时候，有一些孩子的值是并没有得到更新的，这就会导致，他们所存的sum值是没有得到更新的，还需要去加上之前积累的懒惰标记的值才行，这里还是以上图为例子。</p>
 <p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记计算1"></p>
 <p>假设我们要查找的就是$[4,4]$这个区间呢？我们可以看到本身4下标的这个数字是要加1的，但是很遗憾的是，我们的第一步操作并没有达到我们想要满足的效果。那么我们可以关注一下，从下标为4的那个地方往上看，是不是可以看到一个懒惰标记，这个代表了什么呢？不就是代表了它上方如果存在懒惰标记的话，那么就代表因为太懒，本来它本身是需要加上懒惰标记的值但是没有加上，那么我们只需要把他上方所有积累的懒惰标记加起来，然后最后在计算本身的时候加上$(\sum{lz}*length(区间的长度))$就好了。这个地方会有点难理解为什么要加上上方所有的和，不急，可以在用一个图为例子：</p>
 <p><img src="https://img-blog.csdnimg.cn/a867ad730ac34f0d9e84e2f799221706.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记计算2"></p>
 <p><strong>假设在前面图的基础上让区间[1,4]都加上了一个1，很显然，因为恰好包含，除了根节点挂上一个+1的懒惰标记，其他地方都不会变化，那如果此时我们还要计算[4,4]的值呢？很显然我们要加上两个懒惰标记的值，因为4被连续加上了两次1。也就是说当我们不把懒惰标记下传的时候，我们是需要计算两部分的值才能最终确定一个区间的和。一个就是懒惰标记的积累和，另外就是本身的子树累计的和，代码如下，大家可以结合代码去走一遍图：</strong></p>
-<pre class="line-numbers language-c++"><code class="language-c++">//进行区间的查询
-//函数的意思：在[l,r]上的[x,y]区间所有数的和
-//p代表当前下标的lazy值 
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;进行区间的查询
+&#x2F;&#x2F;函数的意思：在[l,r]上的[x,y]区间所有数的和
+&#x2F;&#x2F;p代表当前下标的lazy值 
 int query(int k, int l, int r, int x, int y, int p) &#123;
-    //先进行lazy值的累加
-    p += lz[k]; 
-    //如果恰好包含
-    if(l == x && r == y) &#123;
-        return p * (y - x + 1) + sum[k];
-    &#125;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        return query(k << 1, l, m, x, y, p);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         return query(k << 1 | 1, m + 1, r, x, y, p);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        return query(k << 1, l, m, x, m, p) + 
-        query(k << 1 | 1, m + 1, r, m + 1, y, p);
-    &#125; 
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	&#x2F;&#x2F;先进行lazy值的累加
+	p +&#x3D; lz[k]; 
+	&#x2F;&#x2F;如果恰好包含
+    if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return p * (y - x + 1) + sum[k];
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	return query(k &lt;&lt; 1, l, m, x, y, p);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 return query(k &lt;&lt; 1 | 1, m + 1, r, x, y, p);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		return query(k &lt;&lt; 1, l, m, x, m, p) + 
+		query(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, p);
+	&#125; 
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="③例题模板2"><a href="#③例题模板2" class="headerlink" title="③例题模板2"></a>③例题模板2</h3><p><img src="https://img-blog.csdnimg.cn/0209f12304fe4725896c1b92231635aa.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="线段树模板"></p>
 <p>​                                                                                                    <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">题目2入口</a></p>
-<h3 id="④AC完整代码"><a href="#④AC完整代码" class="headerlink" title="④AC完整代码"></a>④AC完整代码</h3><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<h3 id="④AC完整代码"><a href="#④AC完整代码" class="headerlink" title="④AC完整代码"></a>④AC完整代码</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 using namespace std;
-//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
-int nums[100001];  //数据的存储 
-long long sum[400010];   //区间和的存储 
-long long lz[400010];     //lazy标记的存储
+&#x2F;&#x2F;开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+int nums[100001];  &#x2F;&#x2F;数据的存储 
+long long sum[400010];   &#x2F;&#x2F;区间和的存储 
+long long lz[400010];     &#x2F;&#x2F;lazy标记的存储
 int n, m;
 
-//进行线段树的构建 
+&#x2F;&#x2F;进行线段树的构建 
 void build_tree(int k, int l, int r) &#123;
-    if(l == r) &#123;
-        sum[k] = nums[l];
-        return; 
-    &#125;
-    int m = (l + r) >> 1; //取l，r的中点
-    //递归左子树，然后k<<1相当于2*k 
-    build_tree(k << 1, l, m);
-    //递归右子树，然后k << 1 | 1相当于2*k+1 
-    build_tree(k << 1 | 1, m + 1, r); 
-    //进行区间的求和累积(左子树和右子树的和)
-    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+	if(l &#x3D;&#x3D; r) &#123;
+		sum[k] &#x3D; nums[l];
+		return; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1; &#x2F;&#x2F;取l，r的中点
+	&#x2F;&#x2F;递归左子树，然后k&lt;&lt;1相当于2*k 
+	build_tree(k &lt;&lt; 1, l, m);
+	&#x2F;&#x2F;递归右子树，然后k &lt;&lt; 1 | 1相当于2*k+1 
+	build_tree(k &lt;&lt; 1 | 1, m + 1, r); 
+	&#x2F;&#x2F;进行区间的求和累积(左子树和右子树的和)
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + sum[k &lt;&lt; 1 | 1]; 
 &#125;
 
-//进行区间的加值
-//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+&#x2F;&#x2F;进行区间的加值
+&#x2F;&#x2F;函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
 void insert(int k, int l, int r, int x, int y, long long val) &#123;
-    //如果刚好区域被包含在[l,r]的区间内
-     if(l == x && r == y) &#123;
-         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
-         lz[k] += val;  
-         return;
+	&#x2F;&#x2F;如果刚好区域被包含在[l,r]的区间内
+ 	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+ 		&#x2F;&#x2F;给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+ 		lz[k] +&#x3D; val;  
+ 		return;
     &#125;
-    //先让能够满足所求区间为总区间的子区间的加上对应的区间和 
-    sum[k] += (y - x + 1) * val;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        insert(k << 1, l, m, x, y, val);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         insert(k << 1 | 1, m + 1, r, x, y, val);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        insert(k << 1, l, m, x, m, val);
-        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
-    &#125; 
+    &#x2F;&#x2F;先让能够满足所求区间为总区间的子区间的加上对应的区间和 
+    sum[k] +&#x3D; (y - x + 1) * val;
+    int m &#x3D; (l + r) &gt;&gt; 1;
+    &#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	insert(k &lt;&lt; 1, l, m, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 insert(k &lt;&lt; 1 | 1, m + 1, r, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		insert(k &lt;&lt; 1, l, m, x, m, val);
+		insert(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, val);
+	&#125; 
 &#125;
 
-//进行区间的查询
-//函数的意思：在[l,r]上的[x,y]区间所有数的和
-//p代表当前下标的lazy值 
+&#x2F;&#x2F;进行区间的查询
+&#x2F;&#x2F;函数的意思：在[l,r]上的[x,y]区间所有数的和
+&#x2F;&#x2F;p代表当前下标的lazy值 
 long long query(int k, int l, int r, int x, int y, long long p) &#123;
-    //先进行lazy值的累加
-    p += lz[k]; 
-    //如果恰好包含
-    if(l == x && r == y) &#123;
-        return p * (y - x + 1) + sum[k];
-    &#125;
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        return query(k << 1, l, m, x, y, p);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         return query(k << 1 | 1, m + 1, r, x, y, p);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        return query(k << 1, l, m, x, m, p) + 
-        query(k << 1 | 1, m + 1, r, m + 1, y, p);
-    &#125; 
+	&#x2F;&#x2F;先进行lazy值的累加
+	p +&#x3D; lz[k]; 
+	&#x2F;&#x2F;如果恰好包含
+    if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return p * (y - x + 1) + sum[k];
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	return query(k &lt;&lt; 1, l, m, x, y, p);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 return query(k &lt;&lt; 1 | 1, m + 1, r, x, y, p);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		return query(k &lt;&lt; 1, l, m, x, m, p) + 
+		query(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, p);
+	&#125; 
 &#125;
 int main() &#123;
-    scanf("%d%d", &n, &m);
-    for(int i = 1; i <= n; i++) &#123;
-        scanf("%d", &nums[i]);
-    &#125;
-    build_tree(1, 1, n);
-    for(int i = 1; i <=m; i++) &#123;
-        int cz;
-        scanf("%d", &cz);
-        if(cz == 1) &#123;
+	scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+	for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;
+		scanf(&quot;%d&quot;, &amp;nums[i]);
+	&#125;
+	build_tree(1, 1, n);
+	for(int i &#x3D; 1; i &lt;&#x3D;m; i++) &#123;
+		int cz;
+		scanf(&quot;%d&quot;, &amp;cz);
+		if(cz &#x3D;&#x3D; 1) &#123;
             int x,y;
             long long k;
-            scanf("%d%d%lld", &x, &y, &k);
-            insert(1, 1, n, x, y, k);
-        &#125;
-        else &#123;
+			scanf(&quot;%d%d%lld&quot;, &amp;x, &amp;y, &amp;k);
+			insert(1, 1, n, x, y, k);
+		&#125;
+		else &#123;
             int x,y;
-            scanf("%d%d", &x, &y);
-            printf("%lld\n", query(1, 1, n, x, y, 0));
-        &#125;
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+			scanf(&quot;%d%d&quot;, &amp;x, &amp;y);
+			printf(&quot;%lld\n&quot;, query(1, 1, n, x, y, 0));
+		&#125;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="四、线段树的基本操作（2）下传懒惰标记版本"><a href="#四、线段树的基本操作（2）下传懒惰标记版本" class="headerlink" title="四、线段树的基本操作（2）下传懒惰标记版本"></a>四、线段树的基本操作（2）下传懒惰标记版本</h1><h3 id="①引言"><a href="#①引言" class="headerlink" title="①引言"></a>①引言</h3><p>这里其实就是说会根据很多人的不同习惯有很多不同的写法，所以仅供大家参考目前我在慢慢习惯的一个写法。</p>
 <p>下传懒惰标记其实就是说，我们不要去管计算的时候，一个区间上面的懒惰标记，假设还是如图</p>
 <p><img src="https://img-blog.csdnimg.cn/8e99ec4aaedb41eb80edcdbbc3ce2ad7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAc2hlZXAuaWNl,size_20,color_FFFFFF,t_70,g_se,x_16" alt="懒惰标记下传"></p>
 <p>如果我们还是要去计算[4,4]的值，我们不妨在访问和为9的那个线段的时候，直接把它的懒惰标记传给它的左右孩子，然后它本身的懒惰标记变成0。这样的话，我们计算值的时候就不用管上面懒惰标记的和了，因为都是0。那么我们其实就是在计算本层的一个值加上本身就应该加上的懒惰标记的值，其实和之前的方法就是一个过程了相当于，就是思维上稍微有点不同。<font color="red">比如在这个地方，因为计算的时候有可能会把懒惰标记下传，这样的过程会导致什么呢？会导致上方的值因为懒惰标记的下传，上面的值得不到一个更新，因此很简单的思路就是。在递归回溯的过程中，让上方的值不断的进行一个更新，也就是和我们文章最初开头的一种方式是一样的了！</font></p>
-<h3 id="②插入的操作-懒惰标记下传"><a href="#②插入的操作-懒惰标记下传" class="headerlink" title="②插入的操作(懒惰标记下传)"></a>②插入的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++"><code class="language-c++">//进行区间的加值
-//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+<h3 id="②插入的操作-懒惰标记下传"><a href="#②插入的操作-懒惰标记下传" class="headerlink" title="②插入的操作(懒惰标记下传)"></a>②插入的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;进行区间的加值
+&#x2F;&#x2F;函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
 void insert(int k, int l, int r, int x, int y, long long val) &#123;
-    //如果刚好区域被包含在[l,r]的区间内
-     if(l == x && r == y) &#123;
-         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
-         lz[k] += val;  
-         return;
+	&#x2F;&#x2F;如果刚好区域被包含在[l,r]的区间内
+ 	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+ 		&#x2F;&#x2F;给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+ 		lz[k] +&#x3D; val;  
+ 		return;
     &#125;
-    //如果此处有标记，向下传
-    if(lz[k]) &#123;
-        lz[k << 1] += lz[k];
-        lz[k << 1 | 1] += lz[k];
-        lz[k] = 0; //记得懒惰标记的清0 
-    &#125; 
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        insert(k << 1, l, m, x, y, val);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         insert(k << 1 | 1, m + 1, r, x, y, val);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        insert(k << 1, l, m, x, m, val);
-        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
-    &#125;
-    //最后递归回溯的时候不断更新上面的值
-    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
-                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1];
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="②查询的操作-懒惰标记下传"><a href="#②查询的操作-懒惰标记下传" class="headerlink" title="②查询的操作(懒惰标记下传)"></a>②查询的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++"><code class="language-c++">//进行区间的查询
-//函数的意思：在[l,r]上的[x,y]区间所有数的和
+    &#x2F;&#x2F;如果此处有标记，向下传
+	if(lz[k]) &#123;
+		lz[k &lt;&lt; 1] +&#x3D; lz[k];
+		lz[k &lt;&lt; 1 | 1] +&#x3D; lz[k];
+		lz[k] &#x3D; 0; &#x2F;&#x2F;记得懒惰标记的清0 
+	&#125; 
+    int m &#x3D; (l + r) &gt;&gt; 1;
+    &#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	insert(k &lt;&lt; 1, l, m, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 insert(k &lt;&lt; 1 | 1, m + 1, r, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		insert(k &lt;&lt; 1, l, m, x, m, val);
+		insert(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, val);
+	&#125;
+    &#x2F;&#x2F;最后递归回溯的时候不断更新上面的值
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + (m - l + 1) * lz[k &lt;&lt; 1]
+		   	 + sum[k &lt;&lt; 1 | 1] + (r - m) * lz[k &lt;&lt; 1 | 1];
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②查询的操作-懒惰标记下传"><a href="#②查询的操作-懒惰标记下传" class="headerlink" title="②查询的操作(懒惰标记下传)"></a>②查询的操作(懒惰标记下传)</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;进行区间的查询
+&#x2F;&#x2F;函数的意思：在[l,r]上的[x,y]区间所有数的和
 long long query(int k, int l, int r, int x, int y) &#123;
-    //如果恰好包含
-    if(l == x && r == y) &#123;
-        return sum[k] + lz[k] * (r - l + 1);
-    &#125;
-    //如果此处有标记，向下传
-    if(lz[k]) &#123;
-        lz[k << 1] += lz[k];
-        lz[k << 1 | 1] += lz[k];
-        lz[k] = 0; //记得懒惰标记的清0 
-    &#125;
-    int m = (l + r) >> 1;
-    long long ret = 0;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        ret = query(k << 1, l, m, x, y);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         ret = query(k << 1 | 1, m + 1, r, x, y);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        ret = query(k << 1, l, m, x, m) + 
-        query(k << 1 | 1, m + 1, r, m + 1, y);
-    &#125;
-    //最后递归回溯的时候不断更新上面的值
-    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
-                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1]; 
-    return ret;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	&#x2F;&#x2F;如果恰好包含
+    if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return sum[k] + lz[k] * (r - l + 1);
+	&#125;
+	&#x2F;&#x2F;如果此处有标记，向下传
+	if(lz[k]) &#123;
+		lz[k &lt;&lt; 1] +&#x3D; lz[k];
+		lz[k &lt;&lt; 1 | 1] +&#x3D; lz[k];
+		lz[k] &#x3D; 0; &#x2F;&#x2F;记得懒惰标记的清0 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	long long ret &#x3D; 0;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	ret &#x3D; query(k &lt;&lt; 1, l, m, x, y);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 ret &#x3D; query(k &lt;&lt; 1 | 1, m + 1, r, x, y);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		ret &#x3D; query(k &lt;&lt; 1, l, m, x, m) + 
+		query(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y);
+	&#125;
+    &#x2F;&#x2F;最后递归回溯的时候不断更新上面的值
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + (m - l + 1) * lz[k &lt;&lt; 1]
+		   	 + sum[k &lt;&lt; 1 | 1] + (r - m) * lz[k &lt;&lt; 1 | 1]; 
+	return ret;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><font color="red">这里为什么要另外设计一个ret变量对结果进行保存呢？对比不下传的方法，我们可以看到，本次的方法会边回溯边更新答案，因此在我们回溯的过程中，我们才会得到正确的答案，因此回溯的过程要把区间的左右记录下来，最后完成区间和的更新才是我们最终的答案。而方法二为什么不用这个呢？就是因为方法二是不断的往下去更新，然后遇到可以不用更新的地方就直接回溯了，但是我们发现在向下递归的时候，就已经对答案进行了更新，也就是方法三的一个逆过程！</font></p>
 <h3 id="③AC代码"><a href="#③AC代码" class="headerlink" title="③AC代码"></a>③AC代码</h3><p>因为题目还是方法二的，因此这里直接贴上不同版本的代码：</p>
-<pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 using namespace std;
-//开辟其他数组的时候最好为4n让数组不会产生越界的情况 
-long long nums[100001];  //数据的存储 
-long long sum[400010];   //区间和的存储 
-long long lz[400010];     //lazy标记的存储
+&#x2F;&#x2F;开辟其他数组的时候最好为4n让数组不会产生越界的情况 
+long long nums[100001];  &#x2F;&#x2F;数据的存储 
+long long sum[400010];   &#x2F;&#x2F;区间和的存储 
+long long lz[400010];     &#x2F;&#x2F;lazy标记的存储
 int n, m;
 
-//进行线段树的构建 
+&#x2F;&#x2F;进行线段树的构建 
 void build_tree(int k, int l, int r) &#123;
-    if(l == r) &#123;
-        sum[k] = nums[l];
-        return; 
-    &#125;
-    int m = (l + r) >> 1; //取l，r的中点
-    //递归左子树，然后k<<1相当于2*k 
-    build_tree(k << 1, l, m);
-    //递归右子树，然后k << 1 | 1相当于2*k+1 
-    build_tree(k << 1 | 1, m + 1, r); 
-    //进行区间的求和累积(左子树和右子树的和)
-    sum[k] = sum[k << 1] + sum[k << 1 | 1]; 
+	if(l &#x3D;&#x3D; r) &#123;
+		sum[k] &#x3D; nums[l];
+		return; 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1; &#x2F;&#x2F;取l，r的中点
+	&#x2F;&#x2F;递归左子树，然后k&lt;&lt;1相当于2*k 
+	build_tree(k &lt;&lt; 1, l, m);
+	&#x2F;&#x2F;递归右子树，然后k &lt;&lt; 1 | 1相当于2*k+1 
+	build_tree(k &lt;&lt; 1 | 1, m + 1, r); 
+	&#x2F;&#x2F;进行区间的求和累积(左子树和右子树的和)
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + sum[k &lt;&lt; 1 | 1]; 
 &#125;
 
-//进行区间的加值
-//函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
+&#x2F;&#x2F;进行区间的加值
+&#x2F;&#x2F;函数意思代表：在[l,r]上的[x,y]区间给每个数加上一个val值 
 void insert(int k, int l, int r, int x, int y, long long val) &#123;
-    //如果刚好区域被包含在[l,r]的区间内
-     if(l == x && r == y) &#123;
-         //给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
-         lz[k] += val;  
-         return;
+	&#x2F;&#x2F;如果刚好区域被包含在[l,r]的区间内
+ 	if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+ 		&#x2F;&#x2F;给恰好包含要求子数做上lazy标记，表示后面不用继续递归加数 
+ 		lz[k] +&#x3D; val;  
+ 		return;
     &#125;
-    //如果此处有标记，向下传
-    if(lz[k]) &#123;
-        lz[k << 1] += lz[k];
-        lz[k << 1 | 1] += lz[k];
-        lz[k] = 0; //记得懒惰标记的清0 
-    &#125; 
-    int m = (l + r) >> 1;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        insert(k << 1, l, m, x, y, val);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         insert(k << 1 | 1, m + 1, r, x, y, val);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        insert(k << 1, l, m, x, m, val);
-        insert(k << 1 | 1, m + 1, r, m + 1, y, val);
-    &#125;
-    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
-                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1];
+    &#x2F;&#x2F;如果此处有标记，向下传
+	if(lz[k]) &#123;
+		lz[k &lt;&lt; 1] +&#x3D; lz[k];
+		lz[k &lt;&lt; 1 | 1] +&#x3D; lz[k];
+		lz[k] &#x3D; 0; &#x2F;&#x2F;记得懒惰标记的清0 
+	&#125; 
+    int m &#x3D; (l + r) &gt;&gt; 1;
+    &#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	insert(k &lt;&lt; 1, l, m, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 insert(k &lt;&lt; 1 | 1, m + 1, r, x, y, val);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		insert(k &lt;&lt; 1, l, m, x, m, val);
+		insert(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y, val);
+	&#125;
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + (m - l + 1) * lz[k &lt;&lt; 1]
+		   	 + sum[k &lt;&lt; 1 | 1] + (r - m) * lz[k &lt;&lt; 1 | 1];
 &#125;
 
-//进行区间的查询
-//函数的意思：在[l,r]上的[x,y]区间所有数的和
+&#x2F;&#x2F;进行区间的查询
+&#x2F;&#x2F;函数的意思：在[l,r]上的[x,y]区间所有数的和
 long long query(int k, int l, int r, int x, int y) &#123;
-    //如果恰好包含
-    if(l == x && r == y) &#123;
-        return sum[k] + lz[k] * (r - l + 1);
-    &#125;
-    //如果此处有标记，向下传
-    if(lz[k]) &#123;
-        lz[k << 1] += lz[k];
-        lz[k << 1 | 1] += lz[k];
-        lz[k] = 0; //记得懒惰标记的清0 
-    &#125;
-    int m = (l + r) >> 1;
-    long long ret = 0;
-    //区间完全在左子树 
-    if(y <= m) &#123;
-        ret = query(k << 1, l, m, x, y);
-    &#125;
-    //区间完全在右子树 
-    else if(x > m) &#123;
-         ret = query(k << 1 | 1, m + 1, r, x, y);
-    &#125;
-    //区间跨越了左右子树
-    else &#123;
-        //合并左右子树的结果 
-        ret = query(k << 1, l, m, x, m) + 
-        query(k << 1 | 1, m + 1, r, m + 1, y);
-    &#125;
-    sum[k] = sum[k << 1] + (m - l + 1) * lz[k << 1]
-                + sum[k << 1 | 1] + (r - m) * lz[k << 1 | 1]; 
-    return ret;
+	&#x2F;&#x2F;如果恰好包含
+    if(l &#x3D;&#x3D; x &amp;&amp; r &#x3D;&#x3D; y) &#123;
+    	return sum[k] + lz[k] * (r - l + 1);
+	&#125;
+	&#x2F;&#x2F;如果此处有标记，向下传
+	if(lz[k]) &#123;
+		lz[k &lt;&lt; 1] +&#x3D; lz[k];
+		lz[k &lt;&lt; 1 | 1] +&#x3D; lz[k];
+		lz[k] &#x3D; 0; &#x2F;&#x2F;记得懒惰标记的清0 
+	&#125;
+	int m &#x3D; (l + r) &gt;&gt; 1;
+	long long ret &#x3D; 0;
+	&#x2F;&#x2F;区间完全在左子树 
+    if(y &lt;&#x3D; m) &#123;
+    	ret &#x3D; query(k &lt;&lt; 1, l, m, x, y);
+	&#125;
+	&#x2F;&#x2F;区间完全在右子树 
+	else if(x &gt; m) &#123;
+		 ret &#x3D; query(k &lt;&lt; 1 | 1, m + 1, r, x, y);
+	&#125;
+	&#x2F;&#x2F;区间跨越了左右子树
+	else &#123;
+		&#x2F;&#x2F;合并左右子树的结果 
+		ret &#x3D; query(k &lt;&lt; 1, l, m, x, m) + 
+		query(k &lt;&lt; 1 | 1, m + 1, r, m + 1, y);
+	&#125;
+	sum[k] &#x3D; sum[k &lt;&lt; 1] + (m - l + 1) * lz[k &lt;&lt; 1]
+		   	 + sum[k &lt;&lt; 1 | 1] + (r - m) * lz[k &lt;&lt; 1 | 1]; 
+	return ret;
 &#125;
 
 int main() &#123;
-    cin >> n >> m;
-    for(int i = 1; i <= n; i++) &#123;
-        cin >> nums[i];
-    &#125;
-    build_tree(1, 1, n);
-    for(int i = 1; i <=m; i++) &#123;
-        int cz, x, y;
-        long long k;
-        cin >> cz;
-        if(cz == 1) &#123;
-            cin >> x >> y >> k;
-            insert(1, 1, n, x, y, k);
-        &#125;
-        else &#123;
-            cin >> x >> y;
-            cout << query(1, 1, n, x, y) << endl;
-        &#125;
-    &#125;
-&#125;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+	cin &gt;&gt; n &gt;&gt; m;
+	for(int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;
+		cin &gt;&gt; nums[i];
+	&#125;
+	build_tree(1, 1, n);
+	for(int i &#x3D; 1; i &lt;&#x3D;m; i++) &#123;
+		int cz, x, y;
+		long long k;
+		cin &gt;&gt; cz;
+		if(cz &#x3D;&#x3D; 1) &#123;
+			cin &gt;&gt; x &gt;&gt; y &gt;&gt; k;
+			insert(1, 1, n, x, y, k);
+		&#125;
+		else &#123;
+			cin &gt;&gt; x &gt;&gt; y;
+			cout &lt;&lt; query(1, 1, n, x, y) &lt;&lt; endl;
+		&#125;
+	&#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h1><p>总而言之，线段树会有很多不同的写法，本文仅提供目前学到的这种，uu们可以找到自己习惯的写法，然后经常复习一下，我觉得对线段树就会慢慢不陌生了！！！</p>
 <h2 id="参考文章："><a href="#参考文章：" class="headerlink" title="参考文章："></a>参考文章：</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/huangzihaoal/article/details/81813454">线段树详解</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uS4y1m7zY?spm_id_from=333.788.header_right.history_list.click">wls的b站视频</a></p>
@@ -1547,7 +1563,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             

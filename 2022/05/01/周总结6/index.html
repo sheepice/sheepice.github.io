@@ -473,14 +473,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    388
+                    1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -507,18 +507,18 @@
 <p>欢迎大家来到<strong>一周一总结</strong>的栏目！！希望能够和大家一起努力！</p>
 <h3 id="二、算法学习"><a href="#二、算法学习" class="headerlink" title="二、算法学习"></a>二、算法学习</h3><p>这周因为课内要准备复习，所以好像这周对课外的东西没有看特别多，所以还是以算法学习为主吧！上周认识到了ACwing这个网站，然后知识付费了一下，和朋友购买了一个算法的课程，还挺不错的，<strong>基本是模板题目但是还是常做常新！</strong></p>
 <p><font color="red">下面是这周的一个算法小结(选取一些之前没有写过博客的模板粘上去)：</font></p>
-<h5 id="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"><a href="#①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！" class="headerlink" title="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"></a>①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！</h5><pre class="line-numbers language-c++"><code class="language-c++">#include<bits/stdc++.h>
+<h5 id="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"><a href="#①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！" class="headerlink" title="①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！"></a>①快速排序：随机选择某个数，然后利用递归的思想，让那一个随机选择的数的左右两边分别是大于他的和小于他的，然后利用双指针和交换的方法！</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
 using namespace std;
-const int N = 100000 + 5;
-void quick_sort(vector<int> & q, int l, int r) &#123;
-    if(l >= r) return;
-    int m = (l + r) >> 1;
-    int mid = q[m];
-        int sd = l - 1, ed = r + 1;
-    while(sd < ed) &#123;
-        do sd++; while(q[sd] < mid);
-        do ed--; while(q[ed] > mid);
-        if(sd < ed) swap(q[sd], q[ed]);
+const int N &#x3D; 100000 + 5;
+void quick_sort(vector&lt;int&gt; &amp; q, int l, int r) &#123;
+    if(l &gt;&#x3D; r) return;
+    int m &#x3D; (l + r) &gt;&gt; 1;
+    int mid &#x3D; q[m];
+        int sd &#x3D; l - 1, ed &#x3D; r + 1;
+    while(sd &lt; ed) &#123;
+        do sd++; while(q[sd] &lt; mid);
+        do ed--; while(q[ed] &gt; mid);
+        if(sd &lt; ed) swap(q[sd], q[ed]);
     &#125;
     quick_sort(q, l, ed);
     quick_sort(q, ed + 1, r);
@@ -526,21 +526,21 @@ void quick_sort(vector<int> & q, int l, int r) &#123;
 
 int main() &#123;
     int n;
-    cin >> n;
-    vector<int> ss;
+    cin &gt;&gt; n;
+    vector&lt;int&gt; ss;
     int num;
-    for(int i = 0; i < n; i++) &#123;
-        cin >> num;
+    for(int i &#x3D; 0; i &lt; n; i++) &#123;
+        cin &gt;&gt; num;
         ss.push_back(num);
     &#125;
     quick_sort(ss, 0, n - 1);
-    for(int i = 0; i < n; i++) cout << ss[i] << " ";
+    for(int i &#x3D; 0; i &lt; n; i++) cout &lt;&lt; ss[i] &lt;&lt; &quot; &quot;;
 &#125;
 作者：sheepice
-链接：https://www.acwing.com/activity/content/code/content/3347542/
+链接：https:&#x2F;&#x2F;www.acwing.com&#x2F;activity&#x2F;content&#x2F;code&#x2F;content&#x2F;3347542&#x2F;
 来源：AcWing
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h5 id="②归并排序-加求逆序对-树状数组求逆序对："><a href="#②归并排序-加求逆序对-树状数组求逆序对：" class="headerlink" title="②归并排序(加求逆序对) + 树状数组求逆序对："></a>②归并排序(加求逆序对) + 树状数组求逆序对：</h5><p>两种方式都尝试了一遍，具体代码链接如下：</p>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/activity/content/code/content/3348147/">树状数组和归并排序求逆序对</a></p>
 <h5 id="③一维，二维前缀和-一维，二维差分"><a href="#③一维，二维前缀和-一维，二维差分" class="headerlink" title="③一维，二维前缀和 + 一维，二维差分"></a>③一维，二维前缀和 + 一维，二维差分</h5><h5 id="④离散化操作-解决了区间和以及区间合并-：这里之后会总结一篇博客的！"><a href="#④离散化操作-解决了区间和以及区间合并-：这里之后会总结一篇博客的！" class="headerlink" title="④离散化操作(解决了区间和以及区间合并)：这里之后会总结一篇博客的！"></a>④离散化操作(解决了区间和以及区间合并)：这里之后会总结一篇博客的！</h5><blockquote>
@@ -1066,7 +1066,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">21.8k</span>
+                        class="white-color">34.8k</span>
             
             
             
