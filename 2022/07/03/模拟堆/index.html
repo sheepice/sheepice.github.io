@@ -4,10 +4,9 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="生活分享1, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、写在前面一直认为生活不应该只有学业还有各种方面的压力，一定要有属于自己的诗和远方，开启生活篇的博客就是希望能够分享一下sheepice在生活里面遇到的很多很多事情吧！也相当于没有写技术博客的一个补充吧哈哈！
-二、《朋友请听好》
-这是一档">
+    <meta name="keywords" content="模拟堆, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、前言本篇文章主要以小根堆为例子，做一些有关小根堆的知识点笔记，前面主要就是堆排序，后面呢是一个题目的相关介绍，由于那个题目的特殊性，所以不多加赘述，这一篇主要是以堆能够实现的一些操作为例子，记录一下堆的一些应用。
+二、理解本篇主要受众是">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>生活分享1 | sheepice的博客</title>
+    <title>模拟堆 | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -313,12 +312,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">生活分享1</h1>
+                    <h1 class="description center-align post-title">模拟堆</h1>
                 </div>
             </div>
         </div>
@@ -434,8 +433,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E7%94%9F%E6%B4%BB/">
-                                <span class="chip bg-color">生活</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A8%A1%E6%9D%BF/">
+                                <span class="chip bg-color">-数据结构 -模板</span>
                             </a>
                         
                     </div>
@@ -446,8 +445,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%94%9F%E6%B4%BB%E7%AF%87/" class="post-category">
-                                生活篇
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
                             </a>
                         
                     </div>
@@ -459,28 +458,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-30
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-13
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    9 分
                 </div>
                 
 
@@ -503,31 +502,223 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="一、写在前面"><a href="#一、写在前面" class="headerlink" title="一、写在前面"></a>一、写在前面</h3><p>一直认为生活不应该只有学业还有各种方面的压力，一定要有属于自己的诗和远方，开启生活篇的博客就是希望能够分享一下sheepice在生活里面遇到的很多很多事情吧！也相当于没有写技术博客的一个补充吧哈哈！</p>
-<h3 id="二、《朋友请听好》"><a href="#二、《朋友请听好》" class="headerlink" title="二、《朋友请听好》"></a>二、《朋友请听好》</h3><p><img src="https://pics1.baidu.com/feed/d788d43f8794a4c2f670bf9a1b00dfdcac6e3929.jpeg?token=8b27736236d409e565c7c4c01d6aa0cd"></p>
-<p>这是一档我很喜欢的综艺，说是一个综艺节目但是我更觉得它的意义在于一个情感上的慰藉港湾，在这里面有很多很多温暖的声音，有很多很多暖心的故事。当然在这里面我也收获了很多很多的慰藉！</p>
-<h5 id="①“永远要相信世上的善意”"><a href="#①“永远要相信世上的善意”" class="headerlink" title="①“永远要相信世上的善意”"></a>①“永远要相信世上的善意”</h5><p>一位打电话来的女生，因为是自己一人在外打拼，所以自己就租了一个单间的房子，而有段时间她和邻居发生了争执。邻居住着一家，有着一个已经哑了的老奶奶，还有一个可爱的小孩。女生每次回家的时候，都会发现自己的家门口摆放着一双干净但又很破旧的皮鞋，因为是一个人，回家看到这样的情况，一定会有些恐惧的感觉。有一天，女生也没忍住，就去敲了邻居家的门，对着奶奶(情绪激动地)说到这样的事情，也许是因为太突然，女生觉得可能吓到老奶奶了，她看着老奶奶好像被吓得说不出话，因此也没有继续激动下去，而是提醒之后就走了。可是当天回来之后，那一双皮鞋依旧整整齐齐地摆放在自己家的门前，女生正无语的时候，看到鞋子里面有着一张小孩子写的纸条:”阿姨你好，我的奶奶她不能说话。我的爷爷走了，家里就剩下爷爷的这一双皮鞋，奶奶知道你是一个人住在这里，担心你的安全，所以把爷爷的皮鞋放在你的门口…….”</p>
-<p><strong>我的描述可能不会太感动，但是当时听到最后的纸条内容的时候，我是真的一下也没有绷住，眼泪很自热而然地就流了下来。那时的我就突然觉得这个世界真的很好，真的很好，无论是最亲近的人还是陌生的人，他们也许无时无刻地在对你表示着善意，而请我们也要同样地对这个世界，对这个世界的每一个人保持善意！</strong></p>
-<h5 id="②”你愿意和我建造一个图书馆吗？“"><a href="#②”你愿意和我建造一个图书馆吗？“" class="headerlink" title="②”你愿意和我建造一个图书馆吗？“"></a>②”你愿意和我建造一个图书馆吗？“</h5><p>因为故事很长，所以希望看到此篇博客的uu们可以到<a target="_blank" rel="noopener" href="https://b23.tv/qzMpMH7">朋友请听好</a>这里去看！我深深被女生最后的英文誓词感动了，不知道是不是一时兴起，但是我觉得英文得好好学：</p>
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>本篇文章主要以小根堆为例子，做一些有关小根堆的知识点笔记，前面主要就是堆排序，后面呢是一个题目的相关介绍，由于那个题目的特殊性，所以不多加赘述，这一篇主要是以堆能够实现的一些操作为例子，记录一下堆的一些应用。</p>
+<h1 id="二、理解"><a href="#二、理解" class="headerlink" title="二、理解"></a>二、理解</h1><p>本篇主要受众是已经建立在知道二叉树的建立的基础上，进行堆的记录。如果不太了解二叉树的uu们可以先去了解一下二叉树的建立，知道左右孩子的节点是怎么表示的，然后食用一下这篇文章。</p>
+<p>堆呢，其实原型就是一颗完全二叉树，我们知道，完全二叉树必须保证树儿子的完整性，即一个节点为x的父亲，如果他有孩子，那么他左右孩子的节点位置一定为2x和(2x+ 1)，而整个树的根节点坐标从1开始计算！</p>
+<p>而堆其实分为小根堆和大根堆。以小根堆为主要例子介绍。小根小根，就是根都是小的，也就是一个节点如果有孩子，那么他在他本身和他孩子中间，他是最小的。即是我们的小根堆。至于小根堆，以下面的图做例子，相信大家能够更加清晰的知道了。</p>
+<p><img src="https://img-blog.csdnimg.cn/04ee26c8076d4a15b9044e8ab0e92b6d.png"></p>
+<p>上图就是一个小根堆，而红颜色代表着每一个节点的坐标。</p>
+<h1 id="三、堆的相关函数"><a href="#三、堆的相关函数" class="headerlink" title="三、堆的相关函数"></a>三、堆的相关函数</h1><p>我觉得还是应该先以堆的相关函数为例子然后在进行后续堆的基本操作的讲解</p>
+<h3 id="①定义相关变量"><a href="#①定义相关变量" class="headerlink" title="①定义相关变量"></a>①定义相关变量</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">const int N &#x3D; 100050;
+int h[N]; &#x2F;&#x2F;存储堆的元素
+int sz &#x3D; 0; &#x2F;&#x2F;表示堆的大小<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="②down函数"><a href="#②down函数" class="headerlink" title="②down函数"></a>②down函数</h3><p>如果有一些节点发生了变化，可能会导致节点需要向下调整到合适的位置</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void down(int u) &#123;
+    &#x2F;&#x2F;记录节点和孩子谁最小，小的会到父亲的位置，成为根
+    int t &#x3D; u;
+    &#x2F;&#x2F;如果左孩子存在，并且比根小的话
+    if(2*u &lt;&#x3D; sz &amp;&amp; h[t] &gt; h[2*u]) t &#x3D; 2*u;
+    &#x2F;&#x2F;如果有孩子存在，并且比根和左孩子小的话
+    if(2*u+1 &lt;&#x3D; sz &amp;&amp; h[t] &gt; h[2*u+1]) t &#x3D; 2*u+1;
+    &#x2F;&#x2F;如果此时记录的t不等于u的话
+    if(t !&#x3D; u) &#123;
+        swap(h[t], h[u]);
+    	&#x2F;&#x2F;递归的处理一下后续的节点
+    	down(t);
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="③up函数"><a href="#③up函数" class="headerlink" title="③up函数"></a>③up函数</h3><p>如果有一些节点发生了变化，可能会导致节点需要向上调整到合适的位置，<font color="red">而向上调整与向下不同的是，向上调整的时候，只需要跟根节点进行比较就好，因为为了满足小根堆的需求，其中孩子变化了，但是在之前一个状态下，根还是保证最小。</font></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void up(int u) &#123;
+    &#x2F;&#x2F;当根节点比变化的孩子大，就让他向上调整
+    while(u &#x2F; 2 &gt; 0 &amp;&amp; h[u &#x2F; 2] &gt; h[u]) &#123;
+        swap(h[u &#x2F; 2], h[u]);
+        u &#x2F;&#x3D; 2;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="四、堆的基本操作"><a href="#四、堆的基本操作" class="headerlink" title="四、堆的基本操作"></a>四、堆的基本操作</h1><p>通过堆相关函数的介绍下面其实就是函数的拼凑了</p>
+<h3 id="①构建一个堆"><a href="#①构建一个堆" class="headerlink" title="①构建一个堆"></a>①构建一个堆</h3><p>这里有一个比较巧的方法，无论是什么样的小根堆，如果他含有n个元素，那么叶子节点(没有孩子节点层)的上一层最后一个存有元素的父亲节点为n &#x2F; 2,这个结论大家可以直接记住。所以我们在构建堆的时候，我们只需要从节点为n &#x2F; 2处开始向上调整节点，每个节点都往下down一遍就可以建立一个堆。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;这个操作可以把一个存有元素的一维数组，按照堆的节点顺序排列
+for(int i &#x3D; n &#x2F; 2; i &gt; 0; i -- ) &#123;
+    down(i);
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②向堆里面插入一个元素"><a href="#②向堆里面插入一个元素" class="headerlink" title="②向堆里面插入一个元素"></a>②向堆里面插入一个元素</h3><p>这里有个技巧就是下面几个点</p>
 <ul>
-<li><p>英文誓词</p>
+<li>将插入的元素先插入在堆的最后</li>
+<li>利用up函数向上调整一遍</li>
+</ul>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">h[++sz] &#x3D; val;
+&#x2F;&#x2F;向上调整堆的最后一个元素
+up(sz);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="③删除堆中的元素"><a href="#③删除堆中的元素" class="headerlink" title="③删除堆中的元素"></a>③删除堆中的元素</h3><ul>
+<li>将待删除的元素和堆中最后一个元素</li>
+<li>up调整一遍</li>
+<li>down调整一遍</li>
+</ul>
+<p>其中后面两个步骤只会进行其中一个，因为调整后，要不然就是比其父亲小，要不然就比孩子大。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">swap(h[k], h[sz]);
+sz--;
+up(k);
+down(k);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="④修改堆中的某个元素值"><a href="#④修改堆中的某个元素值" class="headerlink" title="④修改堆中的某个元素值"></a>④修改堆中的某个元素值</h3><p>和第三个操作类似</p>
 <ul>
-<li><p>For the first, I love you deeply and passionately that I have felt for no one else in this life.</p>
-</li>
-<li><p>You said “早上好” this morning with your awkward Chinese. And I thought I can’t imagine myself love you more than I do today. But I thought the same way yesterday.</p>
-</li>
-<li><p>And if it astonished you, it almost frightened me as well.</p>
-</li>
-<li><p>It’s just. I was not such an fool even once hoped. Aspired, dreamed that one could find everything one want in a person.</p>
-</li>
-<li><p>And yet in you, I found everything.</p>
-<p>…….</p>
-</li>
+<li>修改堆中元素值</li>
+<li>up调整一遍</li>
+<li>down调整一遍</li>
 </ul>
-</li>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">h[k] &#x3D; val;
+up(k);
+down(k);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="⑤输出堆中的最小值"><a href="#⑤输出堆中的最小值" class="headerlink" title="⑤输出堆中的最小值"></a>⑤输出堆中的最小值</h3><ul>
+<li>直接输出堆顶元素就好</li>
 </ul>
-<p><strong>读至此，我渴望着自己也能够变得更加的温柔，善良等等，因为一生的遇见，遇见的所有人，还有你，是多么多么的不容易啊。就像最后唱到的《慢慢喜欢你》,歌曲温柔，听着听着，就幻想到了后面的一生。</strong></p>
-<h3 id="三、结束"><a href="#三、结束" class="headerlink" title="三、结束"></a>三、结束</h3><p>虽然当下的人包括自己真的在很多很多时候，想要快一点，再快一点。也许是快一点找到喜欢的一份工作，也许是快一点找到自己喜欢的人，可是殊不知，美好是一直在身边的。走得越快，真的能够抓住吗？</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">cout &lt;&lt; h[1] &lt;&lt; endl;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<p><font color="blue">不难发现，其实整个堆的调整就是类似打拳皇一样，我们先熟知每一个英雄他有什么技能，然后根据不同的需求，利用我们已知的技能，打出不同的组合技能，最终KO对方。而我们就是要利用组合起来的函数AC相关的算法题。还是很好玩的！</font></p>
+<h1 id="五、相关题目"><a href="#五、相关题目" class="headerlink" title="五、相关题目"></a>五、相关题目</h1><h3 id="题目一-堆排序"><a href="#题目一-堆排序" class="headerlink" title="题目一.堆排序"></a>题目一.堆排序</h3><p>能够利用堆排序主要的原因就是小根堆能够维护我们整个堆中的最小值。当最小值被输出之后，我们删除堆顶元素，然后不断的输出新的堆顶元素，我们就可以完成这一个题目。所以只需要利用四中的①③⑤组合技我们就可以AC掉了</p>
+<p><img src="https://img-blog.csdnimg.cn/7e6cd8f3a0f6437c9b5f531c3c83eff9.png"></p>
+<p><code>完整AC代码</code></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+const int N &#x3D; 100005;
+int m, n;
+int sz, h[N];
+
+void down(int x) &#123;
+    int t &#x3D; x;
+    &#x2F;&#x2F;左子树存在且比节点小
+    if(2 * x &lt;&#x3D; sz &amp;&amp; h[2 * x] &lt; h[t]) t &#x3D; 2 * x;
+    &#x2F;&#x2F;右子树存在且比节点小
+    if(2 * x + 1 &lt;&#x3D; sz &amp;&amp; h[2 * x + 1] &lt; h[t]) t &#x3D; 2 * x + 1;
+    if(t !&#x3D; x) &#123;
+        swap(h[t], h[x]);
+        down(t);
+    &#125;
+&#125;
+
+int main() &#123;
+    cin &gt;&gt; n &gt;&gt; m;
+    sz &#x3D; n;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i++) cin &gt;&gt; h[i];
+    for(int i &#x3D; n &#x2F; 2; i; i--) down(i);
+    while(m--) &#123;
+        cout &lt;&lt; h[1] &lt;&lt; &quot; &quot;;
+        h[1] &#x3D; h[sz--];
+        down(1);
+    &#125;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p><img src="https://img-blog.csdnimg.cn/a21629f07a4f486a93bb6dbc8ce117e6.png"></p>
+<p>这个题目因为要记录一下第k个插入数的位置，所以大家可以直接用结构体装一下每个节点是第几个插入的，但是为了快速，是可以类似利用数组去模拟哈希表的方式进行实现，因为可能会有些难理解。我写了相关的注释在代码中，可以量力理解一下。</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;ph[k]表示第k个插入的节点在堆中的下标，hp[k]表示堆中第k个节点是第几个插入的数。
+
+#include&lt;bits&#x2F;stdc++.h&gt;
+using namespace std;
+const int N &#x3D; 100005;
+int ph[N], hp[N], h[N];
+&#x2F;&#x2F;m代表第m个插入的数，cnt代表整个堆的大小
+int m, cnt;
+&#x2F;&#x2F;这个swap就实现了不仅元素交换了，节点对应是第几个插入的数也被交换了！
+void heap_swap(int a, int b) &#123;
+    &#x2F;&#x2F;交换第某个插入的数的堆中下标
+    swap(ph[hp[a]], ph[hp[b]]);
+    &#x2F;&#x2F;交换堆中某个节点代表插入的数
+    swap(hp[a], hp[b]);
+    &#x2F;&#x2F;交换堆中的两个位置的值
+    swap(h[a], h[b]);
+&#125;
+
+&#x2F;&#x2F;下传操作
+void down(int x) &#123;
+    int t &#x3D; x;
+    if(2 * x &lt;&#x3D; cnt &amp;&amp; h[2 * x] &lt; h[t]) t &#x3D; 2 * x;
+    if(2 * x + 1 &lt;&#x3D; cnt &amp;&amp; h[2 * x + 1] &lt; h[t]) t &#x3D; 2 * x + 1;
+    if(t !&#x3D; x) &#123;
+        heap_swap(t, x);
+        down(t);
+    &#125;
+&#125;
+
+&#x2F;&#x2F;上传操作
+void up(int x) &#123;
+    while(x &#x2F; 2 &amp;&amp; h[x &#x2F; 2] &gt; h[x]) &#123;
+        heap_swap(x, x &#x2F; 2);
+        x &gt;&gt;&#x3D; 1;
+    &#125;
+&#125;
+
+int main() &#123;
+    int num, k, n;
+    cin &gt;&gt; n;
+    string op;
+    while(n--) &#123;
+        cin &gt;&gt; op;
+        &#x2F;&#x2F;插入操作
+        if(op &#x3D;&#x3D; &quot;I&quot;) &#123;
+            cin &gt;&gt; num;
+            cnt++; m++;
+            h[cnt] &#x3D; num; hp[cnt] &#x3D; m; ph[m] &#x3D; cnt;
+            up(cnt);
+        &#125;
+        &#x2F;&#x2F;输出最小值
+        else if(op &#x3D;&#x3D; &quot;PM&quot;) &#123;
+            &#x2F;&#x2F; cout &lt;&lt; n &lt;&lt; endl;
+            cout &lt;&lt; h[1] &lt;&lt; endl;
+        &#125;
+        &#x2F;&#x2F;删除最小值
+        else if(op &#x3D;&#x3D; &quot;DM&quot;) &#123;
+            heap_swap(1, cnt);
+            cnt--;
+            down(1);
+        &#125;
+        &#x2F;&#x2F;删除第k个插入的数
+        else if(op &#x3D;&#x3D; &quot;D&quot;) &#123;
+            cin &gt;&gt; k;
+            &#x2F;&#x2F;必须先保存一个位置，否则有可能在交换过程直接交换了指针位置，导致答案错误！！
+            k &#x3D; ph[k];
+            heap_swap(k, cnt);
+            cnt--;
+            up(k);
+            down(k);
+        &#125;
+        &#x2F;&#x2F;修改第k个插入的数为num
+        else &#123;
+            cin &gt;&gt; k &gt;&gt; num;
+            int id &#x3D; ph[k];
+            h[id] &#x3D; num;
+            up(id);
+            down(id);
+        &#125;
+    &#125;
+    return 0;
+&#125;
+
+作者：sheepice
+链接：https:&#x2F;&#x2F;www.acwing.com&#x2F;activity&#x2F;content&#x2F;code&#x2F;content&#x2F;3438577&#x2F;
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -554,7 +745,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/03/30/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB1/">https://sample.com/2022/03/30/%E7%94%9F%E6%B4%BB%E5%88%86%E4%BA%AB1/</a>
+                    <a href="https://sample.com/2022/07/03/%E6%A8%A1%E6%8B%9F%E5%A0%86/">https://sample.com/2022/07/03/%E6%A8%A1%E6%8B%9F%E5%A0%86/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -592,8 +783,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E7%94%9F%E6%B4%BB/">
-                                    <span class="chip bg-color">生活</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A8%A1%E6%9D%BF/">
+                                    <span class="chip bg-color">-数据结构 -模板</span>
                                 </a>
                             
                         </div>
@@ -767,17 +958,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/04/01/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%983/">
+                <a href="/2022/07/03/%E6%A8%A1%E6%8B%9F%E5%A0%86/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpeg" class="responsive-img" alt="力扣刷题3">
+                        <img src="/medias/featureimages/6.jpeg" class="responsive-img" alt="模拟堆">
                         
-                        <span class="card-title">力扣刷题3</span>
+                        <span class="card-title">模拟堆</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -787,30 +979,27 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
-                                    力扣刷题篇
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%88%B7%E9%A2%98/">
-                        <span class="chip bg-color">刷题</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
-                        <span class="chip bg-color">力扣</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">-数据结构 -模板</span>
                     </a>
                     
                 </div>
@@ -824,13 +1013,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/29/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%982/">
+                <a href="/2022/07/03/Trie%E6%95%B0-%E5%AD%97%E5%85%B8%E6%A0%91/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="力扣刷题2">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Trie数(字典树)">
                         
-                        <span class="card-title">力扣刷题2</span>
+                        <span class="card-title">Trie数(字典树)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -841,14 +1030,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8A%9B%E6%89%A3%E5%88%B7%E9%A2%98%E7%AF%87/" class="post-category">
-                                    力扣刷题篇
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
                                 </a>
                             
                             
@@ -858,12 +1047,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%88%B7%E9%A2%98/">
-                        <span class="chip bg-color">刷题</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%8A%9B%E6%89%A3/">
-                        <span class="chip bg-color">力扣</span>
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">-数据结构 -模板</span>
                     </a>
                     
                 </div>
@@ -1018,6 +1203,13 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
+    });
+</script>
 
 
 
