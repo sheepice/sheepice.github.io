@@ -4,6 +4,291 @@
   
     
     <entry>
+      <title>图论之Kruskal</title>
+      <link href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BKruskal/"/>
+      <url>/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BKruskal/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图论专题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模板 </tag>
+            
+            <tag> 图论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图论之Prim</title>
+      <link href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BPrim/"/>
+      <url>/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BPrim/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图论专题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模板 </tag>
+            
+            <tag> 图论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图论之Floyd</title>
+      <link href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BFloyd/"/>
+      <url>/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BFloyd/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图论专题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模板 </tag>
+            
+            <tag> 图论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图论之spfa</title>
+      <link href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8Bspfa/"/>
+      <url>/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8Bspfa/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>对于之前有写到的Dijkstra算法，我们发现他只能用来计算边的权值为正的情况，这其实也就是为什么我们需要开一个st数组，对于一个已经被更新过的点来说，他一旦用于更新其他点的时候，我们就不需要再考虑再利用这个点再次更新其他的点。</p><p><font color="blue">但是呢，如果点之间的边是负值的时候，就必须去遍历一下所有的边，因为存在负值的时候，负数加正数是会把距离缩短的，所以呢就可以利用遍历所有边的办法去更新点到原点的距离。</font>这就需要用到后续要说的spfa算法，那么在讲这个算法之前，需要了解bellman-ford算法，会先利用这个算法进行一个引入。</p><h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①bellman-ford-ACwing-853"><a href="#①bellman-ford-ACwing-853" class="headerlink" title="①bellman-ford(ACwing.853)"></a>①bellman-ford(ACwing.853)</h3><p><img src="https://img-blog.csdnimg.cn/dbffd9a6fb0b44748a688cb55b6fdd9e.png" alt="边权受限制的最短路"></p><h4 id="相关分析"><a href="#相关分析" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度：</code>  $O(mn)$</p><p><code>适用场景：</code>  这个算法可以看到，时间复杂度比较高，所以mn的值要落在$1e7-1e8$之间才能满足不超时，另外，由于这个算法，是从原点出发，外层循环多少次，内层就需要更新多少次边。这个实际含义就是，外层循环多少次，就代表：<font color="red">从原点出发了多少条边</font>，所以能够计算，走多少条边到终点的一个最短距离，<font color="red">注意这个最短距离并不一定是整个图看上去的最短，而是满足了走k条边的最短！</font></p><p><code>思路：</code>  如果题目规定走k条边，那么按照上述分析，外层循环k次代表走k条边的更新情况，内部循环，更新每一条边，一旦能够更新就更新，不能更新的话，距离保证不变。<font color="red">这里注意由于内层循环更新的是所有的边，所以是有可能发生应该只再原本的基础上衍生1条边，但是衍生出去了2条边。所以需要一个回溯的数组，保存一下上一次更新好的dist数组。而这个串联反应可以举个例子，如下：</font></p><p><img src="https://img-blog.csdnimg.cn/8148d0f1d76e4a7d95599783af89bef6.png"></p><p>假设这个图，如果我们的k只给1的话，那么从1-&gt;3的距离最短应该为3，而不是1+1&#x3D;2。假设我们在更新的时候，还是像之前dijkstra的更新方式，利用dist数组更新的话，那么在仅有的一次循环里面，1-&gt;2这条边的距离首先会被更新为1，那么在2-&gt;3这条边就会按照dist[2] &#x3D; 1的这个数组更新dist[3],让dist[3]变成2，那么就和我们最终得到的答案3就是不同的。</p><h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;const int N &#x3D; 505, M &#x3D; 10050;&#x2F;&#x2F;因为要遍历所有边，所以结构体存图struct Edge &#123;    int a, b, c;&#125;edges[M];int dist[N], n, m, k;&#x2F;&#x2F;设置一个回溯的数组int backup[N];void bellman_ford() &#123;    dist[1] &#x3D; 0;        for(int i &#x3D; 1; i &lt;&#x3D; k; i ++ ) &#123;        &#x2F;&#x2F;先进行一个备份操作        memcpy(backup, dist, sizeof dist);                for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;            auto t &#x3D; edges[i];            &#x2F;&#x2F;就是这个地方，如果写成            &#x2F;&#x2F;dist[t.b] &gt; dist[t.a] + t.c的话            &#x2F;&#x2F;就会有可能出现串联反应            if(dist[t.b] &gt; backup[t.a] + t.c) &#123;                dist[t.b] &#x3D; backup[t.a] + t.c;            &#125;        &#125;    &#125;&#125;int main() &#123;    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;    memset(dist, 0x3f, sizeof dist);        for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;        int a, b, c;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;        &#x2F;&#x2F;代表a到b有一条权值为c的边        edges[i] &#x3D; &#123;a, b, c&#125;;    &#125;        bellman_ford();        if(dist[n] &gt; 0x3f3f3f3f &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;    else cout &lt;&lt; dist[n] &lt;&lt; endl;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="②spfa模板-ACwing-851"><a href="#②spfa模板-ACwing-851" class="headerlink" title="②spfa模板(ACwing.851)"></a>②spfa模板(ACwing.851)</h3><p><img src="https://img-blog.csdnimg.cn/5cf3def466b34406a70e05162bfa6d1f.png" alt="spfa求最短路"></p><h4 id="相关分析-1"><a href="#相关分析-1" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度：</code>  $O(m)$</p><p><code>适用场景：</code>  其实spfa这个算法以他比较优越的时间复杂度，其实用在很多题目都可以，且不仅能够求带负权的最短路，在一定程度上也可以解决dijkstra的题目。并且这个算法，可以判定一个图里面是否有负环</p><p><code>思路：</code>  这里的思路其实也是从上一个bellman-ford算法延申过来的。我们可以看到，上一个算法的好处就是可以知道有边限制的最短路，但是其实如果没有边的限制的话，第一个算法其实在内层循环遍历边的时候，会有很多操作本身更新不了一个点到原点的距离，但是还是进行了一个尝试更新的操作。<font color="red">那么spfa的话其实就是可以排除这些没有实际价值的更新操作，也就是说在$dist[j] &#x3D; dist[t] + w[i] $的那一步，只有一个点能够达到这一步操作了，让这个点进入队列之中，才有机会更新其他的边，如果某个点本身压根无法更新其他边，那也就没有必要让他到队列中再去更新其他边 </font></p><h4 id="完整AC代码-1"><a href="#完整AC代码-1" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;queue&gt;using namespace std;const int N &#x3D; 1e5 + 5;bool st[N];int dist[N], n, m;int h[N], w[N], e[N], ne[N], idx;queue&lt;int&gt; q;void add(int a, int b, int c) &#123;    e[idx] &#x3D; b, w[idx] &#x3D; c, ne[idx] &#x3D; h[a], h[a] &#x3D; idx ++;&#125;void spfa() &#123;    q.push(1);    dist[1] &#x3D; 0;    st[1] &#x3D; true;    &#x2F;&#x2F;利用类似宽搜的方法进行优化    while(q.size()) &#123;        auto t &#x3D; q.front();        q.pop();        &#x2F;&#x2F;注意用过的点，有可能在后续更新的时候会继续用        st[t] &#x3D; false;                for(int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i]) &#123;            int j &#x3D; e[i];                        if(dist[j] &gt; dist[t] + w[i]) &#123;                dist[j] &#x3D; dist[t] + w[i];                if(!st[j]) &#123;                    q.push(j);                    st[j] &#x3D; true;                &#125;            &#125;        &#125;    &#125;&#125;int main() &#123;    memset(h, -1, sizeof h);    memset(st, 0, sizeof st);    memset(dist, 0x3f, sizeof dist);    cin &gt;&gt; n &gt;&gt; m;        for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;        int a, b, c;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;        add(a, b, c);    &#125;        spfa();        if(dist[n] &gt; 0x3f3f3f3f &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;    else cout &lt;&lt; dist[n] &lt;&lt; endl;        return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h4 id="代码相关问题"><a href="#代码相关问题" class="headerlink" title="代码相关问题"></a>代码相关问题</h4><p>这里的话有一个问题，就是为什么一个已经被使用来更新其他点的点，从对头取出来的那一刻，他的st数组要被更新成为没有使用过，这里举一个例子，例子图如下:</p><p><img src="https://img-blog.csdnimg.cn/c108a2f31d904c2f8056dcaecc2581a7.png" alt="spfa例子图"></p><p>我们可以看到这个图，假设，我们在用1这个点第一次更新好1-&gt;2和1-&gt;4的距离后，不让他的st数组变为false的话，那么当3这个点用来更新1的时候，很显然从1-&gt;2-&gt;3-&gt;1一回会让整个路径变小，而我们虽然更新了一下3-&gt;1的距离，但是并没有在后面让1入队的话，那么1这个点就不会继续更新4这个点，当然这个例子有些问题，因为，我们可以一直让上方的环不断的走，让最后的1到4的路径距离不断的减少，所以希望读者有更好的例子可以举例一下。</p><p>当然，这个题，如果不专门用st代表是否访问，直接更新然后不断放点那其实就等同于bellman-ford算法了，所以还是建议这个地方能够继续好好理解一下。然后也正因为这样，spfa算法可以去判定一下是否有负环，或者是否有一个环可以让某一个路径的距离一直减小。</p><h3 id="③spfa判断负环-ACwing-852"><a href="#③spfa判断负环-ACwing-852" class="headerlink" title="③spfa判断负环(ACwing. 852)"></a>③spfa判断负环(ACwing. 852)</h3><p><del>负环的定义就是一个环上边的权值全部为负数</del>，刚开始我还一直这么认为的，其实负环应该是一个环上所有数加起来的权值和是为负数叫做负环，因此根据上面的一个分析，其实判断负环就很容易了，就看循环是不是一直跑不出来，因为不能死循环，所以我们要利用一个cnt数组，判断一下某个点走了多少次，根据抽屉原理，一旦走的次数比n大的时候，那么一定存在负环。</p><p><img src="https://img-blog.csdnimg.cn/ce8a83dc0fb24fb1bb3636a59bd3c1c4.png"></p><h4 id="完整AC代码-2"><a href="#完整AC代码-2" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;queue&gt;using namespace std;const int N &#x3D; 100050, INF &#x3D; 1e9 + 10;int n, m, idx;int h[N], e[N], ne[N], w[N];int dist[N], cnt[N];bool st[N];void add(int a, int b, int c) &#123;    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], w[idx] &#x3D; c, h[a] &#x3D; idx ++ ;&#125;bool spfa() &#123;    queue&lt;int&gt; q;    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;        q.push(i);        st[i] &#x3D; true;    &#125;        while(q.size()) &#123;        int t &#x3D; q.front();        q.pop();        st[t] &#x3D; false;        for(int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i] ) &#123;            int j &#x3D; e[i];                        if(dist[j] &gt; dist[t] + w[i]) &#123;                dist[j] &#x3D; dist[t] + w[i];                cnt[j] &#x3D; cnt[t] + 1;                                if(cnt[j] &gt;&#x3D; n) return true;                                if(!st[j]) &#123;                    st[j] &#x3D; true;                    q.push(j);                &#125;            &#125;        &#125;    &#125;        return false;&#125;int main() &#123;    cin &gt;&gt; n &gt;&gt; m;    memset(h, -1, sizeof h);        for(int i &#x3D; 0; i &lt; m; i ++ ) &#123;        int a, b, c;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;        add(a, b, c);    &#125;        if(spfa()) cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;    else cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;        return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h4 id="代码问题"><a href="#代码问题" class="headerlink" title="代码问题"></a>代码问题</h4><p>为什么dist数组不用初始化为正无穷？</p><p>​    其实就是，负环必须走的那个路径是有负数产生的，且由于一个环必须满足权值为负，那么我们其实可以偷懒一下，让每次开始更新dist出现在，我们搜索的时候，第一次搜到的负数开始，然后在更新dist，如果有负环，那么这个dist是会不断减少的。<font color="red">这个等价于什么呢，我们可以发现，之前的题目都是从1这个点出发开始的，而负环不一定存在1这个点连接的路径上，所以其实在刚开始，队列就应该把所有点放进去，然后所有点去找负环，那也就是说从这个角度看，所有点距离本身的距离为0，那么初始化为0就是正确的！</font></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图论专题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模板 </tag>
+            
+            <tag> 图论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>图论之Dijkstra</title>
+      <link href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BDijkstra/"/>
+      <url>/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BDijkstra/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>本篇开始进行有关图论Dijkstra的题目整理，首先会整理两个模板，针对dijkstra的朴素版本和优化版本，此系列也会一直的更新，对于之后做到相关的题目，会放到此专题当中！而对于这个算法来说，一般求的是对于一些有向图，从某个点走到另外的一个终点不同路径的最小距离，<font color="red">注意此时有向边的权值必须为正数才行！</font></p><h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①朴素版Dijkstra-ACwing-849"><a href="#①朴素版Dijkstra-ACwing-849" class="headerlink" title="①朴素版Dijkstra(ACwing 849)"></a>①朴素版Dijkstra(ACwing 849)</h3><p><img src="https://img-blog.csdnimg.cn/9d19c2becddc4fc9a17f3b542df945cd.png" alt="求最短路"></p><h4 id="相关分析："><a href="#相关分析：" class="headerlink" title="相关分析："></a>相关分析：</h4><p><code>时间复杂度：</code>   $O(n^2)$，此处的n代表点的数量</p><p><code>适用场景：</code>  题目中是稠密图，点比较少，但是边比较多。此时利用邻接矩阵存图！</p><p><code>思路：</code>  朴素版本的Dijkstra的整体思路就是，从某个点(记作一号点)开始设其距离为0，然后通过与他本身距离更短的点不断的更新其他点到一号点的一个距离。外层的循环就是循环点的编号，内层的循环就是找到第一个离原点最近的那个点，然后利用那个点更新他其他边到原点最近的距离。</p><h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;const int N &#x3D; 505;&#x2F;&#x2F;邻接矩阵存图, n表示点数,m表示边数量;int g[N][N], n, m;&#x2F;&#x2F;dist数组表示某个点到原点的最短距离int dist[N];&#x2F;&#x2F;记录某个点有没有被更新过bool st[N];void dijkstra() &#123;    &#x2F;&#x2F;原点距离本身为0    dist[1] &#x3D; 0;        &#x2F;&#x2F;两层循环    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;        &#x2F;&#x2F;哨兵，便于选点        int t &#x3D; -1;        &#x2F;&#x2F;找到没有用来更新其他点的最短距离原点的点        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ ) &#123;            if(!st[j] &amp;&amp; (t &#x3D;&#x3D; -1 || dist[j] &lt; dist[t])) &#123;                t &#x3D; j;            &#125;        &#125;        &#x2F;&#x2F;t这个点已经用来更新过了        st[t] &#x3D; true;                &#x2F;&#x2F;用t这个点更新一下        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ ) &#123;            dist[j] &#x3D; min(dist[j], g[t][j] + dist[t]);        &#125;    &#125;&#125;int main() &#123;    &#x2F;&#x2F;初始化，刚开始边都是正无穷，便于取最小，判定是否有路径    memset(g, 0x3f, sizeof g);    memset(dist, 0x3f, sizeof dist);    cin &gt;&gt; n &gt;&gt; m;    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;        &#x2F;&#x2F;代表a到b有一个权值为v的边        int a, b, v;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; v;        &#x2F;&#x2F;可以提前排除自环        if(a !&#x3D; b) g[a][b] &#x3D; min(g[a][b], v);    &#125;    &#x2F;&#x2F;进行求解    dijkstra();    &#x2F;&#x2F;如果路径不存在，那么dist[n]还是正无穷    if(dist[n] &#x3D;&#x3D; 0x3f3f3f3f) cout &lt;&lt; -1 &lt;&lt; endl;    else cout &lt;&lt; dist[n] &lt;&lt; endl;        return 0;    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><hr><h3 id="②堆优化版Dijkstra-ACwing-850"><a href="#②堆优化版Dijkstra-ACwing-850" class="headerlink" title="②堆优化版Dijkstra(ACwing.850)"></a>②堆优化版Dijkstra(ACwing.850)</h3><p><img src="https://img-blog.csdnimg.cn/630fa3f2d27543bbb1b52f70837ee197.png" alt="求最短路"></p><h4 id="相关分析"><a href="#相关分析" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度：</code>   $O(mlogm)$</p><p><code>适用场景:  </code>  这个题目和第一个题目最大的不同就是点数变多了，而如果再使用$O(n^2)$的做法就会超时，所以需要看点数比较多，而边数能够满足时间复杂度的时候就可以使用了。</p><p><code>思路：  </code>  之所以有这个优化，主要是因为我们可以看到第一个解法再寻找t用来更新其他路径的时候，是利用一层循环进行更新才能保证t的那个点更新的距离是最短的，但是其实这个过程是可以利用一个数据结构–优先队列(堆)进行相关的优化的，而在堆进行查找的操作是O(1)的，只不过删除元素后，把堆调整，是需要log的时间,所以以上的时间可以被优化。</p><h4 id="完整AC代码-1"><a href="#完整AC代码-1" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;queue&gt;#define x first#define y secondusing namespace std;typedef pair&lt;int, int&gt; PII;const int N &#x3D; 2e5;int m, n, dist[N];&#x2F;&#x2F;利用邻接表存int h[N], e[N], ne[N], w[N], idx;&#x2F;&#x2F;队列放一个pair,pair第一个装距离，第二个装点编号&#x2F;&#x2F;因为pair默认按照第一个关键字排序&#x2F;&#x2F;这样可以做到排序的时候就是按照距离短进行priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt; &gt; q;bool st[N];&#x2F;&#x2F;邻接表的一半添加操作，头插法void add(int a, int b, int c) &#123;    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], w[idx] &#x3D; c, h[a] &#x3D; idx ++ ;&#125;void dijkstra() &#123;    dist[1] &#x3D; 0;    &#x2F;&#x2F;先让队列存在第一个点，第一个点的距离为0，编号是1    q.push(&#123;0, 1&#125;);        while(q.size()) &#123;        auto t &#x3D; q.top();        q.pop();        &#x2F;&#x2F;如果此点已经更新了其他点就不用再更新        if(st[t.y]) continue;        &#x2F;&#x2F;标记此点用来更新其他点        st[t.y] &#x3D; true;                for(int i &#x3D; h[t.y]; i !&#x3D; -1; i &#x3D; ne[i]) &#123;            int j &#x3D; e[i];            &#x2F;&#x2F;只有让某个点的距离能够更新的情况            &#x2F;&#x2F;才把那个点放到队列，可能用来更新其他点到原点的距离            if(dist[j] &gt; w[i] + dist[t.y]) &#123;                dist[j] &#x3D; w[i] + dist[t.y];                q.push(&#123;dist[j], j&#125;);            &#125;        &#125;            &#125;&#125;int main() &#123;    &#x2F;&#x2F;初始化操作    &#x2F;&#x2F;距离先初始化为正无穷    &#x2F;&#x2F;头结点开始指向空，记作-1    memset(dist, 0x3f, sizeof dist);    memset(h, -1, sizeof h);    memset(st, 0, sizeof st);    cin &gt;&gt; n &gt;&gt; m;    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;        int a, b, c;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;        add(a, b, c);    &#125;        dijkstra();        if(dist[n] &#x3D;&#x3D; 0x3f3f3f3f) cout &lt;&lt; -1 &lt;&lt; endl;    else cout &lt;&lt; dist[n] &lt;&lt; endl;        return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 图论专题篇 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 模板 </tag>
+            
+            <tag> 图论 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>状压dp</title>
+      <link href="/2022/07/28/%E7%8A%B6%E5%8E%8Bdp/"/>
+      <url>/2022/07/28/%E7%8A%B6%E5%8E%8Bdp/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 动态规划专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -状压DP -DP分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>树形dp</title>
+      <link href="/2022/07/28/%E6%A0%91%E5%BD%A2dp/"/>
+      <url>/2022/07/28/%E6%A0%91%E5%BD%A2dp/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 动态规划专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -树形DP -DP分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>bfs 专题</title>
+      <link href="/2022/07/27/bfs-%E4%B8%93%E9%A2%98/"/>
+      <url>/2022/07/27/bfs-%E4%B8%93%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 搜索专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -宽度优先搜索 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>dfs专题</title>
+      <link href="/2022/07/27/dfs%E4%B8%93%E9%A2%98/"/>
+      <url>/2022/07/27/dfs%E4%B8%93%E9%A2%98/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 搜索专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -深度优先搜索 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>区间DP</title>
+      <link href="/2022/07/27/%E5%8C%BA%E9%97%B4DP/"/>
+      <url>/2022/07/27/%E5%8C%BA%E9%97%B4DP/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>最近写的一些相关文章，主要会整理一下相关题目，此系列会不断的更新，只要遇到了相关的题目就都会整理在一起！本篇主要针对区间DP进行相关整理。区间dp有一个特点，就是一般题目都会对一个区间进行一些处理，而此dp的状态定义也与区间相关。而整个题目的分析，采取闫式dp分析法，从<font color="red">状态表示，状态计算</font>两个方面分析每一个dp题目。希望之后做到类似的题目的时候能够更快速的分析出如何解题！</p><h1 id="题目汇总"><a href="#题目汇总" class="headerlink" title="题目汇总"></a>题目汇总</h1><h3 id="①ACwing-282-石子合并"><a href="#①ACwing-282-石子合并" class="headerlink" title="①ACwing 282.石子合并"></a>①ACwing 282.石子合并</h3><p><img src="https://img-blog.csdnimg.cn/b2869b5a18454244929219a1982c5a8e.png" alt="石子合并"></p><p><code>注意：</code></p><p>本题和大家比较常见的合并果子那一个贪心题不同，因为此题必须合并相邻的两堆石子。如果合并的顺序是任意的话才能够利用贪心！</p><h4 id="DP分析"><a href="#DP分析" class="headerlink" title="DP分析"></a>DP分析</h4><p><img src="https://img-blog.csdnimg.cn/ec2607b4d3a447579a45ccbe1b105650.png"></p><blockquote><p>此处解释上方的一个分析方法</p><p>对于动态规划来说，如何能够正确的写出这类的题目，首先要知道，先定义一个与题目相关的状态表示，而这样的状态表示恰好表示一类集合，而这一类集合表达出来以后，是可以先考虑以集合的最后一个点作为分界点往前看。</p><p>假设我们在计算f(i, j)的时候，我们可以以j为分界点，把集合分成j - 1的子集合，状态转移中的m分界点。注意这个m所选取的区间是落在[i, j)这个区间内的。</p><p>为什么i为闭区间，j为开区间呢？</p><p>因为选i为分界点，可以分为拿第一个和后面所有为两个区间</p><p>而如果选j为分界点，就无法分成两堆了！</p><p>一旦分好这些分界点之后，就知道如何进行递推了。</p></blockquote><h4 id="状态转移"><a href="#状态转移" class="headerlink" title="状态转移"></a>状态转移</h4><p>如果以m为分界点，我们要计算f(i, j)的值</p><p><font color="red">$f(i, j) &#x3D; min(f(i, m) + f(m + 1, j) + sum(i, j)), m \in [i, j)$</font></p><p>其中sum(i, j)表示[i, j]区间所有果子合并需要花费的体力值，这个也就是合并两段区间所需要的体力值！而因为这个是一个区间求和的问题，因此再计算sum的时候就可以利用前缀和进行一个优化了！</p><p><font color="blue">最后结果就是：f(1,n)</font></p><h4 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h4><p>对于初始化来说，有下面情况</p><p>i &#x3D;&#x3D; j : 就是合并一个石子的最小花费为0(因为不需要合并)</p><p>i &lt; j : 最小花费初始化为$+\infty$,因为要求最小值，所以可以初始成一个很大的数，<font color="red">这里不能说初始化为0，因为0代表无花费，这样的话怎么推导，都是最小为0，那么最后的答案肯定是0</font></p><h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;using namespace std;const int N &#x3D; 305, INF &#x3D; 0x3f3f3f3f;&#x2F;&#x2F;初始化1int f[N][N];&#x2F;&#x2F;前缀和数组int sum[N];int main() &#123;    int n;    cin &gt;&gt; n;    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ )&#123;        cin &gt;&gt; sum[i];        sum[i] +&#x3D; sum[i - 1];    &#125;        &#x2F;&#x2F;先枚举可能的区间长度    for(int len &#x3D; 2; len &lt;&#x3D; n; len ++ ) &#123;        &#x2F;&#x2F;左端点为i，右端点为i + len - 1;        &#x2F;&#x2F;满足右端点在n内就可以满足左端点范围        for(int i &#x3D; 1; i + len - 1 &lt;&#x3D; n; i ++ ) &#123;            int l &#x3D; i, r &#x3D; i + len - 1;            &#x2F;&#x2F;初始化2            f[l][r] &#x3D; INF;                        &#x2F;&#x2F;枚举分界点m            for(int m &#x3D; l; m &lt; r; m ++ ) &#123;                &#x2F;&#x2F;状态转移                f[l][r] &#x3D; min(f[l][r], f[l][m] + f[m + 1][r] + sum[r] - sum[l - 1]);            &#125;        &#125;    &#125;        cout &lt;&lt; f[1][n] &lt;&lt; endl;        return 0;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 动态规划专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -区间DP -DP分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>线性DP</title>
+      <link href="/2022/07/27/%E7%BA%BF%E6%80%A7DP/"/>
+      <url>/2022/07/27/%E7%BA%BF%E6%80%A7DP/</url>
+      
+        <content type="html"><![CDATA[<p>等待更新ing……</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 动态规划专题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -线性DP -DP分析 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>模拟堆</title>
       <link href="/2022/07/03/%E6%A8%A1%E6%8B%9F%E5%A0%86/"/>
       <url>/2022/07/03/%E6%A8%A1%E6%8B%9F%E5%A0%86/</url>
