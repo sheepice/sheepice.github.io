@@ -30,9 +30,9 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="sheepice的博客" type="application/atom+xml">
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 
@@ -601,7 +601,7 @@ int main() &#123;
 <p>上面的样例，显然从2到10的距离最短是19，但是如果按照第二种方式，最后得到的结果会是impossible的，为什么呢？<font color="red">从循环顺序来看，当我们要求$ g[2][10]$的时候就需要求$g[2][1]$,而在求$g[2][1]$的时候，我们发现$g[2][1]是通过g[2][9]和g[9][1]得到的 $，而如果循环把k放到内层，那么$g[2][9]$会在i&#x3D;2，j&#x3D;9的时候才能推出来，这样就导致$g[2][1]$不能顺利得到正确结果，也就是最后得不到一条2到10的最短距离。</font></p>
 <p>其次我们应该用动态规划的思想去理解Floyd的算法。我们可以让这个算法的动态规划数组看成$f(k, i, j)$代表以前k个点为媒介的时候，从i到j这个点的最短距离。</p>
 <p>利用dp分析的方法有下面这个图</p>
-<p><img src="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BFloyd/Users/0604520/AppData/Roaming/Typora/typora-user-images/image-20220730101206077.png"></p>
+<p><img src="https://img-blog.csdnimg.cn/6cdceff2fc274a91b8618651e3500d49.png" alt="闫式dp分析"></p>
 <p>动态规划转移方程如下:<br>$$<br>f[k][i][j] &#x3D; min(f[k - 1][i][j],f[k - 1][i][k] + f[k-1][k][j])<br>$$<br>也就是说，我们当前第k层的状态应该根据上一层已经推出的k-1层来进行运算，所以k这一层循环应当放在最外面。</p>
 <p>而由于上一层推出来的一个数据本身就可以用来推导下一层，就和背包dp问题的感觉一样，就可以优化一层，利用滚动数组的感觉，变成二维的dp解法，也就是我们的解法一。</p>
 <h3 id="②未完待续"><a href="#②未完待续" class="headerlink" title="②未完待续"></a>②未完待续</h3>
