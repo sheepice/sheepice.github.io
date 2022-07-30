@@ -5,8 +5,7 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="图论之Kruskal, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="等待更新ing……
-">
+    <meta name="description" content="一、前言对于最小生成树的问题来说的话，我们可以发现如果直接利用我们的dijkstra算法，每次去遍历一个点，然后通过一个点的话去更新其他的所有边，在这样的过程中，换一个理解的方式来看的话，不过就是把我们所有的最短的边连起来，也就是，我们尝试">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -469,21 +468,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-28
+                    2022-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5
+                    926
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -506,8 +505,78 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>等待更新ing……</p>
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>对于最小生成树的问题来说的话，我们可以发现如果直接利用我们的dijkstra算法，每次去遍历一个点，然后通过一个点的话去更新其他的所有边，在这样的过程中，换一个理解的方式来看的话，不过就是把我们所有的最短的边连起来，也就是，我们尝试将所有有关系的点通过最短的概念，连接起来，然后能够通过这样的方式，在集合内部已经连好的点，就不会在继续连，也就是我们一旦选定两个点进行边的连接的话，我们一定会选最短的，然后最后我们判断一下是否所有的点到最后会被连接到一个集合之中就好了。有了这个思路，我们其实就可以利用今天所讲到的Kruskal算法进行最短边的尝试，知道我们能够去让所有点入集合。</p>
+<h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①Kruskal算法模板-ACwing-859"><a href="#①Kruskal算法模板-ACwing-859" class="headerlink" title="①Kruskal算法模板(ACwing.859)"></a>①Kruskal算法模板(ACwing.859)</h3><p><img src="https://img-blog.csdnimg.cn/643f49b0432a4eb7be8dd34de80e15f1.png" alt="Kruskal最小生成树"></p>
+<h4 id="相关分析"><a href="#相关分析" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度:</code>  $O(mlogn)$</p>
+<p><code>适用场景:</code>  点数和边数都比较多的最小生成树的问题，应用面广于之前所说的Prim算法。</p>
+<p><code>思路: </code>  将所有的边进行排序，贪心的从最短的边开始遍历，一旦发现我们遍历的那个边能够加到我们的集合中的话，我们就可以加到我们的集合当中去的话就加入。那么判断这个边是否能够加入我们之前的集合当中去，无非就是看一下这个边加入集合后，会不会破坏我们的生成树的条件，而我们知道，一棵树只有一个根节点，我们只要满足每次加入的时候保证根节点只有一个就好了，这里就可以用并查集进行优化，最后我们只要判断一下是否所有边的数量为n - 1就好了！</p>
+<h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
 
+using namespace std;
+const int N &#x3D; 1e5 + 5, M &#x3D; 2 * N + 10;
+
+&#x2F;&#x2F;因为是遍历所有的边，用结构体装一下就好了
+struct Edge &#123;
+    &#x2F;&#x2F;代表a, b有一条权值为c的边
+    int a, b, c;
+    &#x2F;&#x2F;为了按照边从小到大排序的话，需要重载一下小于号
+    &#x2F;&#x2F;这里的写法主要是学比如写的，具体其实两个const和一个&amp;不要也可以的
+    bool operator&lt; (const Edge&amp; W) const &#123;
+        return c &lt; W.c;
+    &#125;
+&#125;edges[M];
+&#x2F;&#x2F;并查集的pre数组
+int pre[N];
+
+&#x2F;&#x2F;并查集加路径压缩的函数写法
+int find(int x) &#123;
+    if(x !&#x3D; pre[x]) pre[x] &#x3D; find(pre[x]);
+    return pre[x];
+&#125;
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    &#x2F;&#x2F;初始化一下我们的并查集的点
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) pre[i] &#x3D; i;
+    
+    for(int i &#x3D; 0; i &lt; m; i ++ ) &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        edges[i] &#x3D; &#123;a, b, c&#125;;
+    &#125;
+    
+    sort(edges, edges + m);
+    &#x2F;&#x2F;记录加的边,和最终的结果
+    int cnt &#x3D; 0, ans &#x3D; 0;
+    &#x2F;&#x2F;遍历一下所有的边
+    for(int i &#x3D; 0; i &lt; m; i ++ ) &#123;
+        auto t &#x3D; edges[i];
+        int f1 &#x3D; find(t.a), f2 &#x3D; find(t.b);
+        
+        if(f1 !&#x3D; f2) &#123;
+            &#x2F;&#x2F;可以把边加入 
+            cnt++;
+            &#x2F;&#x2F;把两个不相连的集合连起来
+            pre[f1] &#x3D; f2;
+            ans +&#x3D; t.c;
+            if(cnt &#x3D;&#x3D; n - 1) break;
+        &#125;
+    &#125;
+    
+    if(cnt !&#x3D; n - 1) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+    else cout &lt;&lt; ans &lt;&lt; endl;
+    
+    &#x2F;&#x2F; cout &lt;&lt; cnt &lt;&lt; endl;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②未完待续"><a href="#②未完待续" class="headerlink" title="②未完待续"></a>②未完待续</h3>
                 
             </div>
             <hr/>
@@ -1029,7 +1098,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">46.1k</span>
+                        class="white-color">48.9k</span>
             
             
             

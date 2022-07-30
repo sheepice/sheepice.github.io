@@ -5,8 +5,8 @@
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
     <meta name="keywords" content="图论之Prim, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="等待更新ing……
-">
+    <meta name="description" content="一、前言此篇主要针对图论中的求最小生成树的一种算法Prim算法，这个算法其实整体的结构和dijkstra算法是相似的，所以整体的思路也和dijkstra算法有异曲同工之妙。首先，讲一下自己对最小生成树这个概念的理解。
+生成树: 包含图中所有">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -469,21 +469,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-28
+                    2022-07-30
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5
+                    714
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -506,7 +506,77 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>等待更新ing……</p>
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>此篇主要针对图论中的求最小生成树的一种算法Prim算法，这个算法其实整体的结构和dijkstra算法是相似的，所以整体的思路也和dijkstra算法有异曲同工之妙。首先，讲一下自己对最小生成树这个概念的理解。</p>
+<p><code>生成树:</code> 包含图中所有结点，且整个结点形成的一张图中不含有任何环，一旦再多连接两个结点形成一条边，一定会生成一个环的一个结构图。</p>
+<p><code>最小生成树:</code>  在一个图中找到的所有生成树中，所有边加起来的权值最小的那一棵生成树是一颗最小生成树。</p>
+<h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①Prim算法模板-ACwing-858"><a href="#①Prim算法模板-ACwing-858" class="headerlink" title="①Prim算法模板(ACwing.858)"></a>①Prim算法模板(ACwing.858)</h3><p><img src="https://img-blog.csdnimg.cn/26e9b03e0c97421a80f76f2559a2a883.png" alt="Prim求最小生成树"></p>
+<p><code>时间复杂度:</code>  $O(n^2)$</p>
+<p><code>适用场景:</code>  点数少，边数多的最小生成树求解。</p>
+<p><code>思路:</code>  和dijkstra算法结构差不多，但是此时定义的dist数组指的是，此时计算的某个点，到我们此时求到的生成树整个集合中的一个最小值距离。也就是说我们在推导dist数组的时候，同样每次选取一个距离集合最短的那一条边进行一个延申，不断延申的时候求出某个点到整个已经求出的部分最小生成树的一个距离最小值。</p>
+<p><code>更新过程:</code></p>
+<p><img src="https://img-blog.csdnimg.cn/6d7826cd1056488fa903c9a04092b223.jpeg"></p>
+<p><code>紫色</code> <font color="purple">当前利用的更新点</font></p>
+<p><code>蓝色</code><font color="blue">当前更新完后，某个点距离整个集合的最小距离</font></p>
+<p><code>红色</code><font color="red">两个结点边的长度</font></p>
+<p>上图最终的最小生成树就为3！</p>
+<h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N &#x3D; 505, INF &#x3D; 0x3f3f3f3f;
+int g[N][N], dist[N];
+bool st[N];
+int n, m;
+
+int prim() &#123;
+    int res &#x3D; 0;
+    dist[1] &#x3D; 0;
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int t &#x3D; -1;
+        &#x2F;&#x2F;寻找离集合最近的那一条边
+        
+        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ ) &#123;
+            if(!st[j] &amp;&amp; (t &#x3D;&#x3D; -1 || dist[j] &lt; dist[t])) &#123;
+                t &#x3D; j;
+            &#125;
+        &#125;
+     	&#x2F;&#x2F;如果dist[t] &#x3D; INF代表没有边连向集合，直接返回    
+        if(dist[t] &#x3D;&#x3D; INF) return INF;
+        st[t] &#x3D; true;
+        for(int j &#x3D; 1; j &lt;&#x3D; n; j ++ ) &#123;
+            dist[j] &#x3D; min(dist[j], g[t][j]);
+        &#125;
+        
+        res +&#x3D; dist[t];
+    &#125;
+    
+    return res;
+&#125;
+
+int main() &#123;
+    memset(dist, 0x3f, sizeof(dist));
+    memset(st, 0, sizeof st);
+    memset(g, 0x3f, sizeof g);
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;
+        int a, b, c;
+        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
+        &#x2F;&#x2F;先去掉自环
+        &#x2F;&#x2F;注意这种都是无向图，所以两个边都需要赋值
+        if(a !&#x3D; b) g[a][b] &#x3D; g[b][a] &#x3D; min(g[a][b], c);
+    &#125;
+    
+    int ans &#x3D; prim();
+    
+    if(ans &#x3D;&#x3D; INF) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
+    else cout &lt;&lt; ans &lt;&lt; endl;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -1027,7 +1097,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">46.1k</span>
+                        class="white-color">48.9k</span>
             
             
             
