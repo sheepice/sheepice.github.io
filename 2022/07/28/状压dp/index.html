@@ -471,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    111
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    13 分
                 </div>
                 
 
@@ -502,7 +502,266 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>这一篇博客总结自己在学习状态压缩dp时候的一个题目汇总吧。这里主要分为两块吧，一个是状态机模型，另外就是状压dp，因为两个都是由某一个状态转移到另外一个状态，所以整合在一起，也能更加的对状态到状态之间的转移有个比较好的一个逻辑内联吧。</p>
+<h1 id="二、状态机题目汇总"><a href="#二、状态机题目汇总" class="headerlink" title="二、状态机题目汇总"></a>二、状态机题目汇总</h1><p><font color="blue">对于状态机题目来说，我们要知道整个题目一共有多少个状态，然后把每一个状态都能够先分析好，然后利用状态之间的关系画出不同状态之间的联系，确定好不同状态是能够形成一个闭环且这些状态只会影响其他状态且这样的影响是有顺序的而不是可以随意影响，从而通过这样的状态之间的关系，去确定好我们的状态转移方程！</font></p>
+<h3 id="①ACwing1049-大盗阿福"><a href="#①ACwing1049-大盗阿福" class="headerlink" title="①ACwing1049.大盗阿福"></a>①ACwing1049.大盗阿福</h3><h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/a046b07c310d45c5b882a9499049898a.png" alt="1049.大盗阿福"></p>
+<h4 id="2-dp分析"><a href="#2-dp分析" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/d15a5a6ae798486c9cbc7a33f0686c6c.png"></p>
+<blockquote>
+<p>上方的关系图之间的箭头怎么解释呢？</p>
+<p>首先我们定义的f(i, j)就代表此时我们进行第i个地方是否盗窃的选择，在这样的选择下我们可以选择两种，第一种就是我们要打劫，但是由于题目约束，我们只能打劫不相邻的地方，因此如果此时我们的状态是打劫的话，我们是必须要在上一次的状态是不打劫的。但是如果此时我们不打劫的话呢？我们这样的状态就可以由两个方向来推导，一个就是在上一次状态是打劫，另外就是上一次我也没有打劫。</p>
+</blockquote>
+<p><strong>通过上述的一个分析，我们首先把f(i, j)的定义写出来</strong></p>
+<p><code>f(i,j) : </code>  在进行到第i个地方的选择的时候，我们的状态为j的最大收获。<font color="blue">其中j等于0的时候代表不打劫这个状态，j等于1的时候代表打劫这个状态</font></p>
+<p><font color="red">状态转移方程如下：</font><br>$$<br>\begin{cases}<br>f[i][0]&#x3D;max(f[i-1][1], f[i-1][0]),代表不打劫这个状态由两个状态推导 \\<br>f[i][1]&#x3D;f[i-1][0]+w<a href="%E5%BD%93%E5%89%8D%E4%BB%B7%E5%80%BC">i</a>,代表打劫这个状态只能由不打劫的状态推导<br>\end{cases}<br>$$<br>当然这一题如果大家利用线性dp的思路也是可以做的，那么我们线性dp的话就是可以利用f(i)表示选择第i个城市的最大价值，那么这里可以根据不打劫这个城市，和打劫这个城市，把f(i)这个状态分为两个部分分别求解。下方也会有相关的代码仅供参考。</p>
+<h4 id="3-完整AC代码"><a href="#3-完整AC代码" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;状态机不进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
 
+using namespace std;
+const int N &#x3D; 100050;
+int f[N][2];
+
+int main() &#123;
+    int t;
+    cin &gt;&gt; t;
+    while(t -- ) &#123;
+        memset(f, 0, sizeof f);
+        int n;
+        cin &gt;&gt; n;
+        for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+            int w;
+            cin &gt;&gt; w;
+            f[i][0] &#x3D; max(f[i - 1][0], f[i - 1][1]);
+            f[i][1] &#x3D; f[i - 1][0] + w;
+        &#125;
+        cout &lt;&lt; max(f[n][0], f[n][1]) &lt;&lt; endl;
+    &#125;
+    
+    return 0;
+&#125;
+
+&#x2F;&#x2F;状态机进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 100050;
+int f[2][2];
+
+int main() &#123;
+    int t;
+    cin &gt;&gt; t;
+    while(t -- ) &#123;
+        memset(f, 0, sizeof f);
+        int n;
+        cin &gt;&gt; n;
+        for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+            int w;
+            cin &gt;&gt; w;
+            f[i &amp; 1][0] &#x3D; max(f[i - 1 &amp; 1][0], f[i - 1 &amp; 1][1]);
+            f[i &amp; 1][1] &#x3D; f[i - 1 &amp; 1][0] + w;
+        &#125;
+        cout &lt;&lt; max(f[n &amp; 1][0], f[n &amp; 1][1]) &lt;&lt; endl;
+    &#125;
+    
+    return 0;
+&#125;
+
+&#x2F;&#x2F;利用线性dp的思路
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 100050;
+int f[N];
+
+int main() &#123;
+    int t;
+    cin &gt;&gt; t;
+    while(t -- ) &#123;
+        memset(f, 0, sizeof f);
+        int n;
+        cin &gt;&gt; n;
+        for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+            int w;
+            cin &gt;&gt; w;
+            if(i &#x3D;&#x3D; 1) f[i] &#x3D; w;
+            f[i] &#x3D; max(f[i - 1], f[i]);
+            if(i &gt;&#x3D; 2) f[i] &#x3D; max(f[i - 2] + w, f[i]);
+        &#125;
+        cout &lt;&lt; f[n] &lt;&lt; endl;
+    &#125;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②ACwing-1057股票买卖"><a href="#②ACwing-1057股票买卖" class="headerlink" title="②ACwing.1057股票买卖"></a>②ACwing.1057股票买卖</h3><h4 id="1-题目描述-1"><a href="#1-题目描述-1" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/ab4d356bc98a4f68be5b876302fe5319.png" alt="1057.股票买卖"></p>
+<h4 id="2-dp分析-1"><a href="#2-dp分析-1" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/b71ee0c06de648c39a57a8dbcb0e5e3f.jpeg"></p>
+<p><font color="red">下面这两个名词很关键，因为决定着状态转移方程</font></p>
+<p><code>买进：</code> 这个状态代表的是，此时我们手上持有着股票，也就是我们的一次交易正在进行到买进的操作，并没有卖出这个操作</p>
+<p><code>卖出：</code> 这个状态代表的是，此时我们两手空空，也就是我们的这一次交易已经进行完全，把股票完全卖掉，且根据贪心的思想，这个状态的值肯定是一个非负的数。</p>
+<blockquote>
+<p>这里的状态关系是怎么来的呢？</p>
+<p>这一题我们可以看到，状态比上一题多了一个箭头，这是因为，我们无论处在两个状态中的任意一个，我们都可以通过本身和上一次推导过来，因为题目并没有说相邻之间不可以进行连贯的操作。而在下一题就会有这样的限制，因此状态的数量也会有所不同，关系也会有所不同</p>
+</blockquote>
+<p>由于题目加了交易次数的限制，所以我们的dp数组也需要加一层来限制我们的交易次数。</p>
+<p><code>f(i,j,k)：</code> 表示在进行到第i天的股票选择的时候，我们正在进行第j笔交易且当前的状态为k的最大利润值，<font color="blue">其中我们的k只有0和1两种状态！</font></p>
+<p><font color="red">状态转移方程：</font><br>$$<br>\begin{cases}<br>f[i][j][0]&#x3D;max(f[i-1][j][0], f[i-1][j][1]+w[i]) \\<br>f[i][j][1]&#x3D;max(f[i-1][j][1],f[i-1][j-1][0]-w[i])<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>这里的状态转移为什么0这个状态要j-1而另外一个不用？</p>
+<p>我们在看一下我们的f数组的定义，是我们正在进行第j笔交易。那么如果我们此时的状态是0，也就是我们已经正在进行第j笔交易，且这一笔交易处于卖出两手空空的状态，也就是说我们在第j笔交易中可以从我们的持有状态到我们的两手空空状态。那么我们相当于已经进行完成了第j次交易，我们只需要从j那一笔交易进行推导就好，如果我们此时的状态是1，代表我们买进了一个股票正在进行第j次交易，也就是说在我们之前有刚好完成了第j-1次交易，所以我们要从第j-1次交易进行推导。</p>
+<p>对于初始化的问题？</p>
+<p>本题初始化，只需要把刚开始不存在的状态全部初始化负无穷，但是为0这个状态的时候要初始化为0，因为在推导状态为1的时候，如果这个地方不初始化为0的话，那么负无穷减去一个数还是负无穷。</p>
+</blockquote>
+<h4 id="3-完整AC代码-1"><a href="#3-完整AC代码-1" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;状态机不进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 100010, M &#x3D; 105;
+int f[N][M][2];
+
+int main() &#123;
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    memset(f, -0x3f, sizeof f);
+    for(int i &#x3D; 0; i &lt;&#x3D; n; i ++ ) &#123;
+        f[i][0][0] &#x3D; 0;
+    &#125;
+    int w;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        cin &gt;&gt; w;
+        for(int j &#x3D; 1; j &lt;&#x3D; k; j ++ ) &#123;
+            &#x2F;&#x2F;0这个状态代表此时我们已经卖了股票，手上为空的状态
+            f[i][j][0] &#x3D; max(f[i - 1][j][0], f[i - 1][j][1] + w);
+            &#x2F;&#x2F;1这个状态代表我们买进股票，正在进行某次交易，现在持有股票的状态
+            f[i][j][1] &#x3D; max(f[i - 1][j][1], f[i - 1][j - 1][0] - w);
+        &#125;
+    &#125;
+    
+    int res &#x3D; 0;
+    for(int i &#x3D; 0; i &lt;&#x3D; k; i ++ ) &#123;
+        res &#x3D; max(res, f[n][i][0]);
+    &#125;
+    
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+&#125;
+&#x2F;&#x2F;状态机进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int M &#x3D; 105;
+int f[2][M][2];
+
+int main() &#123;
+    int n, k;
+    cin &gt;&gt; n &gt;&gt; k;
+    memset(f, -0x3f, sizeof f);
+    for(int i &#x3D; 0; i &lt;&#x3D; 2; i ++ ) &#123;
+        f[i][0][0] &#x3D; 0;
+        f[i][0][1] &#x3D; 0;
+    &#125;
+    int w;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        cin &gt;&gt; w;
+        for(int j &#x3D; 1; j &lt;&#x3D; k; j ++ ) &#123;
+            &#x2F;&#x2F;0这个状态代表此时我们已经卖了股票，手上为空的状态
+            f[i &amp; 1][j][0] &#x3D; max(f[i - 1 &amp; 1][j][0], f[i - 1 &amp; 1][j][1] + w);
+            &#x2F;&#x2F;1这个状态代表我们买进股票，正在进行某次交易，现在持有股票的状态
+            f[i &amp; 1][j][1] &#x3D; max(f[i - 1 &amp; 1][j][1], f[i - 1 &amp; 1][j - 1][0] - w);
+        &#125;
+    &#125;
+    
+    int res &#x3D; 0;
+    for(int i &#x3D; 0; i &lt;&#x3D; k; i ++ ) &#123;
+        res &#x3D; max(res, f[n &amp; 1][i][0]);
+    &#125;
+    
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="③ACwing-1058股票买卖"><a href="#③ACwing-1058股票买卖" class="headerlink" title="③ACwing.1058股票买卖"></a>③ACwing.1058股票买卖</h3><h4 id="1-题目描述-2"><a href="#1-题目描述-2" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/5ac3c8e534f549b8af18443f19cb7797.png" alt="1058.股票买卖"></p>
+<h4 id="2-dp分析-2"><a href="#2-dp分析-2" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/f1b03f0a07e04859ab72e8c0db5473d4.png"></p>
+<blockquote>
+<p>图中的关系解释</p>
+<p>首先当我们手中有货的时候，我们可以通过从无货或者有货卖出得到这个状态，冷冻期由于只有一天，所以只可能从有货然后卖出的状态得到，手中无货这个状态，可以从手中无货得到或者从上一次冷冻期得到。</p>
+<p>初始化操作？</p>
+<p>我们首先先把数组初始化为负无穷表示待更新，然后我们看一下最初的状态哪些状态需要初始化成为0，以这个状态来进行后续的更新，很显然f(0,2)这个状态需要为0，因为只有这个状态是最初合理的一个状态。然后后续看到我们的状态方程可以知道，哪一个状态需要减去那个w然后变成负值的那个状态更新的初始化一搬就是为0。</p>
+</blockquote>
+<p><code>f(i,j):</code> 表示到第i天，我们的状态为j的最大利润</p>
+<p><font color="red">状态转移方程：</font><br>$$<br>\begin{cases}<br>f[i][0]&#x3D;max(f[i-1][0],f[i-1][2]-w[i]),(由于这里2这个状态减w，所以最初初始化为0) \\<br>f[i][1]&#x3D;f[i-1][0]+w[i] \\<br>f[i][2]&#x3D;max(f[i-1][1], f[i-1][2])<br>\end{cases}<br>$$</p>
+<h4 id="3-完整AC代码-2"><a href="#3-完整AC代码-2" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 100050;
+
+int f[N][3];
+
+int main() &#123;
+    int n;
+    cin &gt;&gt; n;
+    memset(f, -0x3f, sizeof f);
+    f[0][2] &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int w;
+        cin &gt;&gt; w;
+        f[i][0] &#x3D; max(f[i - 1][0], f[i - 1][2] - w);
+        f[i][1] &#x3D; f[i - 1][0] + w;
+        f[i][2] &#x3D; max(f[i - 1][1], f[i - 1][2]);
+    &#125;
+    int res &#x3D; 0;
+    res &#x3D; max(res, max(f[n][1], f[n][2]));
+    cout &lt;&lt; res &lt;&lt; endl;
+    
+    return 0;
+&#125;
+&#x2F;&#x2F;进行空间压缩
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+int f[2][3];
+
+int main() &#123;
+    int n;
+    cin &gt;&gt; n;
+    memset(f, -0x3f, sizeof f);
+    f[0][2] &#x3D; 0;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int w;
+        cin &gt;&gt; w;
+        f[i &amp; 1][0] &#x3D; max(f[i - 1 &amp; 1][0], f[i - 1 &amp; 1][2] - w);
+        f[i &amp; 1][1] &#x3D; f[i - 1 &amp; 1][0] + w;
+        f[i &amp; 1][2] &#x3D; max(f[i - 1 &amp; 1][1], f[i - 1 &amp; 1][2]);
+    &#125;
+    int res &#x3D; 0;
+    res &#x3D; max(res, max(f[n &amp; 1][1], f[n &amp; 1][2]));
+    cout &lt;&lt; res &lt;&lt; endl;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+
+
+<h3 id="④等待更新"><a href="#④等待更新" class="headerlink" title="④等待更新"></a>④等待更新</h3><h4 id="1-题目描述-3"><a href="#1-题目描述-3" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><h4 id="2-dp分析-3"><a href="#2-dp分析-3" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><h4 id="3-完整AC代码-3"><a href="#3-完整AC代码-3" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4>
                 
             </div>
             <hr/>
@@ -1014,7 +1273,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">50.1k</span>
+                        class="white-color">52.9k</span>
             
             
             
