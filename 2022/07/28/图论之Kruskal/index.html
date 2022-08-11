@@ -468,14 +468,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-07-30
+                    2022-08-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    926
+                    950
                 </div>
                 
 
@@ -506,6 +506,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>对于最小生成树的问题来说的话，我们可以发现如果直接利用我们的dijkstra算法，每次去遍历一个点，然后通过一个点的话去更新其他的所有边，在这样的过程中，换一个理解的方式来看的话，不过就是把我们所有的最短的边连起来，也就是，我们尝试将所有有关系的点通过最短的概念，连接起来，然后能够通过这样的方式，在集合内部已经连好的点，就不会在继续连，也就是我们一旦选定两个点进行边的连接的话，我们一定会选最短的，然后最后我们判断一下是否所有的点到最后会被连接到一个集合之中就好了。有了这个思路，我们其实就可以利用今天所讲到的Kruskal算法进行最短边的尝试，知道我们能够去让所有点入集合。</p>
+<p><font color="green">本章题大多来源于<a target="_blank" rel="noopener" href="https://www.acwing.com/">ACwing</a>,欢迎大家来这个平台一起学习算法！！</font></p>
 <h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①Kruskal算法模板-ACwing-859"><a href="#①Kruskal算法模板-ACwing-859" class="headerlink" title="①Kruskal算法模板(ACwing.859)"></a>①Kruskal算法模板(ACwing.859)</h3><p><img src="https://img-blog.csdnimg.cn/643f49b0432a4eb7be8dd34de80e15f1.png" alt="Kruskal最小生成树"></p>
 <h4 id="相关分析"><a href="#相关分析" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度:</code>  $O(mlogn)$</p>
 <p><code>适用场景:</code>  点数和边数都比较多的最小生成树的问题，应用面广于之前所说的Prim算法。</p>
@@ -819,18 +820,17 @@ int main() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BKruskal/">
+                <a href="/2022/08/11/%E8%83%8C%E5%8C%85dp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpeg" class="responsive-img" alt="图论之Kruskal">
+                        <img src="/medias/featureimages/1.jpeg" class="responsive-img" alt="背包dp">
                         
-                        <span class="card-title">图论之Kruskal</span>
+                        <span class="card-title">背包dp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -840,31 +840,26 @@ int main() &#123;
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-28
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9B%BE%E8%AE%BA%E4%B8%93%E9%A2%98%E7%AF%87/" class="post-category">
-                                    图论专题篇
+                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/" class="post-category">
+                                    动态规划专题
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                        <span class="chip bg-color">图论</span>
+                    <a href="/tags/%E8%83%8C%E5%8C%85DP-DP%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">-背包DP -DP分析</span>
                     </a>
                     
                 </div>
@@ -1098,7 +1093,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">52.9k</span>
+                        class="white-color">57.1k</span>
             
             
             

@@ -4,9 +4,8 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="图论之spfa, 博客的制作，学习分享，c++，音乐，艺术">
-    <meta name="description" content="一、前言对于之前有写到的Dijkstra算法，我们发现他只能用来计算边的权值为正的情况，这其实也就是为什么我们需要开一个st数组，对于一个已经被更新过的点来说，他一旦用于更新其他点的时候，我们就不需要再考虑再利用这个点再次更新其他的点。
-但">
+    <meta name="keywords" content="背包dp, 博客的制作，学习分享，c++，音乐，艺术">
+    <meta name="description" content="一、前言本章主要整理有关背包dp问题的汇总，其实背包dp应该已经是超级经典的一类问题了，相信很多人已经做过很多背包问题了，模板肯定烂熟于心，但是本人而言，虽然写的很顺手，但是还是把一些模板整理一下，自己写一遍会更加有助于理解吧。而对于背包问">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +17,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>图论之spfa | sheepice的博客</title>
+    <title>背包dp | sheepice的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +311,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpeg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpeg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">图论之spfa</h1>
+                    <h1 class="description center-align post-title">背包dp</h1>
                 </div>
             </div>
         </div>
@@ -433,12 +432,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                <span class="chip bg-color">模板</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                                <span class="chip bg-color">图论</span>
+                            <a href="/tags/%E8%83%8C%E5%8C%85DP-DP%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">-背包DP -DP分析</span>
                             </a>
                         
                     </div>
@@ -449,8 +444,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%9B%BE%E8%AE%BA%E4%B8%93%E9%A2%98%E7%AF%87/" class="post-category">
-                                图论专题篇
+                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/" class="post-category">
+                                动态规划专题
                             </a>
                         
                     </div>
@@ -462,7 +457,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-07-28
+                    2022-08-11
                 </div>
                 
 
@@ -476,14 +471,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    18 分
                 </div>
                 
 
@@ -506,209 +501,284 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>对于之前有写到的Dijkstra算法，我们发现他只能用来计算边的权值为正的情况，这其实也就是为什么我们需要开一个st数组，对于一个已经被更新过的点来说，他一旦用于更新其他点的时候，我们就不需要再考虑再利用这个点再次更新其他的点。</p>
-<p><font color="blue">但是呢，如果点之间的边是负值的时候，就必须去遍历一下所有的边，因为存在负值的时候，负数加正数是会把距离缩短的，所以呢就可以利用遍历所有边的办法去更新点到原点的距离。</font>这就需要用到后续要说的spfa算法，那么在讲这个算法之前，需要了解bellman-ford算法，会先利用这个算法进行一个引入。</p>
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>本章主要整理有关背包dp问题的汇总，其实背包dp应该已经是超级经典的一类问题了，相信很多人已经做过很多背包问题了，模板肯定烂熟于心，但是本人而言，虽然写的很顺手，但是还是把一些模板整理一下，自己写一遍会更加有助于理解吧。而对于背包问题无疑有几个分类<font color="blue">01背包，完全背包，多重背包，分组背包等</font>,而这些问题有一个共同点，就是有多个物品，每个物品有着对应的体积和价值，而就是这三类衍生很多很多的问题。</p>
 <p><font color="green">本章题大多来源于<a target="_blank" rel="noopener" href="https://www.acwing.com/">ACwing</a>,欢迎大家来这个平台一起学习算法！！</font></p>
-<h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><h3 id="①bellman-ford-ACwing-853"><a href="#①bellman-ford-ACwing-853" class="headerlink" title="①bellman-ford(ACwing.853)"></a>①bellman-ford(ACwing.853)</h3><p><img src="https://img-blog.csdnimg.cn/dbffd9a6fb0b44748a688cb55b6fdd9e.png" alt="边权受限制的最短路"></p>
-<h4 id="相关分析"><a href="#相关分析" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度：</code>  $O(mn)$</p>
-<p><code>适用场景：</code>  这个算法可以看到，时间复杂度比较高，所以mn的值要落在$1e7-1e8$之间才能满足不超时，另外，由于这个算法，是从原点出发，外层循环多少次，内层就需要更新多少次边。这个实际含义就是，外层循环多少次，就代表：<font color="red">从原点出发了多少条边</font>，所以能够计算，走多少条边到终点的一个最短距离，<font color="red">注意这个最短距离并不一定是整个图看上去的最短，而是满足了走k条边的最短！</font></p>
-<p><code>思路：</code>  如果题目规定走k条边，那么按照上述分析，外层循环k次代表走k条边的更新情况，内部循环，更新每一条边，一旦能够更新就更新，不能更新的话，距离保证不变。<font color="red">这里注意由于内层循环更新的是所有的边，所以是有可能发生应该只再原本的基础上衍生1条边，但是衍生出去了2条边。所以需要一个回溯的数组，保存一下上一次更新好的dist数组。而这个串联反应可以举个例子，如下：</font></p>
-<p><img src="https://img-blog.csdnimg.cn/8148d0f1d76e4a7d95599783af89bef6.png"></p>
-<p>假设这个图，如果我们的k只给1的话，那么从1-&gt;3的距离最短应该为3，而不是1+1&#x3D;2。假设我们在更新的时候，还是像之前dijkstra的更新方式，利用dist数组更新的话，那么在仅有的一次循环里面，1-&gt;2这条边的距离首先会被更新为1，那么在2-&gt;3这条边就会按照dist[2] &#x3D; 1的这个数组更新dist[3],让dist[3]变成2，那么就和我们最终得到的答案3就是不同的。</p>
-<h4 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+<h1 id="二、题目汇总"><a href="#二、题目汇总" class="headerlink" title="二、题目汇总"></a>二、题目汇总</h1><p><font color="red">我们这里用w[i] (weight)代表一个物品体积，v[i] (value)代表物品价值</font></p>
+<h3 id="①ACwing-2-01背包"><a href="#①ACwing-2-01背包" class="headerlink" title="①ACwing 2.01背包"></a>①ACwing 2.01背包</h3><h4 id="1-题目描述"><a href="#1-题目描述" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/2bd48a623a2f454ba3b92935538f3041.png" alt="2.01背包问题"></p>
+<h4 id="2-dp分析"><a href="#2-dp分析" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/db92f1c795824c78a809bdf9ee8b68d8.png"></p>
+<blockquote>
+<p>为什么选i的那一个状态是如上的呢？</p>
+<p>按照字面理解，假设我们选择了第i个物品，那么我们就相当于选出前(i-1)个物品，但是重量要减去第i个物品的最大价值的一个假背包然后拿假背包的最大价值加上我们第i个背包的价值，就会得到选择i的价值。</p>
+</blockquote>
+<p><font color="red">状态转移方程：</font><br>$$<br>f[i][j] &#x3D; max(f[i - 1][j], f[i - 1][j - w[i]] + v[i])<br>$$<br>如果要优化成一维的呢？</p>
+<p>这里一直是01背包和完全背包大家搞不清楚的地方。在后面推导完全背包的时候，大家应当会有更好的理解。在这里先说01背包的优化。我们可以看到，01背包的二维推导的时候，右边的等式都是由i-1作为第一维，形象来说，也就是本层的所有值都是由上一层的值推导而来的，因此我们如果把第一维去掉，我们一定要保证的是<font color="red">本层状态在推导的时候，用到的值一定是上一层还没有被更新的状态，也就是说我们在循环j的时候一定要从大到小进行，这样就能够保证大的j在推导的时候用的是上一层j-w[i]的值，而如果我们从小到大，假设其中j为5的时候，被更新了，那么当j更大的时候利用这个j为5的值来更新，就不能保证值是上一层的，也就是最后的答案就不一定是正确的了！</font></p>
+<h4 id="3-完整AC代码"><a href="#3-完整AC代码" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;没有空间优化
+#include &lt;iostream&gt;
 #include &lt;cstring&gt;
 #include &lt;algorithm&gt;
 
 using namespace std;
-
-const int N &#x3D; 505, M &#x3D; 10050;
-&#x2F;&#x2F;因为要遍历所有边，所以结构体存图
-struct Edge &#123;
-    int a, b, c;
-&#125;edges[M];
-int dist[N], n, m, k;
-&#x2F;&#x2F;设置一个回溯的数组
-int backup[N];
-
-void bellman_ford() &#123;
-    dist[1] &#x3D; 0;
-    
-    for(int i &#x3D; 1; i &lt;&#x3D; k; i ++ ) &#123;
-        &#x2F;&#x2F;先进行一个备份操作
-        memcpy(backup, dist, sizeof dist);
-        
-        for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;
-            auto t &#x3D; edges[i];
-            &#x2F;&#x2F;就是这个地方，如果写成
-            &#x2F;&#x2F;dist[t.b] &gt; dist[t.a] + t.c的话
-            &#x2F;&#x2F;就会有可能出现串联反应
-            if(dist[t.b] &gt; backup[t.a] + t.c) &#123;
-                dist[t.b] &#x3D; backup[t.a] + t.c;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-
+const int N &#x3D; 1005;
+int w[N], v[N];
+int f[N][N];
 int main() &#123;
-    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
-    memset(dist, 0x3f, sizeof dist);
-    
-    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;
-        int a, b, c;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
-        &#x2F;&#x2F;代表a到b有一条权值为c的边
-        edges[i] &#x3D; &#123;a, b, c&#125;;
-    &#125;
-    
-    bellman_ford();
-    
-    if(dist[n] &gt; 0x3f3f3f3f &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
-    else cout &lt;&lt; dist[n] &lt;&lt; endl;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<hr>
-<h3 id="②spfa模板-ACwing-851"><a href="#②spfa模板-ACwing-851" class="headerlink" title="②spfa模板(ACwing.851)"></a>②spfa模板(ACwing.851)</h3><p><img src="https://img-blog.csdnimg.cn/5cf3def466b34406a70e05162bfa6d1f.png" alt="spfa求最短路"></p>
-<h4 id="相关分析-1"><a href="#相关分析-1" class="headerlink" title="相关分析"></a>相关分析</h4><p><code>时间复杂度：</code>  $O(m)$</p>
-<p><code>适用场景：</code>  其实spfa这个算法以他比较优越的时间复杂度，其实用在很多题目都可以，且不仅能够求带负权的最短路，在一定程度上也可以解决dijkstra的题目。并且这个算法，可以判定一个图里面是否有负环</p>
-<p><code>思路：</code>  这里的思路其实也是从上一个bellman-ford算法延申过来的。我们可以看到，上一个算法的好处就是可以知道有边限制的最短路，但是其实如果没有边的限制的话，第一个算法其实在内层循环遍历边的时候，会有很多操作本身更新不了一个点到原点的距离，但是还是进行了一个尝试更新的操作。<font color="red">那么spfa的话其实就是可以排除这些没有实际价值的更新操作，也就是说在$dist[j] &#x3D; dist[t] + w[i] $的那一步，只有一个点能够达到这一步操作了，让这个点进入队列之中，才有机会更新其他的边，如果某个点本身压根无法更新其他边，那也就没有必要让他到队列中再去更新其他边 </font></p>
-<h4 id="完整AC代码-1"><a href="#完整AC代码-1" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-
-using namespace std;
-
-const int N &#x3D; 1e5 + 5;
-bool st[N];
-int dist[N], n, m;
-int h[N], w[N], e[N], ne[N], idx;
-queue&lt;int&gt; q;
-
-void add(int a, int b, int c) &#123;
-    e[idx] &#x3D; b, w[idx] &#x3D; c, ne[idx] &#x3D; h[a], h[a] &#x3D; idx ++;
-&#125;
-
-void spfa() &#123;
-    q.push(1);
-    dist[1] &#x3D; 0;
-    st[1] &#x3D; true;
-    &#x2F;&#x2F;利用类似宽搜的方法进行优化
-    while(q.size()) &#123;
-        auto t &#x3D; q.front();
-        q.pop();
-        &#x2F;&#x2F;注意用过的点，有可能在后续更新的时候会继续用
-        st[t] &#x3D; false;
-        
-        for(int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i]) &#123;
-            int j &#x3D; e[i];
-            
-            if(dist[j] &gt; dist[t] + w[i]) &#123;
-                dist[j] &#x3D; dist[t] + w[i];
-                if(!st[j]) &#123;
-                    q.push(j);
-                    st[j] &#x3D; true;
-                &#125;
-            &#125;
-        &#125;
-    &#125;
-&#125;
-
-int main() &#123;
-    memset(h, -1, sizeof h);
-    memset(st, 0, sizeof st);
-    memset(dist, 0x3f, sizeof dist);
+    &#x2F;&#x2F;n代表物体数量，m代表最大体积
+    int n, m;
     cin &gt;&gt; n &gt;&gt; m;
-    
-    for(int i &#x3D; 1; i &lt;&#x3D; m; i ++ ) &#123;
-        int a, b, c;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
-        add(a, b, c);
-    &#125;
-    
-    spfa();
-    
-    if(dist[n] &gt; 0x3f3f3f3f &#x2F; 2) cout &lt;&lt; &quot;impossible&quot; &lt;&lt; endl;
-    else cout &lt;&lt; dist[n] &lt;&lt; endl;
-    
-    return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h4 id="代码相关问题"><a href="#代码相关问题" class="headerlink" title="代码相关问题"></a>代码相关问题</h4><p>这里的话有一个问题，就是为什么一个已经被使用来更新其他点的点，从对头取出来的那一刻，他的st数组要被更新成为没有使用过，这里举一个例子，例子图如下:</p>
-<p><img src="https://img-blog.csdnimg.cn/c108a2f31d904c2f8056dcaecc2581a7.png" alt="spfa例子图"></p>
-<p>我们可以看到这个图，假设，我们在用1这个点第一次更新好1-&gt;2和1-&gt;4的距离后，不让他的st数组变为false的话，那么当3这个点用来更新1的时候，很显然从1-&gt;2-&gt;3-&gt;1一回会让整个路径变小，而我们虽然更新了一下3-&gt;1的距离，但是并没有在后面让1入队的话，那么1这个点就不会继续更新4这个点，当然这个例子有些问题，因为，我们可以一直让上方的环不断的走，让最后的1到4的路径距离不断的减少，所以希望读者有更好的例子可以举例一下。</p>
-<p>当然，这个题，如果不专门用st代表是否访问，直接更新然后不断放点那其实就等同于bellman-ford算法了，所以还是建议这个地方能够继续好好理解一下。然后也正因为这样，spfa算法可以去判定一下是否有负环，或者是否有一个环可以让某一个路径的距离一直减小。</p>
-<h3 id="③spfa判断负环-ACwing-852"><a href="#③spfa判断负环-ACwing-852" class="headerlink" title="③spfa判断负环(ACwing. 852)"></a>③spfa判断负环(ACwing. 852)</h3><p><del>负环的定义就是一个环上边的权值全部为负数</del>，刚开始我还一直这么认为的，其实负环应该是一个环上所有数加起来的权值和是为负数叫做负环，因此根据上面的一个分析，其实判断负环就很容易了，就看循环是不是一直跑不出来，因为不能死循环，所以我们要利用一个cnt数组，判断一下某个点走了多少次，根据抽屉原理，一旦走的次数比n大的时候，那么一定存在负环。</p>
-<p><img src="https://img-blog.csdnimg.cn/ce8a83dc0fb24fb1bb3636a59bd3c1c4.png"></p>
-<h4 id="完整AC代码-2"><a href="#完整AC代码-2" class="headerlink" title="完整AC代码"></a>完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#include &lt;queue&gt;
-
-using namespace std;
-
-const int N &#x3D; 100050, INF &#x3D; 1e9 + 10;
-int n, m, idx;
-int h[N], e[N], ne[N], w[N];
-int dist[N], cnt[N];
-bool st[N];
-
-void add(int a, int b, int c) &#123;
-    e[idx] &#x3D; b, ne[idx] &#x3D; h[a], w[idx] &#x3D; c, h[a] &#x3D; idx ++ ;
-&#125;
-
-bool spfa() &#123;
-    queue&lt;int&gt; q;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i];
     for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
-        q.push(i);
-        st[i] &#x3D; true;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i][j] &#x3D; f[i - 1][j];
+            if(j &gt;&#x3D; w[i]) f[i][j] &#x3D; max(f[i][j], f[i - 1][j - w[i]] + v[i]);
+        &#125;
+    &#125;
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+&#125;
+&#x2F;&#x2F;进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 1005;
+int w[N], v[N];
+int f[N];
+int main() &#123;
+    &#x2F;&#x2F;n代表物体数量，m代表最大体积
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i];
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; m; j &gt;&#x3D; 1; j -- ) &#123;
+             if(j &gt;&#x3D; w[i]) f[j] &#x3D; max(f[j], f[j - w[i]] + v[i]);
+        &#125;
+    &#125;
+    cout &lt;&lt; f[m] &lt;&lt; endl;
+    return 0;
+&#125;
+&#x2F;&#x2F;对比一下上面代码，基本上就是删掉一维，然后改变j的循环顺序就好了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="②ACwing-3-完全背包"><a href="#②ACwing-3-完全背包" class="headerlink" title="②ACwing 3.完全背包"></a>②ACwing 3.完全背包</h3><h4 id="1-题目描述-1"><a href="#1-题目描述-1" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/1e8701799ac8447fb6c6a17149845069.png" alt="3.完全背包"></p>
+<h4 id="2-dp分析-1"><a href="#2-dp分析-1" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/049e881e36dd460cae29bbeeb62e7bab.png"></p>
+<blockquote>
+<p>分析一下选i的集合计算</p>
+<p>假设我们当前选到的价值为j,当前的物品体积为w，价值为v，最多可以选择k个i才不会让(j - k*w) &lt; 0。</p>
+<p>那么我们选择i就有k种方式也就是有下面的状态转移方程</p>
+</blockquote>
+<p><font color="red">状态转移方程：</font><br>$$<br>f[i][j]&#x3D;max\begin{cases}f[i-1][j], 不选择i这些物品 \\<br>f[i-1][j-kw[i]]+kv[i], 选择k个i物品且(j-kw[i])&gt;&#x3D;0<br>\end{cases}<br>$$</p>
+<p>​<br>​                    </p>
+<p>因为我们多了一个k，所以也就是我们会多出一层循环，去循环k的数量，如果是这样的话，我们的时间复杂度会达到O(n^3)最多，那么我们题目的n为1000，也就是这个时间复杂度是过不了的，所以我们要想办法去优化掉这个k这一层循环？怎么优化呢?很多地方在讲到这里的时候并不会给出一个推导，在此给出一个推导。</p>
+<p>我们对比一下两个式子<br>$$<br>f[i][j]&#x3D;max(f[i-1][j],f[i-1][j-w]+v,f[i-1][j-2w]+2v,···,f[i-1][j-kw]+kv) \\<br>f[i][j-w]&#x3D;max(f[i-1][j-w], f[i-1][j-2w]+v,···,f[i-1][j-kw]+(k-1)v)<br>$$<br>可能光这样看不是特别形象，我们把两个式子的一些式子对齐看看<br>$$<br>f[i][j]&#x3D;max(f[i-1][j],f[i-1][j-w]+v,f[i-1][j-2w]+2v,···,f[i-1][j-kw]+kv)\\<br>\ \ \ \ \ \ \ \ \ \ \ \ \ f[i][j-w]&#x3D;max(f[i-1][j-w], f[i-1][j-2w]+v,···,f[i-1][j-kw]+(k-1)v)<br>$$</p>
+<blockquote>
+<p>f[i] [j]&#x3D;max(f[i-1] [j],f[i-1] [j-w]+v,f[i-1] [j-2w]+2v,···,f[i-1] [j-kw]+kv)    ①<br>f[i] [j-w]&#x3D;max(&#x2F; &#x2F; &#x2F; &#x2F;f[i-1] [j-w], f[i-1] [j-2w]+v,···,f[i-1] [j-kw]+(k-1)v)    ②</p>
+</blockquote>
+<p>这样再看看呢，我们可以发现$f[i][j]$推导式的第二项和我们给的第二个式子②是有关系的，而这个关系恰好就是第二个式子加上一个v</p>
+<p>有了上面的关系之后，我们的状态转移方程就可以写成</p>
+<p><font color="red">状态转移方程：</font><br>$$<br>f[i][j]&#x3D;max(f[i-1][j], f[i][j-w]+v)<br>$$<br><font color="blue">至此，我们可以惊奇的发现，我们把k这一维消掉了！</font>而我们对比一下这里的状态转移方程和我们01背包的状态转移方程。<br>$$<br>f[i][j] &#x3D; max(f[i - 1][j], f[i - 1][j - w[i]] + v[i]) (01背包)\\<br>f[i][j]&#x3D;max(f[i-1][j], f[i][j-w[i]]+v[i])(完全背包)<br>$$<br><font color="blue">我们又可以惊奇的发现，竟然只有一个地方不一样!!也就是推导式子的第二个维度，01背包是通过上一层进行一个推导，而完全背包是通过本层进行推导！</font><font color="red">也就是说，我们的完全背包是通过本层已经推导出来的值去推导后面的值，也就是说我们在循环j的时候应该从小到大，大的那一个j应该是从之前某个小的j中推导出来，也就是小的j是需要先被推导好的！这也解释了我们的完全背包中每个物品数量是无限的！</font></p>
+<h4 id="3-完整AC代码-1"><a href="#3-完整AC代码-1" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 1005;
+int f[N][N];
+int w[N], v[N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i];
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ )&#123;
+            f[i][j] &#x3D; f[i - 1][j];
+            if(j &gt;&#x3D; w[i]) f[i][j] &#x3D; max(f[i][j], f[i][j - w[i]] + v[i]);
+        &#125;
     &#125;
     
-    while(q.size()) &#123;
-        int t &#x3D; q.front();
-        q.pop();
-        st[t] &#x3D; false;
-        for(int i &#x3D; h[t]; i !&#x3D; -1; i &#x3D; ne[i] ) &#123;
-            int j &#x3D; e[i];
-            
-            if(dist[j] &gt; dist[t] + w[i]) &#123;
-                dist[j] &#x3D; dist[t] + w[i];
-                cnt[j] &#x3D; cnt[t] + 1;
-                
-                if(cnt[j] &gt;&#x3D; n) return true;
-                
-                if(!st[j]) &#123;
-                    st[j] &#x3D; true;
-                    q.push(j);
-                &#125;
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
+&#125;
+&#x2F;&#x2F;进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 1005;
+int f[N];
+int w[N], v[N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i];
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ )&#123;
+            if(j &gt;&#x3D; w[i]) f[j] &#x3D; max(f[j], f[j - w[i]] + v[i]);
+        &#125;
+    &#125;
+    
+    cout &lt;&lt; f[m] &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-对于01背包和完全背包的总结"><a href="#4-对于01背包和完全背包的总结" class="headerlink" title="(4)对于01背包和完全背包的总结"></a>(4)对于01背包和完全背包的总结</h4><p>大家可以看到，两个背包的代码长得几乎是完全一样的！都是就是因为内层推导时候的不同，导致推导式稍微有一些区别，包括我们如果优化成一维背包的话，j的循环顺序的不同，这一点也是很多(包括我在内)的初学者经常比较不清楚的地方，也许之前学习背包的时候会经常用感觉去想这个问题，但是这一次利用数学推导去证明一下，我发现还是受益匪浅的！</p>
+<h3 id="②ACwing-3-多重背包"><a href="#②ACwing-3-多重背包" class="headerlink" title="②ACwing 3.多重背包"></a>②ACwing 3.多重背包</h3><h4 id="1-题目描述-2"><a href="#1-题目描述-2" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/d13a3732b67d4d80bb878defc49db49d.png" alt="3.多重背包"></p>
+<h4 id="2-dp分析-2"><a href="#2-dp分析-2" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p>由于后续的背包模板都是由前两个背包进行扩展，后续直接给出状态转移方程。</p>
+<p><font color="red">状态转移方程：</font><br>$$<br>f[i][j]&#x3D;max\begin{cases}<br>f[i-1][j], 不选择i这些物品 \\<br>f[i-1][j-kw[i]]+kv[i], 选择k个i物品且1\le k\le s[i]&amp;&amp; (j-kw[i])&gt;&#x3D;0<br>\end{cases}<br>$$</p>
+<h4 id="3-完整AC代码-2"><a href="#3-完整AC代码-2" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N &#x3D; 105;
+int f[N][N];
+int w[N], v[N], s[N];
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i] &gt;&gt; s[i];
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i][j] &#x3D; f[i - 1][j];
+            for(int k &#x3D; 1; k &lt;&#x3D; s[i] &amp;&amp; j - k * w[i] &gt;&#x3D; 0; k ++ ) &#123;
+                f[i][j] &#x3D; max(f[i][j], f[i - 1][j - k * w[i]] + k * v[i]);
             &#125;
         &#125;
     &#125;
     
-    return false;
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    return 0;
 &#125;
+&#x2F;&#x2F;进行空间优化
+&#x2F;&#x2F;关注我们的状态转移方程和01背包是一致的，所以j的循环顺序从大到小哦!
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
 
+using namespace std;
+
+const int N &#x3D; 105;
+int f[N];
+int w[N], v[N], s[N];
 int main() &#123;
+    int n, m;
     cin &gt;&gt; n &gt;&gt; m;
-    memset(h, -1, sizeof h);
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) cin &gt;&gt; w[i] &gt;&gt; v[i] &gt;&gt; s[i];
     
-    for(int i &#x3D; 0; i &lt; m; i ++ ) &#123;
-        int a, b, c;
-        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;
-        add(a, b, c);
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; m; j &gt;&#x3D; 1; j -- ) &#123;
+            for(int k &#x3D; 1; k &lt;&#x3D; s[i] &amp;&amp; j - k * w[i] &gt;&#x3D; 0; k ++ ) &#123;
+                f[j] &#x3D; max(f[j], f[j - k * w[i]] + k * v[i]);
+            &#125;
+        &#125;
     &#125;
     
-    if(spfa()) cout &lt;&lt; &quot;Yes&quot; &lt;&lt; endl;
-    else cout &lt;&lt; &quot;No&quot; &lt;&lt; endl;
-    
+    cout &lt;&lt; f[m] &lt;&lt; endl;
     return 0;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 
-<h4 id="代码问题"><a href="#代码问题" class="headerlink" title="代码问题"></a>代码问题</h4><p>为什么dist数组不用初始化为正无穷？</p>
-<p>​    其实就是，负环必须走的那个路径是有负数产生的，且由于一个环必须满足权值为负，那么我们其实可以偷懒一下，让每次开始更新dist出现在，我们搜索的时候，第一次搜到的负数开始，然后在更新dist，如果有负环，那么这个dist是会不断减少的。<font color="red">这个等价于什么呢，我们可以发现，之前的题目都是从1这个点出发开始的，而负环不一定存在1这个点连接的路径上，所以其实在刚开始，队列就应该把所有点放进去，然后所有点去找负环，那也就是说从这个角度看，所有点距离本身的距离为0，那么初始化为0就是正确的！</font></p>
+<h4 id="4-二进制优化"><a href="#4-二进制优化" class="headerlink" title="(4)二进制优化"></a>(4)二进制优化</h4><h5 id="证明："><a href="#证明：" class="headerlink" title="证明："></a>证明：</h5><p>对于这个题目我们发现n是100，所以呢三次循环的时间复杂度是可以过得去的，那么如果我们的n为1000呢?显然三次循环就过不去了，那么我们应该怎么办呢？</p>
+<p>正如这里所说，我们可以利用二进制进行优化，对于这个优化。我先简单来说一说，就是我们把一个物品看成多个物品，然后这些多个物品是有他们本身的价值的。假设我们一个物品他有10件，那么我们可以利用2的次方去表示他。<br>$$<br>10&#x3D;2^0+2^1+2^2+3<br>$$<br>也就是说，我们把10件物品拆成1，2，4，3件物品，为什么后面不是加$2^3$次方呢?首先10不会等于这些数相加，其次如果我们这样拆分，我们可能在计算这件物品的时候，最多就不再是10件了！那么把10件物品拆分后，我们得到了另外的4件物品，这四件物品的体积分别为1w,2w,4w,3w;价值分别为1v,2v,4v,3v。接下来我们就考虑我们怎么能把10件物品选择的每一种情况都考虑到呢？</p>
+<p>观察10以内的拆分<br>$$<br>1&#x3D;1,2&#x3D;2,3&#x3D;3,4&#x3D;4, \\<br>5&#x3D;1+4,6&#x3D;2+4,7&#x3D;3+4 \\<br>8&#x3D;1+3+4,9&#x3D;2+3+4,10&#x3D;1+2+3+4<br>$$<br>从上面的式子看出来，选择这四种东西的不同选法可以拼接出我们选择10件物品的不同选法，为什么按照我们的拆分一定可以呢？</p>
+<p>首先我们去考虑一下如果恰好一个数能够完全拆分成多个2的幂次方</p>
+<p>比如7的二进制表示是<font color="blue">111</font>,也就是$7&#x3D;2^0+2^1+2^2$,那么1,2,4的那一为有或无构成的数就可以形成7以内的任何数。好那么我们在考虑10，10的二进制表示是<font color="blue">1010</font>,毋庸置疑的是，10是可以由我们拆出来的所有数表示出来的，想了一下，如果我们正着推很难推出我们想要得到的结论，所以我们不妨反过来推导。正因为某个正数n必定介于$2^0 到 2^k$之间，假设我们这个数表示成$2^0+2^1+···+2^{k-1}+s$,其中s这个数是这个数减去前面的和，此时我们想一下$2^{k-1}到2^k$次方之间的所有数能不能被表示？</p>
+<p>此时我们假设其中的一个数为num,num介于$2^{k-1} 到 正数n$之间， 那此时必定有<br>$$<br>0 \lt n - num \lt 2^{k-1}<br>$$<br>这也就告诉我们，如果我们用n减去前面已经用二进制表示出来的数的一个集合，必定是可以凑出我们的num的。比如<br>$$<br>9 &#x3D; 10 - 1, 8 &#x3D; 10 - 2<br>$$<br>至此二进制优化就是一个正确的写法。</p>
+<h5 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化，可能会爆空间
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 11005, M &#x3D; 2005; 
+int f[N][M];
+int w[N], v[N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    int cnt &#x3D; 1;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int ww, vv, ss;
+        cin &gt;&gt; ww &gt;&gt; vv &gt;&gt; ss;
+        int flag &#x3D; 1;
+        while(ss - flag &gt;&#x3D; 0) &#123;
+            w[cnt] &#x3D; ww * flag;
+            v[cnt] &#x3D; vv * flag;
+            ss -&#x3D; flag;
+            flag *&#x3D; 2;
+            cnt ++ ;
+        &#125;
+        if(ss) &#123;
+            w[cnt] &#x3D; ww * ss;
+            v[cnt] &#x3D; vv * ss;
+            cnt ++;
+        &#125;
+    &#125;
+    &#x2F;&#x2F;做一遍01背包
+    for(int i &#x3D; 1; i &lt; cnt; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i][j] &#x3D; f[i - 1][j];
+            if(j &gt;&#x3D; w[i]) f[i][j] &#x3D; max(f[i][j], f[i - 1][j - w[i]] + v[i]);
+        &#125;
+    &#125;
+    cout &lt;&lt; f[cnt - 1][m] &lt;&lt; endl;
+    return 0;
+&#125;
+&#x2F;&#x2F;这里利用常见的空间优化手段进行代码书写
+&#x2F;&#x2F;当然大家可以直接用一维的01背包模板去套
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 11005, M &#x3D; 2005; 
+int f[2][M];
+int w[N], v[N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    int cnt &#x3D; 1;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int ww, vv, ss;
+        cin &gt;&gt; ww &gt;&gt; vv &gt;&gt; ss;
+        int flag &#x3D; 1;
+        while(ss - flag &gt;&#x3D; 0) &#123;
+            w[cnt] &#x3D; ww * flag;
+            v[cnt] &#x3D; vv * flag;
+            ss -&#x3D; flag;
+            flag *&#x3D; 2;
+            cnt ++ ;
+        &#125;
+        if(ss) &#123;
+            w[cnt] &#x3D; ww * ss;
+            v[cnt] &#x3D; vv * ss;
+            cnt ++;
+        &#125;
+    &#125;
+    &#x2F;&#x2F;做一遍01背包
+    for(int i &#x3D; 1; i &lt; cnt; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i &amp; 1][j] &#x3D; f[i - 1 &amp; 1][j];
+            if(j &gt;&#x3D; w[i]) f[i &amp; 1][j] &#x3D; max(f[i &amp; 1][j], f[i - 1 &amp; 1][j - w[i]] + v[i]);
+        &#125;
+    &#125;
+    cout &lt;&lt; f[cnt - 1 &amp; 1][m] &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 
                 
             </div>
@@ -735,7 +805,7 @@ int main() &#123;
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://sample.com/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8Bspfa/">https://sample.com/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8Bspfa/</a>
+                    <a href="https://sample.com/2022/08/11/%E8%83%8C%E5%8C%85dp/">https://sample.com/2022/08/11/%E8%83%8C%E5%8C%85dp/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -773,12 +843,8 @@ int main() &#123;
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                    <span class="chip bg-color">模板</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                                    <span class="chip bg-color">图论</span>
+                                <a href="/tags/%E8%83%8C%E5%8C%85DP-DP%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">-背包DP -DP分析</span>
                                 </a>
                             
                         </div>
@@ -952,17 +1018,18 @@ int main() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BFloyd/">
+                <a href="/2022/08/11/%E8%83%8C%E5%8C%85dp/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="图论之Floyd">
+                        <img src="/medias/featureimages/1.jpeg" class="responsive-img" alt="背包dp">
                         
-                        <span class="card-title">图论之Floyd</span>
+                        <span class="card-title">背包dp</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -972,30 +1039,27 @@ int main() &#123;
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%9B%BE%E8%AE%BA%E4%B8%93%E9%A2%98%E7%AF%87/" class="post-category">
-                                    图论专题篇
+                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/" class="post-category">
+                                    动态规划专题
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%9B%BE%E8%AE%BA/">
-                        <span class="chip bg-color">图论</span>
+                    <a href="/tags/%E8%83%8C%E5%8C%85DP-DP%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">-背包DP -DP分析</span>
                     </a>
                     
                 </div>
@@ -1009,13 +1073,13 @@ int main() &#123;
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BDijkstra/">
+                <a href="/2022/07/28/%E5%9B%BE%E8%AE%BA%E4%B9%8BKruskal/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpeg" class="responsive-img" alt="图论之Dijkstra">
+                        <img src="/medias/featureimages/3.jpeg" class="responsive-img" alt="图论之Kruskal">
                         
-                        <span class="card-title">图论之Dijkstra</span>
+                        <span class="card-title">图论之Kruskal</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
