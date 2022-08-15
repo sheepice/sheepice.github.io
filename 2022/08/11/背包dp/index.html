@@ -464,21 +464,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-08-11
+                    2022-08-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.9k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    18 分
+                    29 分
                 </div>
                 
 
@@ -559,8 +559,7 @@ int main() &#123;
 &#125;
 &#x2F;&#x2F;对比一下上面代码，基本上就是删掉一维，然后改变j的循环顺序就好了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-
-
+<hr>
 <h3 id="②ACwing-3-完全背包"><a href="#②ACwing-3-完全背包" class="headerlink" title="②ACwing 3.完全背包"></a>②ACwing 3.完全背包</h3><h4 id="1-题目描述-1"><a href="#1-题目描述-1" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/1e8701799ac8447fb6c6a17149845069.png" alt="3.完全背包"></p>
 <h4 id="2-dp分析-1"><a href="#2-dp分析-1" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p><img src="https://img-blog.csdnimg.cn/049e881e36dd460cae29bbeeb62e7bab.png"></p>
 <blockquote>
@@ -629,7 +628,7 @@ int main() &#123;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="4-对于01背包和完全背包的总结"><a href="#4-对于01背包和完全背包的总结" class="headerlink" title="(4)对于01背包和完全背包的总结"></a>(4)对于01背包和完全背包的总结</h4><p>大家可以看到，两个背包的代码长得几乎是完全一样的！都是就是因为内层推导时候的不同，导致推导式稍微有一些区别，包括我们如果优化成一维背包的话，j的循环顺序的不同，这一点也是很多(包括我在内)的初学者经常比较不清楚的地方，也许之前学习背包的时候会经常用感觉去想这个问题，但是这一次利用数学推导去证明一下，我发现还是受益匪浅的！</p>
-<h3 id="②ACwing-3-多重背包"><a href="#②ACwing-3-多重背包" class="headerlink" title="②ACwing 3.多重背包"></a>②ACwing 3.多重背包</h3><h4 id="1-题目描述-2"><a href="#1-题目描述-2" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/d13a3732b67d4d80bb878defc49db49d.png" alt="3.多重背包"></p>
+<h3 id="③ACwisanng-3-多重背包"><a href="#③ACwisanng-3-多重背包" class="headerlink" title="③ACwisanng 3.多重背包"></a>③ACwisanng 3.多重背包</h3><h4 id="1-题目描述-2"><a href="#1-题目描述-2" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/d13a3732b67d4d80bb878defc49db49d.png" alt="3.多重背包"></p>
 <h4 id="2-dp分析-2"><a href="#2-dp分析-2" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p>由于后续的背包模板都是由前两个背包进行扩展，后续直接给出状态转移方程。</p>
 <p><font color="red">状态转移方程：</font><br>$$<br>f[i][j]&#x3D;max\begin{cases}<br>f[i-1][j], 不选择i这些物品 \\<br>f[i-1][j-kw[i]]+kv[i], 选择k个i物品且1\le k\le s[i]&amp;&amp; (j-kw[i])&gt;&#x3D;0<br>\end{cases}<br>$$</p>
 <h4 id="3-完整AC代码-2"><a href="#3-完整AC代码-2" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化
@@ -695,6 +694,7 @@ int main() &#123;
 <p>首先我们去考虑一下如果恰好一个数能够完全拆分成多个2的幂次方</p>
 <p>比如7的二进制表示是<font color="blue">111</font>,也就是$7&#x3D;2^0+2^1+2^2$,那么1,2,4的那一为有或无构成的数就可以形成7以内的任何数。好那么我们在考虑10，10的二进制表示是<font color="blue">1010</font>,毋庸置疑的是，10是可以由我们拆出来的所有数表示出来的，想了一下，如果我们正着推很难推出我们想要得到的结论，所以我们不妨反过来推导。正因为某个正数n必定介于$2^0 到 2^k$之间，假设我们这个数表示成$2^0+2^1+···+2^{k-1}+s$,其中s这个数是这个数减去前面的和，此时我们想一下$2^{k-1}到2^k$次方之间的所有数能不能被表示？</p>
 <p>此时我们假设其中的一个数为num,num介于$2^{k-1} 到 正数n$之间， 那此时必定有<br>$$<br>0 \lt n - num \lt 2^{k-1}<br>$$<br>这也就告诉我们，如果我们用n减去前面已经用二进制表示出来的数的一个集合，必定是可以凑出我们的num的。比如<br>$$<br>9 &#x3D; 10 - 1, 8 &#x3D; 10 - 2<br>$$<br>至此二进制优化就是一个正确的写法。</p>
+<p><code>时间复杂度：</code> $O(\sum_{i&#x3D;0}^{n-1}m<em>logs[i])$或者$O(n</em>logm*m)$</p>
 <h5 id="完整AC代码"><a href="#完整AC代码" class="headerlink" title="完整AC代码"></a>完整AC代码</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化，可能会爆空间
 #include &lt;iostream&gt;
 #include &lt;cstring&gt;
@@ -778,6 +778,163 @@ int main() &#123;
     cout &lt;&lt; f[cnt - 1 &amp; 1][m] &lt;&lt; endl;
     return 0;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-单调队列优化"><a href="#5-单调队列优化" class="headerlink" title="(5)单调队列优化"></a>(5)单调队列优化</h4><h5 id="证明：-1"><a href="#证明：-1" class="headerlink" title="证明："></a>证明：</h5><p>对于我们的二进制的优化，我们发现，我们只是把原本的东西扁平化处理了，但是最终还是要处理大量的数据。如果当我们的n和m稍微再大一些 ，那么我们用二进制优化，发现也是过不去的。那么这个时候我们可以想一下怎么继续减少我们的时间。我们发现遍历物品的那一层循环n是肯定优化不掉了，那么我们就需要考虑再推导我们的f数组的时候，能否把我们的f数组推导过程变成线性的。</p>
+<p>然后我们再次看一下如果我们是简单的多重背包解法的推导式子：<br>$$<br>f[i][j]&#x3D;max\begin{cases}f[i-1][j], 不选择i这些物品 \\f[i-1][j-kw[i]]+kv[i], 选择k个i物品且1\le k\le s[i]&amp;&amp; (j-kw[i])&gt;&#x3D;0\end{cases}<br>$$<br>看着这个式子之后，我们先举一个<code>例子</code>。</p>
+<p><font color="red">假设我们背包的整个容量为10，而当前我们递推到了第i个物品，这个物品的体积为2，价值为2，数量为3。通过这个例子我们代入我们上面的推导式子我们可以发现下面的一个规律。</font></p>
+<ul>
+<li>$f[10]$只是由我们的$f[8], f[6],f[10]$推导而来</li>
+<li>$f[9]$只是由我们的$f[7], f[5],f[3]$推导而来</li>
+<li>$f[8]$只是由我们的$f[6], f[4],f[2]$推导而来</li>
+<li>·········································································</li>
+<li>$f[2]$只是由我们的$f[0]$推导而来</li>
+</ul>
+<p><font color="red">我们可以看到假设我们的体积为w的话，那么一个数是由比他小，且小的那些数和这个数构成了等差数列，并且等差数列的公差恰好就是为我们的w。<strong>而这样的一个性质可以那么解释，假设当前我们推导的是f[i],那么能够有机会推导出$f[i]$的其他下标我们记作$idx$,所以必定会有$idx%w&#x3D;&#x3D;i%v$</strong>  ,也就是说这些数必须模上当前的体积w同余！</font></p>
+<p>有了上面的性质我们再进一步的去看一下，怎么让我们在每一次推导都是线性的呢?</p>
+<p>由于每一个推导出来的数%w都是同余的才能进行，那么我们不妨以%w的余数作为推导的一整套流线。比如以上面w为2，那么我们就以模上w为0或者1，把所有10的状态分为下面的两种状态。</p>
+<ul>
+<li>0,2,4,6,8,10</li>
+<li>1,3,5,7,9</li>
+</ul>
+<p>那么我们在推导的时候只需要关注组内之间的状态就好了。有了上面的铺垫之后，加上对于数量的限制，我们的问题就变成了。</p>
+<p><font color="blue">如何快速求出一个窗口的最大值？</font></p>
+<p>为什么变成了这个问题呢?通过上面的例子看出，每一组内还有一个数量限制，比如我们开头的数量为3，那么推6的时候，其实就是求前三个数中的0,2,4哪一个状态贡献给6的价值会是最大的。<font color="red">也就是说此时我们要求出一个窗口大小的最大值固定好了的一个滑动窗口的最大值！</font></p>
+<p>至此我们终于知道，oh原来这里是一个滑动窗口的题目！那么至于滑动窗口线性解决的方法就锁定到了我们这里最开始讲到的<code>单调队列</code>！！</p>
+<p>而对于单调队列去维护一个窗口的最大值，无疑就是锁定两个点:</p>
+<ul>
+<li>什么情况对头会被弹出？</li>
+<li>什么情况队尾会被新值更新？</li>
+</ul>
+<p><font color="blue">1.什么情况对头会被弹出？</font></p>
+<p>这里很好想，我们发现，每个数i最多只能由前面三个数来推导，因为我们规定了一个组的数量只能为3，也就是我们最多选3个物品。也就是当物品数量为s的时候，我们只能由同组内，目前下标为i，在i前最多存在s个状态。用代码来表示就是说$(i-q[对头])&#x2F;w \le s$,举个例子，假设我们现在推导到的下标为8，如果队列还存在0，2，4，6的话，那么$(8-0)&#x2F;2&#x3D;4\gt3$,所以我们的对头0就必须出队，因为他已经不在我们的窗口内了！</p>
+<p><font color="blue">2.什么情况队尾会被新值更新？</font></p>
+<p>这个地方是需要一个推导的。我们发现，如果当前我们推导到的元素，他贡献的效果比之前队列队尾的贡献的更好的话。我们就需要让队尾出队。那么这个贡献应该怎么算呢?还是以上面为例子。如果我们当前推导到的下标为6了。那么假设前3个元素都还在队列的话，那么会有。<br>$$<br>f[6]&#x3D;max\begin{cases}<br>f[0]+3<em>v(v表示这个物品的价值) \\<br>f[2]+2</em>v \\<br>f[4]+v<br>\end{cases}<br>$$<br>那么假设4对后面的贡献比6对后面的贡献要小，那么4应该出队，但是，推导的时候，后面加的数量*价值是不一样的，我们怎么判断哪个的价值更高呢？很简单，我们只需要把这个贡献的影响消掉就好了。怎么消掉呢?</p>
+<p>假设我们后面推导的是8,那么对于前面存在可能有6和4的贡献，即有<br>$$<br>f[8]&#x3D;max\begin{cases}<br>f[4]+2<em>v \\<br>f[6]+v<br>\end{cases}<br>$$<br>也就是我们要证明出来$f[6] &gt;&#x3D; f[4]+v$,那么同理，如果我们的6比2的贡献也大的话，我们就需要证明$f[6]&gt;&#x3D;f[2]+2</em>v$,而我们发现在v前面的这个系数，刚好和我们推导的两个数的下标有关系，正如:<br>$$<br>1(*v)&#x3D;(6-4)&#x2F;2 \\<br>2(*v)&#x3D;(6-2)&#x2F;2<br>$$<br>也就是，我们去对比当前下标产生的价值是否是队尾下标产生的价值加上他们的一个差值量价值，而这个差值量价值刚好就等于我们<strong>两个下标的差值除以体积</strong>。</p>
+<p>那么用式子表示是什么样的呢？假设当前推到的下标为k, 当前队尾元素的下标为q[tt], 当前物品的体积为w，价值为v那么如果要出队就需要满足下面的式子:<br>$$<br>hh &lt;&#x3D; tt(队列中存在元素) \\<br>g[k] &gt;&#x3D; g[q[tt]] + (k - q[tt]) &#x2F; w * v<br>$$<br>至此，我们完美收官我们的推导过程！！！</p>
+<p><code>时间复杂度：</code> $O(n*m)$</p>
+<h5 id="完整AC代码-1"><a href="#完整AC代码-1" class="headerlink" title="完整AC代码"></a>完整AC代码</h5><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+const int N &#x3D; 20050;
+&#x2F;&#x2F;f代表动态规划数组，q代表优先队列
+&#x2F;&#x2F;g复制上一层的f数组避免当前f数组如果更新，就会影响贡献值的判断
+int f[N], q[N], g[N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        int w, v, s;
+        cin &gt;&gt; w &gt;&gt; v &gt;&gt; s;
+        &#x2F;&#x2F;先枚举我们的余数,余数不会大于等于体积w,否则于之前的于数等价
+        for(int j &#x3D; 0; j &lt; w; j ++ ) &#123;
+            memcpy(g, f, sizeof f);
+            &#x2F;&#x2F;给出队列的对头和队尾初始值
+            &#x2F;&#x2F;队列存的是0-m的下标
+            int hh &#x3D; 0, tt &#x3D; -1;
+            &#x2F;&#x2F;开始从余数依次枚举，数依次为k, 2 * k, ...;
+            &#x2F;&#x2F;k表示当前循环找到的下标
+            for(int k &#x3D; j; k &lt;&#x3D; m; k +&#x3D; w) &#123;
+                &#x2F;&#x2F;判断对头是否越界，越界就出队
+                if(hh &lt;&#x3D; tt &amp;&amp; (k - q[hh]) &#x2F; w &gt; s) hh ++ ;
+                &#x2F;&#x2F;如果对头存在，利用对头更新我们的结果
+                if(hh &lt;&#x3D; tt) f[k] &#x3D; max(f[k], g[q[hh]] + (k - q[hh]) &#x2F; w * v);
+                &#x2F;&#x2F;如果当前比队尾更优，队尾出队
+                while(hh &lt;&#x3D; tt &amp;&amp; g[k] &gt;&#x3D; g[q[tt]] + (k - q[tt]) &#x2F; w * v) tt -- ;
+                &#x2F;&#x2F;当然有下面这一种写法也是对的，其实都是在求一个相对值
+                &#x2F;&#x2F;while(hh &lt;&#x3D; tt &amp;&amp; g[k] - (k - j) &#x2F; w * v &gt;&#x3D; g[q[tt]] - (q[tt] - j) &#x2F; w * v) tt -- ;
+                
+                &#x2F;&#x2F;当前元素下标入队
+                q[++ tt ] &#x3D; k;
+            &#125;
+        &#125;
+    &#125;
+    cout &lt;&lt; f[m] &lt;&lt; endl;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<hr>
+<h3 id="④ACwing-9分组背包"><a href="#④ACwing-9分组背包" class="headerlink" title="④ACwing.9分组背包"></a>④ACwing.9分组背包</h3><h4 id="1-题目描述-3"><a href="#1-题目描述-3" class="headerlink" title="(1)题目描述"></a>(1)题目描述</h4><p><img src="https://img-blog.csdnimg.cn/778c0bb39e2a4f8c882452516415fe43.png" alt="9.分组背包"></p>
+<h4 id="2-dp分析-3"><a href="#2-dp分析-3" class="headerlink" title="(2)dp分析"></a>(2)dp分析</h4><p>这题其实就是多重背包的一个扩展，只不过每一组内的背包体重和价值都不同了而已。而且由于每一组只能选择一个物品，那么其实也是01背包的扩展，包括多重背包优化后也是算01背包的扩展。</p>
+<p><font color="red">状态转移方程</font><br>$$<br>f[i][j]&#x3D;max\begin{cases}<br>f[i-1][j], 不选择第i组的这些物品 \\<br>f[i-1][j-w[i][k]]+v[i][k],选择i组的第k个物品<br>\end{cases}<br>$$</p>
+<h4 id="3-完整AC代码-3"><a href="#3-完整AC代码-3" class="headerlink" title="(3)完整AC代码"></a>(3)完整AC代码</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F;不进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N &#x3D; 110;
+
+int f[N][N], s[N];
+int w[N][N], v[N][N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++) &#123;
+        cin &gt;&gt; s[i];
+        
+        for(int j &#x3D; 1; j &lt;&#x3D; s[i]; j ++ ) cin &gt;&gt; w[i][j] &gt;&gt; v[i][j];
+    &#125;
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i][j] &#x3D; f[i - 1][j];
+            for(int k &#x3D; 0; k &lt;&#x3D; s[i]; k ++ ) &#123;
+                if(j &gt;&#x3D; w[i][k]) &#123;
+                    f[i][j] &#x3D; max(f[i][j], f[i - 1][j - w[i][k]] + v[i][k]);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    
+    cout &lt;&lt; f[n][m] &lt;&lt; endl;
+    
+    return 0;
+&#125;
+&#x2F;&#x2F;进行空间优化
+#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N &#x3D; 110;
+
+int f[2][N], s[N];
+int w[N][N], v[N][N];
+
+int main() &#123;
+    int n, m;
+    cin &gt;&gt; n &gt;&gt; m;
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++) &#123;
+        cin &gt;&gt; s[i];
+        
+        for(int j &#x3D; 1; j &lt;&#x3D; s[i]; j ++ ) cin &gt;&gt; w[i][j] &gt;&gt; v[i][j];
+    &#125;
+    
+    for(int i &#x3D; 1; i &lt;&#x3D; n; i ++ ) &#123;
+        for(int j &#x3D; 1; j &lt;&#x3D; m; j ++ ) &#123;
+            f[i &amp; 1][j] &#x3D; f[i - 1 &amp; 1][j];
+            for(int k &#x3D; 0; k &lt;&#x3D; s[i]; k ++ ) &#123;
+                if(j &gt;&#x3D; w[i][k]) &#123;
+                    f[i &amp; 1][j] &#x3D; max(f[i &amp; 1][j], f[i - 1 &amp; 1][j - w[i][k]] + v[i][k]);
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+    
+    cout &lt;&lt; f[n &amp; 1][m] &lt;&lt; endl;
+    
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 
@@ -1018,18 +1175,17 @@ int main() &#123;
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/08/11/%E8%83%8C%E5%8C%85dp/">
+                <a href="/2022/08/14/%E4%B8%83%E4%B8%AA%E6%9C%88%E5%AE%B6%E9%87%8C%E8%B9%B2/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpeg" class="responsive-img" alt="背包dp">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="七个月家里蹲?">
                         
-                        <span class="card-title">背包dp</span>
+                        <span class="card-title">七个月家里蹲?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1039,27 +1195,26 @@ int main() &#123;
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-08-11
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-14
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%93%E9%A2%98/" class="post-category">
-                                    动态规划专题
+                            <a href="/categories/%E7%94%9F%E6%B4%BB%E7%AF%87/" class="post-category">
+                                    生活篇
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%83%8C%E5%8C%85DP-DP%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">-背包DP -DP分析</span>
+                    <a href="/tags/%E7%94%9F%E6%B4%BB/">
+                        <span class="chip bg-color">生活</span>
                     </a>
                     
                 </div>
@@ -1293,7 +1448,7 @@ int main() &#123;
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">57.1k</span>
+                        class="white-color">67.6k</span>
             
             
             
