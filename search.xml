@@ -4,6 +4,56 @@
   
     
     <entry>
+      <title>刷python遇到的一些用法记录</title>
+      <link href="/2022/08/18/%E5%88%B7python%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
+      <url>/2022/08/18/%E5%88%B7python%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、enumerate"><a href="#一、enumerate" class="headerlink" title="一、enumerate"></a>一、enumerate</h1><p><code>enumerate:</code> 可以利用枚举一个数组的下标和元素</p><p>假设有一个数组nums &#x3D; [‘我’，‘是’， ‘ikun’];</p><p>可以如此访问</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">for i, items in nums:    print(f&#39;&#123;i&#125;: &#123;items&#125;&#39;)    #或者    print(&quot;%d: %s&quot;%(i, items))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>输出结果</p><p>0: 我</p><p>1: 是</p><p>2: ikun</p></blockquote><h1 id="二、Counter"><a href="#二、Counter" class="headerlink" title="二、Counter()"></a>二、Counter()</h1><p>可以直接把他当成一个计数器来用，也就是c++中的map&lt;int, int&gt;</p><pre class="line-numbers language-python" data-language="python"><code class="language-python">cnt &#x3D; Counter()cnt[1] +&#x3D; 1  &#x2F;&#x2F;key为1的计数器加1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><h1 id="三、defaultdict"><a href="#三、defaultdict" class="headerlink" title="三、defaultdict()"></a>三、defaultdict()</h1><p>一般的字典，如果有数没有存在字典当中，当我们查询的时候就会报错，因此有时候 需要用到我们的<code>defaultdict()</code></p><pre class="line-numbers language-python" data-language="python"><code class="language-python">import mathimport randomfrom collections import defaultdictnum &#x3D; [[1,2], [2, 3], [3, 4]]dict &#x3D; defaultdict(list)for k, v in num:    dict[k].append(v)    dict[k].append(v + 1)    dict[k].append(v + 2)print(dict)print(dict[1][1])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><blockquote><p>输出结果:</p><p>defaultdict(&lt;class ‘list’&gt;, {1: [2, 3, 4], 2: [3, 4, 5], 3: [4, 5, 6]})<br>3</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> python3 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -python3 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>刷Java遇到的一些用法记录</title>
+      <link href="/2022/08/18/%E5%88%B7Java%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/"/>
+      <url>/2022/08/18/%E5%88%B7Java%E9%81%87%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h1 id="一、哈希表"><a href="#一、哈希表" class="headerlink" title="一、哈希表"></a>一、哈希表</h1><p>创立一个哈希表进行计数</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;创建利用哈希map计数的哈希表Map&lt;Integer, Integer&gt; cnt &#x3D; new HashMap&lt;&gt;();<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>假设我们要知道一个数在表中出现的次数的话</p><p>c++可以直接利用类似数组<code>cnt[num]</code>进行访问</p><p>但是在Java中不可以直接利用这样的形式，因为一旦哈希表不存在这个数的话，是会报错的</p><p>利用一个函数<code>getOrDefault()</code>可以解决这个问题</p><pre class="line-numbers language-java" data-language="java"><code class="language-java">&#x2F;&#x2F;基本形式&#x2F;&#x2F;如果计数不为0就返回到计的数的索引，否则范围0cnt.getOrDefault(num, 0)&#x2F;&#x2F;假设要让num计数加一&#x2F;&#x2F;不可以直接cnt[num] ++ ;cnt.put(num, cnt.getOrDefault(num, 0) + 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Java </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>七个月家里蹲</title>
       <link href="/2022/08/14/%E4%B8%83%E4%B8%AA%E6%9C%88%E5%AE%B6%E9%87%8C%E8%B9%B2/"/>
       <url>/2022/08/14/%E4%B8%83%E4%B8%AA%E6%9C%88%E5%AE%B6%E9%87%8C%E8%B9%B2/</url>
